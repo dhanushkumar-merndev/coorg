@@ -14,9 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function EstatesPage() {
-  const cover = estateProjects[0].images[0];
   return <PageMotion className={styles.page} tone="estate">
-    <ChapterHero chapter="02" label="Estates / Completed projects" lines={["Places with roots.", "Stories that stay."]} description="Three completed estates. Three expressions of life in the hills. Explore the Coorg collection from Star Infra Developers." image={cover.src} alt={cover.alt} anchor="completed-projects" disclosure="Illustrative marketing imagery · Star Infra Developers" />
+    <ChapterHero chapter="02" label="Estates / Completed projects" lines={["Places with roots.", "Stories that stay."]} description="Three completed estates. Three expressions of life in the hills. Explore the Coorg collection from Star Infra Developers." image="/images/coorg/estates-hero.webp" alt="Completed luxury hillside estate cottages with tiled roofs along a winding road in Coorg" anchor="completed-projects" disclosure="Illustrative marketing imagery · Star Infra Developers" />
     <section id="completed-projects" className={styles.section} aria-labelledby="estate-heading">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>THE COMPLETED COLLECTION / 03 ESTATES</p><div className={projects.collectionNav}><TransitionLink href="/estates" aria-current="page">Completed projects</TransitionLink><TransitionLink href="/farm-management">Ongoing projects ↗</TransitionLink></div></div>

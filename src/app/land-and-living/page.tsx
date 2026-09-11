@@ -22,8 +22,8 @@ export default function LandAndLivingPage() {
         label="Land & Living"
         lines={["A little more land.", "A different everyday."]}
         description="A road through the trees. Space for a slower morning. A relationship with the land that grows over time."
-        image="/images/coorg/conceptual/plantation-estates.webp"
-        alt="Conceptual plantation road winding between lush hills in the morning mist"
+        image="/images/coorg/land-living-hero.webp"
+        alt="Estate lane winding beneath tall canopy trees and morning light in Coorg"
         anchor="life-with-the-land"
       />
 

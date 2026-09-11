@@ -1,7 +1,8 @@
 .layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; mix-blend-mode: multiply; }
-.motif { position: absolute; width: clamp(230px, 24vw, 360px); opacity: .13; color: #536e55; }
+.motif { position: absolute; width: var(--motif-size); opacity: .13; color: #536e55; }
 .motif svg { display: block; width: 100%; height: auto; }
-.left { left: clamp(-165px, -11vw, -100px); }
-.right { right: clamp(-165px, -11vw, -100px); }
-@media (max-width: 700px) { .motif { width: 220px; } .left { left: -130px; } .right { right: -130px; } }
+.left { left: calc(var(--motif-size) * -.48); }
+.right { right: calc(var(--motif-size) * -.48); }
+.between { translate: -50% 0; }
+@media (max-width: 700px) { .motif { width: calc(var(--motif-size) * .7); } .left { left: calc(var(--motif-size) * -.4); } .right { right: calc(var(--motif-size) * -.4); } }
 @media (prefers-reduced-motion: reduce) { .motif { opacity: .12; } }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef, type CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,16 +23,45 @@ export default function PagePatterns() {
   const pathname = usePathname();
   const root = useRef<HTMLDivElement>(null);
   const motifs = useMemo(() => {
-    const seed = [...pathname].reduce((value, character) => (value * 31 + character.charCodeAt(0)) >>> 0, 17);
-    return [20, 42, 64, 86].map((top, index) => ({
-      top: top + ((seed + index * 13) % 5),
-      rotation: ((seed + index * 53) % 120) - 60,
-      paths: Array.from({ length: 9 }, (_, ring) => contour(seed + index * 19, ring)),
-    }));
+    let seed = [...pathname].reduce((value, character) => (value * 31 + character.charCodeAt(0)) >>> 0, 17);
+    const random = () => {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    };
+    return [17, 28, 40, 51, 63, 76, 89].map((top, index) => {
+      const inner = index === 2 || index === 4 || index === 5;
+      return {
+        top: top + random() * 5,
+        size: Math.round(155 + random() * 225),
+        rotation: random() * 240 - 120,
+        inner,
+        left: inner ? 24 + random() * 49 : null,
+        paths: Array.from({ length: 9 }, (_, ring) => contour(seed + index * 19, ring)),
+      };
+    });
   }, [pathname]);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const layer = root.current;
+    const main = layer?.parentElement;
+    // Put interior motifs in section seams, where there is room for linework.
+    // Re-measure after images/fonts change layout without adding document height.
+    const placeBetweenSections = () => {
+      if (!layer || !main) return;
+      const origin = main.getBoundingClientRect().top;
+      const sections = Array.from(main.querySelectorAll<HTMLElement>("section"))
+        .filter((section) => !section.parentElement?.closest("section") && section.getBoundingClientRect().height > 180)
+        .slice(1);
+      layer.querySelectorAll<HTMLElement>('[data-contour-position="between"]').forEach((motif, index) => {
+        const section = sections[Math.floor((index + 1) * sections.length / 4)];
+        if (!section) return;
+        motif.style.top = `${section.getBoundingClientRect().top - origin - motif.offsetWidth * 0.42}px`;
+      });
+    };
+    placeBetweenSections();
+    const resize = new ResizeObserver(placeBetweenSections);
+    if (main) resize.observe(main);
     const media = gsap.matchMedia();
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const context = gsap.context(() => {
@@ -44,11 +73,11 @@ export default function PagePatterns() {
       }, root);
       return () => context.revert();
     });
-    return () => media.revert();
+    return () => { resize.disconnect(); media.revert(); };
   }, [pathname]);
 
   return <div ref={root} className={styles.layer} aria-hidden="true" data-page-patterns>
-    {motifs.map((motif, index) => <div key={`${pathname}-${index}`} className={`${styles.motif} ${index % 2 ? styles.right : styles.left}`} style={{ top: `${motif.top}%` }} data-contour-motif>
+    {motifs.map((motif, index) => <div key={`${pathname}-${index}`} className={`${styles.motif} ${motif.inner ? styles.between : index % 2 ? styles.right : styles.left}`} style={{ top: `${motif.top}%`, left: motif.left === null ? undefined : `${motif.left}%`, "--motif-size": `${motif.size}px` } as CSSProperties} data-contour-motif data-contour-position={motif.inner ? "between" : "edge"}>
       <svg viewBox="0 0 320 320" fill="none" focusable="false" style={{ transform: `rotate(${motif.rotation}deg)` }}>
         {motif.paths.map((path, ring) => <path key={ring} d={path} pathLength={1} stroke="currentColor" strokeWidth="0.85" opacity={1 - ring * 0.06} />)}
       </svg>

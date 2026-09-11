@@ -17,7 +17,7 @@ export const coorgWorlds: readonly CoorgWorld[] = [
     title: "Plantation Estates",
     line: "Working land. Living landscape.",
     image: "/images/coorg/conceptual/plantation-estates.webp",
-    imageAlt: "Conceptual view of a green plantation and winding estate road in misty hills",
+    imageAlt: "Sprawling coffee plantation with ripe cherries along a winding hillside road in the misty Coorg hills",
     conceptual: true,
     introduction: "A different rhythm. Rooted in the land.",
     description:
@@ -29,7 +29,7 @@ export const coorgWorlds: readonly CoorgWorld[] = [
     title: "Private Hill Retreats",
     line: "Privacy shaped by the hills.",
     image: "/images/coorg/conceptual/private-hill-retreats.webp",
-    imageAlt: "Conceptual forest retreat with warm windows and a pool overlooking misty hills",
+    imageAlt: "Luxury stone and timber hill retreat villa with reflection pool overlooking mist-veiled Coorg valleys",
     conceptual: true,
     introduction: "Some places bring you back to yourself.",
     description:
@@ -41,7 +41,7 @@ export const coorgWorlds: readonly CoorgWorld[] = [
     title: "Curated Estate Plots",
     line: "Space to build with intention.",
     image: "/images/coorg/conceptual/curated-estate-plots.webp",
-    imageAlt: "Conceptual landscape illustration of estate plots and curving roads among green hills",
+    imageAlt: "Gently sloping private estate parcels with coffee rows and mountain vistas in Coorg",
     conceptual: true,
     introduction: "Leave room for your own imagination.",
     description:
@@ -53,7 +53,7 @@ export const coorgWorlds: readonly CoorgWorld[] = [
     title: "Forest & Mountain Land",
     line: "Closer to the landscape.",
     image: "/images/coorg/conceptual/forest-mountain-land.webp",
-    imageAlt: "Conceptual view of a forest-edge meadow and layered mountain ridges under low clouds",
+    imageAlt: "Dramatic panoramic mountain ridges and dense shola rainforest blanketed in morning mist in Coorg",
     conceptual: true,
     introduction: "More horizon. A little less hurry.",
     description:
@@ -65,7 +65,7 @@ export const coorgWorlds: readonly CoorgWorld[] = [
     title: "Countryside Homes",
     line: "A slower way to come home.",
     image: "/images/coorg/conceptual/countryside-homes.webp",
-    imageAlt: "Conceptual Kodagu countryside home with a tiled roof and shaded veranda among coffee plants",
+    imageAlt: "Authentic heritage Kodagu estate bungalow with traditional Mangalore tile roof, carved wood veranda, and flowering coffee garden",
     conceptual: true,
     introduction: "A home with room for the everyday.",
     description:
