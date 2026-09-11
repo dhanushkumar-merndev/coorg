@@ -10,12 +10,27 @@ export type ProjectPrice = {
 export type ProjectImage = {
   src: string;
   alt: string;
-  sourceUrl: string;
   width: number;
   height: number;
+  factualCaptureConfirmed: false;
+} & ({
+  sourceUrl: string;
   association: "confirmed-source";
   mediaKind: "source-marketing";
-  factualCaptureConfirmed: false;
+} | {
+  sourceUrl: null;
+  association: "conceptual";
+  mediaKind: "ai-concept";
+});
+
+export type ProjectFact = { label: string; value: string };
+
+export type ProjectInvestment = {
+  coffeeIncomeProjection: string;
+  villaProposal: string;
+  structure: ProjectFact[];
+  roiProjection: string;
+  disclaimer: string;
 };
 
 export type EstateProject = {
@@ -30,12 +45,17 @@ export type EstateProject = {
   availabilitySource?: "user-confirmed" | null;
   areaLabel: string | null;
   features: string[];
+  featuresHeading?: string;
+  highlights?: ProjectFact[];
+  facilities?: string[];
+  nearbyPlaces?: ProjectFact[];
+  investment?: ProjectInvestment;
   images: ProjectImage[];
-  sourceUrl: string;
+  sourceUrl: string | null;
   price: ProjectPrice | null;
   publicReady: boolean;
-  contentRole: "source-portfolio";
-  verificationStatus: "confirmed-source";
+  contentRole: "source-portfolio" | "user-provided-project";
+  verificationStatus: "confirmed-source" | "partial";
   coordinates: { lat: number; lng: number } | null;
   legalStatus: string | null;
   publicContact: string | null;
@@ -151,82 +171,84 @@ export const completedProjects: EstateProject[] = [
   },
 ];
 
-// The user explicitly expanded the requested ongoing portfolio to the source's
-// ongoing project. Preserve its Bengaluru location and residential classification:
-// this is not a Coorg estate or a managed-farmlands development.
+// Star Garden replaces the former ongoing project at the user's request.
+// Project details and projections were supplied by the user on 2026-09-11.
+// The concept image is illustrative; title, map and exact sale terms remain TBC.
 export const ongoingProjects: EstateProject[] = [
   {
-    id: "arkha-sanctuary",
-    name: "Arkha Sanctuary",
-    location: "BHCS Layout, Banashankari VI Stage, Bengaluru",
-    category: "2 & 3 BHK Residential Apartments",
-    summary: "A new address, taking shape.",
+    id: "star-garden",
+    name: "Star Garden",
+    location: "Madikeri, Coorg",
+    category: "Premium Coffee Estate Plots",
+    summary: "Premium Coffee Estate Plots at Madikeri",
     description: [
-      "An ongoing residential development in Bengaluru with 2 and 3 BHK homes, planned vastu-compliant layouts without common walls, and leisure and landscaped spaces.",
-      "Proposed amenities include swimming pools, a gym, gardens, a jogging track and security.",
+      "Star Garden is a 10-acre premium coffee estate development comprising 30 exclusive plots, thoughtfully planned for peaceful living, nature-based investment, and long-term value appreciation.",
     ],
     status: "ongoing",
     availability: null,
-    areaLabel: null,
-    features: [
-      "2 & 3 BHK homes",
-      "No common walls · planned",
-      "Vastu-compliant layouts · planned",
-      "Swimming and toddlers’ pools · proposed",
-      "Indoor and outdoor gym · proposed",
-      "Landscaped garden and jogging track · proposed",
-      "Children’s play area and shuttle court · proposed",
-      "Multipurpose hall · proposed",
-      "Rainwater harvesting and STP · proposed",
-      "Water supply and power backup · proposed",
-      "Passenger lift and parking · proposed",
-      "CCTV and 24-hour security · proposed",
+    areaLabel: "10 acres",
+    highlights: [
+      { label: "Total area", value: "10 acres" },
+      { label: "Total plots", value: "30 exclusive plots" },
+      { label: "Premium stream-attached plots", value: "9 plots" },
+      { label: "Plots sold", value: "12 plots" },
     ],
+    facilities: [
+      "All internal roads developed with CC roads",
+      "Partition registration facility available",
+      "LAP loan facility available, subject to lender eligibility and approval",
+    ],
+    featuresHeading: "Premium Amenities",
+    features: [
+      "5,500 sq. ft. clubhouse",
+      "Community kitchen",
+      "Dining hall",
+      "Swimming pool",
+      "Dense plantation",
+      "Natural coffee estate surroundings",
+    ],
+    nearbyPlaces: [
+      { label: "NH 274", value: "700 metres" },
+      { label: "Madikeri", value: "9 km" },
+      { label: "Mysore", value: "110 km" },
+      { label: "Bengaluru", value: "220 km" },
+    ],
+    investment: {
+      coffeeIncomeProjection: "The coffee estate is expected to generate approximately ₹50,000 per annum through coffee cultivation, subject to production and market conditions.",
+      villaProposal: "Additional income potential can be created by constructing a 4BHK villa through a reputed construction partner. The proposed investment structure is:",
+      structure: [
+        { label: "Land investment", value: "₹1 crore" },
+        { label: "Villa construction investment", value: "₹1 crore" },
+      ],
+      roiProjection: "Expected ROI timeline: Approximately 18 months, subject to occupancy, rental income, market conditions, and project performance.",
+      disclaimer: "All income and ROI figures are projections and are not guaranteed. Final returns may vary based on market conditions, operating costs, approvals, construction expenses, and actual revenue.",
+    },
     images: [
       {
-        src: "/images/coorg/star-infra/arkha-sanctuary-exterior.webp",
-        alt: "Arkha Sanctuary apartment-building rendering and project branding",
-        sourceUrl: "https://www.stargroups.info/starinfradeveloper/1.webp",
-        width: 3508,
-        height: 2480,
-        association: "confirmed-source",
-        mediaKind: "source-marketing",
-        factualCaptureConfirmed: false,
-      },
-      {
-        src: "/images/coorg/star-infra/arkha-sanctuary-floor-plan.webp",
-        alt: "Arkha Sanctuary illustrative typical floor plan showing apartment layouts and proposed outdoor spaces",
-        sourceUrl: "https://www.stargroups.info/starinfradeveloper/2.webp",
-        width: 3508,
-        height: 2480,
-        association: "confirmed-source",
-        mediaKind: "source-marketing",
-        factualCaptureConfirmed: false,
-      },
-      {
-        src: "/images/coorg/star-infra/arkha-sanctuary-amenities.webp",
-        alt: "Arkha Sanctuary proposed amenities, apartment cutaways and a pool courtyard",
-        sourceUrl: "https://www.stargroups.info/starinfradeveloper/arkha-sanctuary-amenities.webp",
-        width: 3508,
-        height: 2480,
-        association: "confirmed-source",
-        mediaKind: "source-marketing",
+        src: "/images/coorg/conceptual/star-garden.webp",
+        alt: "AI-generated concept illustration of a green coffee estate with a stream and misty Coorg hills",
+        sourceUrl: null,
+        width: 1672,
+        height: 941,
+        association: "conceptual",
+        mediaKind: "ai-concept",
         factualCaptureConfirmed: false,
       },
     ],
-    sourceUrl: STAR_INFRA_SOURCE,
+    sourceUrl: null,
     price: null,
     publicReady: false,
-    contentRole: "source-portfolio",
-    verificationStatus: "confirmed-source",
+    contentRole: "user-provided-project",
+    verificationStatus: "partial",
     coordinates: null,
     legalStatus: null,
     publicContact: null,
     sourceNotes: [
-      "The website calls the project BBMP-approved; the cover graphic also claims CC and OC. No authoritative approval documents are supplied, so legalStatus remains null.",
-      "The source brochure describes itself as conceptual, not a legal offering. Marketing renders are not evidence of completed amenities or approved plans.",
-      "The supplied website identifies one ongoing project. Group-wide counts are not a named ongoing inventory feed.",
-      "The user requested the temporary starting price only in the hero; no rate is assigned to this project.",
+      "Project copy, counts, facilities, amenities and distances were supplied by the user; no independent site or approval documents are supplied.",
+      "The generated image is conceptual artwork, not a site photograph or an approved layout.",
+      "The 12 sold plots are a user-supplied snapshot; current availability is on enquiry.",
+      "The ₹1 crore land and ₹1 crore villa figures belong to the proposed investment structure, not a confirmed per-plot price or price basis.",
+      "The annual coffee-income figure has no supplied per-plot or net/gross basis. Do not infer one. All income and ROI projections remain conditional and are not guaranteed.",
     ],
   },
 ];
@@ -245,9 +267,8 @@ export type ManagedFarmlandsPreview = {
   sourceProject: string | null;
 };
 
-// No ongoing Coorg project is named by the supplied website. Keep this as a
-// programme preview rather than inventing an active project, inventory or location.
-// The requested rate is a temporary user-supplied display value, not a source quote.
+// This programme preview keeps the temporary user-supplied display rate separate
+// from the Star Garden investment proposal and individual project sale terms.
 export const managedFarmlandsPreview: ManagedFarmlandsPreview = {
   id: "managed-farmlands-preview",
   contentRole: "programme-preview",

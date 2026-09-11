@@ -21,18 +21,53 @@ test("completed estates retain their source status and connect to project detail
   for (const path of paths) expect((await page.request.get(path)).ok()).toBe(true);
 });
 
-test("ongoing project keeps its actual city and starting price stays in the hero", async ({ page }) => {
+test("Star Garden leads the ongoing collection with its concept image and qualified project details", async ({ page }) => {
   await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
   await expect(page.locator("[data-chapter-hero]")).toContainText("Starting from₹999 per sq ft");
+  expect(await page.locator("#ongoing-projects, #completed-projects").evaluateAll((sections) => sections.map((section) => section.id))).toEqual(["ongoing-projects", "completed-projects"]);
+  await expect(page.getByRole("navigation", { name: "Project collections" }).getByRole("link").first()).toHaveAttribute("href", "#ongoing-projects");
   const project = page.locator("#ongoing-projects article");
-  await expect(project.getByRole("heading", { name: "Arkha Sanctuary" })).toHaveCount(1);
+  await expect(project).toHaveCount(1);
+  await expect(project.getByRole("heading", { name: "Star Garden", exact: true })).toBeVisible();
   await expect(project.getByText("Ongoing", { exact: true })).toBeVisible();
-  await expect(project).toContainText("Bengaluru");
+  await expect(project).toContainText("Madikeri");
+  await expect(project).toContainText("10 acres");
+  await expect(project.getByText(/AI-generated concept image/i)).toBeVisible();
   await expect(project).not.toContainText("₹999");
-  await expect(project).not.toContainText("Coorg estate");
+  await expect(page.locator("main")).not.toContainText("Arkha");
+  await expect(page.locator('a[href*="arkha-sanctuary"]')).toHaveCount(0);
   await project.getByRole("link", { name: "Explore the project", exact: true }).click();
-  await expect(page).toHaveURL(/\/managed-farmlands\/arkha-sanctuary$/);
-  await expect(page.locator("h1")).toContainText("Arkha");
+  await expect(page).toHaveURL(/\/managed-farmlands\/star-garden$/);
+  await expect(page.locator("h1")).toHaveText(/Star\s*Garden/);
+  await expect(page.locator("[data-chapter-hero]").getByText(/AI-generated concept image/i)).toBeVisible();
+
+  const highlights = page.getByRole("region", { name: "Project Highlights", exact: true });
+  for (const fact of [/Total area\s*:?\s*10 acres/, /Total plots\s*:?\s*30/, /Premium stream-attached plots\s*:?\s*9/, /Plots sold\s*:?\s*12/, /All internal roads developed with CC roads/, /Partition registration facility available/, /LAP loan.*subject to lender eligibility and approval/]) {
+    await expect(highlights).toContainText(fact);
+  }
+  const amenities = page.getByRole("region", { name: "Premium Amenities", exact: true });
+  for (const amenity of [/5,500 sq\. ft\. clubhouse/i, /Community kitchen/, /Dining hall/, /Swimming pool/, /Dense plantation/, /Natural coffee estate surroundings/]) {
+    await expect(amenities).toContainText(amenity);
+  }
+  const location = page.getByRole("region", { name: "Strategic Location", exact: true });
+  for (const distance of [/NH 274\s*:?\s*700 metres/, /Madikeri\s*:?\s*9 km/, /Mysore\s*:?\s*110 km/, /Bengaluru\s*:?\s*220 km/]) {
+    await expect(location).toContainText(distance);
+  }
+  const investment = page.getByRole("region", { name: "Investment Potential", exact: true });
+  for (const condition of [
+    /approximately ₹50,000 per annum.*subject to production and market conditions/i,
+    /4BHK villa.*reputed construction partner/,
+    /Land investment\s*:?\s*₹1 crore/,
+    /Villa construction investment\s*:?\s*₹1 crore/,
+    /Approximately 18 months.*subject to occupancy, rental income, market conditions, and project performance/i,
+    /All income and ROI figures are projections and are not guaranteed\./,
+    /Final returns may vary based on market conditions, operating costs, approvals, construction expenses, and actual revenue\./,
+  ]) {
+    await expect(investment).toContainText(condition);
+  }
+  const image = page.locator("[data-chapter-hero] img");
+  await expect(image).toHaveCount(1);
+  expect((await page.request.get((await image.getAttribute("src"))!)).ok()).toBe(true);
 });
 
 test("project pages remain readable at mobile size with reduced motion and reject unknown slugs", async ({ page }) => {
@@ -42,7 +77,7 @@ test("project pages remain readable at mobile size with reduced motion and rejec
   page.on("pageerror", (error) => errors.push(error.message));
   const media: string[] = [];
   page.on("request", (request) => { if (/\.(mp4|webm)(?:\?|$)/.test(request.url())) media.push(request.url()); });
-  for (const route of ["/estates", "/managed-farmlands", "/managed-farmlands/star-misty-acres", "/managed-farmlands/arkha-sanctuary", "/estates/sln-plantations", "/estates/12-acre-villa", "/gallery"]) {
+  for (const route of ["/estates", "/managed-farmlands", "/managed-farmlands/star-misty-acres", "/managed-farmlands/star-garden", "/estates/sln-plantations", "/estates/12-acre-villa", "/gallery"]) {
     await page.goto(route, { waitUntil: "networkidle" });
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toBeVisible();
@@ -51,8 +86,10 @@ test("project pages remain readable at mobile size with reduced motion and rejec
   }
   expect(errors).toEqual([]);
   expect(media).toEqual([]);
-  const missing = await page.goto("/estates/unknown-estate");
-  expect(missing?.status()).toBe(404);
+  for (const route of ["/estates/unknown-estate", "/managed-farmlands/arkha-sanctuary", "/farm-management/arkha-sanctuary"]) {
+    const missing = await page.goto(route);
+    expect(missing?.status()).toBe(404);
+  }
 });
 
 test("Managed Farmlands heading and price stay inside the hero at wide and short viewports", async ({ page }) => {

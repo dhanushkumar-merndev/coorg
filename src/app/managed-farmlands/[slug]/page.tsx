@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   return {
     title: `${project.name} · Managed Farmlands | Land in Coorg`,
-    description: `${project.name}, a ${project.status} project in ${project.location} from the Star Infra Developers portfolio.`,
+    description: `Explore ${project.name}, an ${project.status === "ongoing" ? "ongoing" : "established"} project in ${project.location}. Discover its setting and project details with Land in Coorg.`,
     alternates: { canonical: `/managed-farmlands/${project.id}` },
   };
 }

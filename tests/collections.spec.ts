@@ -19,7 +19,7 @@ test("estate profiles show source acreage and matched photos without prices", as
 });
 
 test("legacy collection URLs reach the new pages and Home is only active at root", async ({ page }) => {
-  for (const [before, after] of [["/farm-management", "/managed-farmlands"], ["/farm-management/arkha-sanctuary", "/managed-farmlands/arkha-sanctuary"], ["/estates/star-woods-estate", "/managed-farmlands/star-woods-estate"], ["/land-and-living", "/gallery"]]) {
+  for (const [before, after] of [["/farm-management", "/managed-farmlands"], ["/farm-management/star-garden", "/managed-farmlands/star-garden"], ["/estates/star-woods-estate", "/managed-farmlands/star-woods-estate"], ["/land-and-living", "/gallery"]]) {
     await page.goto(before, { waitUntil: "networkidle" });
     expect(new URL(page.url()).pathname).toBe(after);
     await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Home", exact: true })).not.toHaveAttribute("aria-current", "page");
