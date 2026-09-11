@@ -1,10 +1,10 @@
 .page { overflow: clip; }
-.hero { position: relative; min-height: 730px; height: 92svh; max-height: 1080px; color: var(--paper); background: var(--deep-forest); overflow: hidden; isolation: isolate; }
+.hero { position: relative; display: flex; align-items: center; min-height: max(730px, 92svh); height: auto; padding: 150px var(--page-gutter) 125px; color: var(--paper); background: var(--deep-forest); overflow: hidden; isolation: isolate; }
 .heroVisual, .heroShade { position: absolute; inset: 0; z-index: -1; }
 .heroImage { position: absolute; inset: -10% 0; }
 .coverImage { object-fit: cover; }
 .heroShade { background: linear-gradient(180deg, #102b2380, #102b2310 32%, #102b2370 75%, #102b23b0), linear-gradient(90deg, #102b2355, transparent 75%); }
-.heroText { position: absolute; bottom: 18%; left: var(--page-gutter); right: var(--page-gutter); max-width: 1100px; padding-top: 135px; }
+.heroText { position: relative; width: 100%; max-width: 1100px; }
 .eyebrow { font-size: 12px; letter-spacing: .19em; text-transform: uppercase; font-weight: 500; line-height: 1.8; }
 .eyebrow > span { display: inline-block; margin-inline: 17px; opacity: .65; }
 .heroTitle { font: 400 clamp(68px, 8.4vw, 146px)/.98 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 27px 0 25px; }
@@ -12,12 +12,12 @@
 .lineMask > span { display: block; }
 .heroTitle em { font-weight: 400; }
 .heroDescription { max-width: 430px; font-size: 16px; line-height: 1.85; color: #f4f0e7e0; }
-.heroFoot { position: absolute; bottom: 34px; left: var(--page-gutter); right: var(--page-gutter); display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.heroFoot { position: absolute; bottom: 34px; left: var(--page-gutter); right: calc(var(--page-gutter) + 90px); display: flex; align-items: end; gap: 20px; }
 .scrollCue { display: inline-flex; align-items: center; gap: 17px; font-size: 12px; letter-spacing: .14em; min-height: 44px; }
 .scrollCue > span { font-size: 25px; line-height: 1; }
 .imageDisclosure { font-size: 12px; line-height: 1.8; font-weight: 400; letter-spacing: .02em; opacity: .72; }
-.heroFoot > .imageDisclosure { text-align: right; }
-.hero_center .heroText { max-width: none; text-align: center; bottom: 19%; }
+.heroFoot > .imageDisclosure { text-align: left; }
+.hero_center .heroText { max-width: none; text-align: center; margin-inline: auto; }
 .hero_center .heroDescription { margin-inline: auto; }
 .hero_center .heroTitle { font-size: clamp(72px, 9vw, 158px); }
 .hero_wide .heroTitle { font-size: clamp(74px, 10.5vw, 176px); }
@@ -105,9 +105,11 @@
 .enquiryIntro .bodyCopy { margin-inline: auto; max-width: 510px; }
 .enquiryContour { position: absolute; width: 270px; left: -90px; top: 200px; opacity: .17; transform: rotate(-25deg); pointer-events: none; }
 .smallNote { margin-top: 18px; font-size: 12px; line-height: 1.8; opacity: .7; }
-@media (min-width: 1600px) { .heroText { bottom: 19%; } }
+
 @media (max-width: 1000px) {
-  .hero { height: 87svh; min-height: 680px; }
+  .hero { min-height: max(680px, 87svh); padding-top: 135px; }
+  .hero .heroText { text-align: center; margin-inline: auto; }
+  .heroDescription { margin-inline: auto; }
   .heroTitle { font-size: clamp(64px, 9.5vw, 98px); }
   .introGrid { grid-template-columns: .7fr 1.3fr; gap: 35px; }
   .plantationGrid { gap: 45px; }
@@ -117,8 +119,7 @@
   .cardRule { margin-block: 23px 15px; }
 }
 @media (max-width: 700px) {
-  .hero { height: 90svh; min-height: 670px; max-height: 850px; }
-  .heroText { bottom: 21%; }
+  .hero { min-height: max(670px, 90svh); padding-top: 130px; padding-bottom: 135px; }
   .heroTitle, .hero_center .heroTitle, .hero_wide .heroTitle { font-size: clamp(56px, 12.5vw, 88px); margin-block: 24px; }
   .heroDescription { font-size: 16px; max-width: 340px; }
   .heroFoot { align-items: start; bottom: 23px; }

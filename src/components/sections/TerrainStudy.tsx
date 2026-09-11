@@ -114,6 +114,6 @@ export function TerrainStudy() {
         <button type="button" aria-label="Rotate terrain right" onClick={() => setTurn((value) => value + 1)}><LuArrowRight size={18} aria-hidden="true" /></button>
       </div>}
     </div>
-    <p className={styles.credit}>Elevation: {dem.source}, ≈{dem.cellMetres} m grid. Indicative landscape context; not a survey, boundary or property map.</p>
+    <p className={styles.credit}>Explore the shape of the landscape. This terrain study is not a survey, boundary or property map.</p>
   </>;
 }

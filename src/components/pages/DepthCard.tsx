@@ -30,7 +30,7 @@ export default function DepthCard({ image, alt, title, line, href, index, classN
         <Image src={image} alt={alt} fill sizes="(max-width: 700px) 90vw, 44vw" className={styles.coverImage} />
         <span className={styles.cardShade} aria-hidden="true" />
         <span className={styles.cardTop}><span>{index} / A WAY TO BELONG</span><LuArrowRight size={20} aria-hidden="true" /></span>
-        <div className={styles.cardContent} data-card-copy><h3>{title}</h3><span className={styles.cardLine}>{line}</span><span className={styles.cardRule} data-chapter-rule /><span className={styles.cardAction}>Explore this perspective <LuArrowRight size={20} aria-hidden="true" /></span><span className={styles.imageDisclosure}>AI-generated conceptual imagery</span></div>
+        <div className={styles.cardContent} data-card-copy><h3>{title}</h3><span className={styles.cardLine}>{line}</span><span className={styles.cardRule} data-chapter-rule /><span className={styles.cardAction}>Explore this perspective <LuArrowRight size={20} aria-hidden="true" /></span></div>
       </TransitionLink>
     </motion.div>
   </div>;

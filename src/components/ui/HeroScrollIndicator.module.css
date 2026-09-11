@@ -1,0 +1,9 @@
+.indicator { position: absolute; right: var(--page-gutter); bottom: max(24px, calc(100% - 100svh + 24px)); z-index: 8; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--paper); opacity: 1; visibility: visible; transition: opacity .3s ease, transform .3s ease, visibility .3s; }
+.label { font-size: 12px; line-height: 1.5; letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 8px #102b23; }
+.circle { display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid #f4f0e790; border-radius: 50%; background: #102b2345; transition: background .2s, border-color .2s; }
+.indicator:hover .circle { background: #102b2380; border-color: var(--paper); }
+.indicator[data-scrolled="true"] { opacity: 0; visibility: hidden; transform: translateY(8px); pointer-events: none; }
+@keyframes nudge { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: no-preference) { .circle svg { animation: nudge 2s ease-in-out infinite; } }
+@media (prefers-reduced-motion: reduce) { .indicator, .circle { transition: none; } }
+@media (max-width: 700px) { .circle { width: 48px; height: 48px; } .indicator { gap: 7px; } }

@@ -12,7 +12,7 @@ export function FeaturedOpportunities() {
     <PageMotion tone="estate">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>03 / MANAGED FARMLANDS</p><div className={projects.collectionNav}><TransitionLink href="/managed-farmlands#completed-projects">Completed projects ↗</TransitionLink><TransitionLink href="/managed-farmlands#ongoing-projects">Ongoing projects ↗</TransitionLink></div></div>
-        <div><WordHeading id="featured-heading" treatment="ink">Real places. A lasting sense of belonging.</WordHeading><p className={projects.introCopy} data-chapter-rise>Explore three completed Coorg estates from the Star Infra Developers portfolio. Find the setting that speaks to you.</p></div>
+        <div><WordHeading id="featured-heading" treatment="ink">Real places. A lasting sense of belonging.</WordHeading><p className={projects.introCopy} data-chapter-rise>Explore three completed Coorg estates. Find the setting that speaks to you.</p></div>
       </div>
       <ProjectMotion className={projects.compactGrid}>{completedProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} compact />)}</ProjectMotion>
       <div className={projects.farmBand} data-chapter-rise>

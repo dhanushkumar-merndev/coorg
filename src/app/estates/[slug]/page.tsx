@@ -6,13 +6,14 @@ import { completedProjects } from "@/data/projects";
 
 type Props = { params: Promise<{ slug: string }> };
 function resolveEstate(slug: string) {
+  if (slug === "sln-plantations") permanentRedirect("/estates/madikeri-estate");
   if (completedProjects.some((project) => project.id === slug)) permanentRedirect(`/managed-farmlands/${slug}`);
   const estate = getEstateListing(slug);
   if (!estate) notFound();
   return estate;
 }
 export function generateStaticParams() {
-  return [...estateListings, ...completedProjects].map(({ id }) => ({ slug: id }));
+  return [...estateListings, ...completedProjects, { id: "sln-plantations" }].map(({ id }) => ({ slug: id }));
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const estate = resolveEstate((await params).slug);

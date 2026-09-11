@@ -14,8 +14,7 @@ export default function EstateCard({ estate, index }: { estate: EstateListing; i
       <div className={projects.cardImage} data-project-image><Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 700px) 100vw, 58vw" /></div>
       <div className={projects.cardShade} aria-hidden="true" />
       </div>
-      <div className={projects.badges}><span className={projects.status}>{estate.areaLabel}{estate.areaNote && photo.association === "probable" ? " · source note" : ""}</span></div>
-      <span className={projects.imageCaption}>{photo.association === "confirmed" ? "ACTUAL PHOTOGRAPH · SLN SOURCE BROCHURE" : "SUPPLIED VILLA PHOTO · PROPERTY ASSOCIATION TO BE CONFIRMED"}</span>
+      <div className={projects.badges}><span className={projects.status}>{estate.areaLabel}{estate.areaNote && photo.association === "probable" ? " · to confirm" : ""}</span></div>
       <span className={projects.viewCircle} aria-hidden="true"><LuArrowUpRight size={25} /></span>
     </TransitionLink>}
     <div className={photo ? projects.cardCopy : styles.acreageCopy} data-project-copy>

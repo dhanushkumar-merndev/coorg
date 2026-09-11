@@ -11,6 +11,7 @@ const photos = [
   ['01_VILLA_26_CENT_PROBABLE/villa_01_gate.jpg', 'villa/gate'],
   ['01_VILLA_26_CENT_PROBABLE/villa_03_pool_vertical.jpg', 'villa/pool-vertical'],
   ['01_VILLA_26_CENT_PROBABLE/villa_04_side_path.jpg', 'villa/side-path'],
+  ['01_VILLA_26_CENT_PROBABLE/villa_06_pool_overview.jpg', 'villa/pool-overview'],
   ['04_FOREST_LAND_GENERIC_TBC/forest_03_internal_road_dense.jpg', 'generic/forest-dense'],
   ['04_FOREST_LAND_GENERIC_TBC/forest_05_landscaped_pond_road.jpg', 'generic/pond-road'],
   ['04_FOREST_LAND_GENERIC_TBC/forest_07_waterfall.jpg', 'generic/waterfall'],

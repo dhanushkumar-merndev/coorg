@@ -11,11 +11,11 @@ export default function EstateDetailPage({ estate }: { estate: EstateListing }) 
   const cover = estate.photos[0];
   const name = estate.name.split(" ");
   return <PageMotion className={styles.page} tone="estate">
-    {cover ? <ChapterHero className={projects.farmHero} chapter="02" label={`Estates / ${estate.category}`} lines={[name.slice(0, -1).join(" "), name.at(-1)!]} description={estate.summary} image={cover.src} alt={cover.alt} anchor="estate-story" disclosure={cover.caption} /> : <section className={estates.plainHero} aria-labelledby="estate-title"><p className={styles.eyebrow}>02 / ESTATES</p><h1 id="estate-title">{estate.name}</h1><p>{estate.summary}</p></section>}
+    {cover ? <ChapterHero className={projects.farmHero} chapter="02" label={`Estates / ${estate.category}`} lines={[name.slice(0, -1).join(" "), name.at(-1)!]} description={estate.summary} image={cover.src} alt={cover.alt} anchor="estate-story" /> : <section className={estates.plainHero} aria-labelledby="estate-title"><p className={styles.eyebrow}>02 / ESTATES</p><h1 id="estate-title">{estate.name}</h1><p>{estate.summary}</p></section>}
     <section id="estate-story" className={styles.section} aria-labelledby="estate-story-heading">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>{estate.category}</p><p className={estates.acreage}>{estate.areaLabel ?? "Acreage on enquiry"}</p>{estate.areaNote && <p className={estates.areaNote}>{estate.areaNote}</p>}</div>
-        <div><WordHeading id="estate-story-heading">{estate.name === "SLN Plantations" ? "Rooted in a growing landscape." : "A place to look closer."}</WordHeading><div className={projects.introCopy}>{estate.description.map((text) => <p data-chapter-rise key={text}>{text}</p>)}</div></div>
+        <div><WordHeading id="estate-story-heading">{estate.id === "madikeri-estate" ? "Rooted in a growing landscape." : "A place to look closer."}</WordHeading><div className={projects.introCopy}>{estate.description.map((text) => <p data-chapter-rise key={text}>{text}</p>)}</div></div>
       </div>
       <dl className={projects.factList}>
         <div className={projects.fact} data-chapter-rise><dt>Land area</dt><dd>{estate.areaLabel ?? "On enquiry"}</dd></div>
@@ -27,8 +27,8 @@ export default function EstateDetailPage({ estate }: { estate: EstateListing }) 
     <section className={`${styles.section} ${styles.introGrid}`} aria-labelledby="estate-details-heading">
       <div><p className={styles.eyebrow}>A CLOSER LOOK</p><div className={styles.textAction}><WordHeading id="estate-details-heading">Let’s talk about the details.</WordHeading></div></div>
       <div>{estate.facts.length > 0 && <ul className={projects.featureList}>{estate.facts.map((fact) => <li key={fact.label} data-chapter-rise><span><strong>{fact.label}</strong><br />{fact.value}</span></li>)}</ul>}
-        <p className={projects.sourceNote}>Information from {estate.source}. Discuss current site details, documentation and availability with us.</p>
-        {!cover && <p className={estates.photoNote}>Property photographs have not yet been supplied for this profile.</p>}
+        <p className={projects.sourceNote}>Discuss current site details, documentation and availability with us.</p>
+        {!cover && <p className={estates.photoNote}>Enquire to discuss photographs and arrange a closer look.</p>}
         <div className={styles.textAction}><RouteButton href="/enquiry">Enquire about {estate.name}</RouteButton></div>
       </div>
     </section>

@@ -55,13 +55,15 @@ export default function CoorgHero() {
     <div className="hero-vignette" aria-hidden="true" />
     <div className="hero-initial-mist" aria-hidden="true" />
     <BirdFlock />
+    <div className="hero-copy-layout">
     <div className="hero-heading-depth">
       <p className="hero-eyebrow eyebrow">LAND <span>·</span> ESTATES <span>·</span> PLANTATIONS <span>·</span> COORG</p>
       <h1 className="hero-title"><span className="hero-title-land"><span className="hero-copy-entry">LAND IN</span></span><span className="hero-title-coorg"><span className="hero-copy-entry">COORG</span></span></h1>
     </div>
-    <div className="hero-type-mist" aria-hidden="true" />
     <div className="hero-support"><span className="hero-horizon-line" aria-hidden="true" /><p>Where the mist settles,<br className="mobile-break" /> your land begins.</p><div className="hero-actions"><MagneticButton href="/opportunities">Explore Opportunities</MagneticButton><MagneticButton href="/enquiry" variant="line">Enquire Privately</MagneticButton></div></div>
-    <div className="hero-bottom"><a href="#opportunities" className="scroll-cue"><span className="scroll-line" /><span>SCROLL TO DISCOVER</span></a><span className="hero-location"><span className="location-dot" />THE WESTERN GHATS, KARNATAKA</span><span className="hero-art-label">An impression of Coorg · Conceptual landscape</span></div>
+    </div>
+    <div className="hero-type-mist" aria-hidden="true" />
+    <div className="hero-bottom"><a href="#opportunities" className="scroll-cue"><span className="scroll-line" /><span>SCROLL TO DISCOVER</span></a><span className="hero-location"><span className="location-dot" />THE WESTERN GHATS, KARNATAKA</span></div>
     <MistTransition />
   </section></div>;
 }

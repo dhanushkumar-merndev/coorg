@@ -234,10 +234,6 @@ export default function WorldDetail({ world, origin, reduced, returnRect, onClos
           )}
           <Image src={world.image} alt={world.imageAlt} fill sizes="(max-width: 759px) 100vw, 600px" className={styles.photo} style={{ opacity: sharp || !cardImage ? 1 : 0 }} onLoad={() => setSharp(true)} />
         </div>
-        <motion.div className={styles.imageCaption} initial={{ opacity: 0 }} animate={{ opacity: panelOpen ? 1 : 0 }} transition={{ duration: closing ? 0.15 : 0.6, delay: panelOpen && !reduced ? 0.2 : 0 }}>
-          <p>An imagined perspective on Coorg.</p>
-          <span>AI-generated conceptual imagery</span>
-        </motion.div>
       </div>
       <motion.div
         className={styles.copy}

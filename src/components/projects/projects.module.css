@@ -125,3 +125,8 @@
   .gallery figure:nth-child(2) { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .cardImage img, .viewCircle, .textLink svg { transition: none; } .cardVisual:hover .cardImage img, .cardVisual:hover .viewCircle, .textLink:hover svg { transform: none; } }
+
+@media (max-width: 1000px) {
+  .heroPrice { margin-inline: auto; justify-content: center; text-align: center; }
+  .heroCollectionNav { justify-content: center; }
+}
