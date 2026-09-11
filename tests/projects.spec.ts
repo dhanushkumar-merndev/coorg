@@ -32,14 +32,14 @@ test("Star Garden leads the ongoing collection with its concept image and qualif
   await expect(project.getByText("Ongoing", { exact: true })).toBeVisible();
   await expect(project).toContainText("Madikeri");
   await expect(project).toContainText("10 acres");
-  await expect(project.getByText(/AI-generated concept image/i)).toBeVisible();
+  await expect(project.getByText(/AI-generated concept image/i)).not.toBeVisible();
   await expect(project).not.toContainText("₹999");
   await expect(page.locator("main")).not.toContainText("Arkha");
   await expect(page.locator('a[href*="arkha-sanctuary"]')).toHaveCount(0);
   await project.getByRole("link", { name: "Explore the project", exact: true }).click();
   await expect(page).toHaveURL(/\/managed-farmlands\/star-garden$/);
   await expect(page.locator("h1")).toHaveText(/Star\s*Garden/);
-  await expect(page.locator("[data-chapter-hero]").getByText(/AI-generated concept image/i)).toBeVisible();
+  await expect(page.locator("[data-chapter-hero]").getByText(/AI-generated concept image/i)).not.toBeVisible();
 
   const highlights = page.getByRole("region", { name: "Project Highlights", exact: true });
   for (const fact of [/Total area\s*:?\s*10 acres/, /Total plots\s*:?\s*30/, /Premium stream-attached plots\s*:?\s*9/, /Plots sold\s*:?\s*12/, /All internal roads developed with CC roads/, /Partition registration facility available/, /LAP loan.*subject to lender eligibility and approval/]) {

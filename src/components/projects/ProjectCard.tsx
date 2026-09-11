@@ -21,7 +21,6 @@ export default function ProjectCard({ project, index, compact = false }: { proje
       <div className={styles.cardShade} aria-hidden="true" />
       </div>
       <ProjectStatus project={project} />
-      {cover.mediaKind === "ai-concept" && <span className={styles.imageCaption}>AI-generated concept image</span>}
       <span className={styles.viewCircle} aria-hidden="true"><LuArrowUpRight size={25} /></span>
     </TransitionLink>
     <div className={styles.cardCopy} data-project-copy>

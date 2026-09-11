@@ -7,7 +7,7 @@ import styles from "@/components/pages/pages.module.css";
 
 export const metadata: Metadata = {
   title: "Enquire Privately | Land in Coorg",
-  description: "Begin a personal brief for your search in Coorg. Describe your ideal setting and keep a private copy for a future conversation.",
+  description: "Enquire about land in Coorg. Share your ideal setting and connect with us on WhatsApp.",
 };
 
 export default function EnquiryPage() {

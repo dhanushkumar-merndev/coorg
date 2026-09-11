@@ -225,11 +225,11 @@ export const ongoingProjects: EstateProject[] = [
     },
     images: [
       {
-        src: "/images/coorg/conceptual/star-garden.webp",
-        alt: "AI-generated concept illustration of a green coffee estate with a stream and misty Coorg hills",
+        src: "/images/coorg/conceptual/star-garden-vision.webp",
+        alt: "Concept visualization of Star Garden coffee estate, a stream, clubhouse and misty Coorg hills",
         sourceUrl: null,
-        width: 1672,
-        height: 941,
+        width: 1536,
+        height: 1024,
         association: "conceptual",
         mediaKind: "ai-concept",
         factualCaptureConfirmed: false,
@@ -245,7 +245,7 @@ export const ongoingProjects: EstateProject[] = [
     publicContact: null,
     sourceNotes: [
       "Project copy, counts, facilities, amenities and distances were supplied by the user; no independent site or approval documents are supplied.",
-      "The generated image is conceptual artwork, not a site photograph or an approved layout.",
+      "Project visual representation; not an approved layout.",
       "The 12 sold plots are a user-supplied snapshot; current availability is on enquiry.",
       "The ₹1 crore land and ₹1 crore villa figures belong to the proposed investment structure, not a confirmed per-plot price or price basis.",
       "The annual coffee-income figure has no supplied per-plot or net/gross basis. Do not infer one. All income and ROI projections remain conditional and are not guaranteed.",

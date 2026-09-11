@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuArrowUpRight, LuDownload, LuMinus, LuMountain, LuX } from "react-icons/lu";
+import { LuArrowUpRight, LuMinus, LuMountain, LuX } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa";
+import { contactPhone, contactTelephone, whatsappUrl } from "@/data/contact";
 import { AnimatedSelect } from "@/components/ui/AnimatedSelect";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import styles from "./sections.module.css";
@@ -13,13 +15,8 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
   const [status, setStatus] = useState("");
   const firstInput = useRef<HTMLInputElement>(null);
   const openButton = useRef<HTMLButtonElement>(null);
-  const downloadUrl = useRef<string | null>(null);
   const focusAfterOpen = useRef(false);
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
-
-  useEffect(() => () => {
-    if (downloadUrl.current) URL.revokeObjectURL(downloadUrl.current);
-  }, []);
 
   function closeForm() {
     setOpen(false);
@@ -27,7 +24,7 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
     openButton.current?.focus({ preventScroll: true });
   }
 
-  function prepareBrief(event: FormEvent<HTMLFormElement>) {
+  function openWhatsApp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const values = new FormData(form);
@@ -42,33 +39,18 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
     contactInput.setCustomValidity(contactValid ? "" : "Please enter a valid email address or phone number.");
     if (!form.reportValidity()) return;
 
-    const brief = [
-      "LAND IN COORG — PERSONAL ENQUIRY BRIEF",
-      "Prepared locally. This brief has not been sent.",
+    const message = [
+      "Hello Land in Coorg, I would like to enquire.",
       "",
       `Name: ${name}`,
       `Contact: ${contact}`,
       `Interest: ${String(values.get("interest") ?? "Still exploring")}`,
       "",
       "What I am looking for:",
-      String(values.get("note") ?? "").trim() || "Not specified",
-      "",
-      "Keep this brief for a future conversation. A public enquiry contact is not yet available on this site.",
+      String(values.get("note") ?? "").trim() || "I would like to discuss the available properties.",
     ].join("\n");
-
-    try {
-      if (downloadUrl.current) URL.revokeObjectURL(downloadUrl.current);
-      downloadUrl.current = URL.createObjectURL(new Blob([brief], { type: "text/plain;charset=utf-8" }));
-      const anchor = document.createElement("a");
-      anchor.href = downloadUrl.current;
-      anchor.download = "land-in-coorg-enquiry.txt";
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
-      setStatus("Your brief is ready and the download has started. No details have been sent. Keep the file for a future conversation.");
-    } catch {
-      setStatus("The download could not start. Your details are still here so you can copy them. No details have been sent.");
-    }
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    setStatus("Your enquiry is ready in WhatsApp. Review it and tap Send to start the conversation.");
   }
 
   return (
@@ -79,7 +61,7 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
       <h2 id="enquiry-heading">Your kind of land.<br /><em>Your kind of life.</em></h2>
       <p className={styles.enquiryCopy}>Looking for a specific kind of land in Coorg?<br />Tell us what you are looking for.</p>
       <button ref={openButton} type="button" className={`${styles.enquiryButton} ${formStyles.button}`} onClick={() => { if (open) closeForm(); else { focusAfterOpen.current = true; setOpen(true); setStatus(""); } }} aria-expanded={open} aria-controls="private-enquiry-form">{open ? "Close Enquiry" : "Start an Enquiry"}{open ? <LuMinus aria-hidden="true" /> : <LuArrowUpRight aria-hidden="true" />}</button>
-      <p className={styles.contactNote}>Prepare a private brief to keep. Direct enquiries are not yet available.</p>
+      <p className={styles.contactNote}>Call <a href={`tel:${contactTelephone}`}>{contactPhone}</a> or enquire on WhatsApp.</p>
       </>}
       <AnimatePresence initial={false}>
       {open && (
@@ -91,8 +73,9 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
             <h3 id="enquiry-form-heading">A little about your search.</h3>
             {!standalone && <button type="button" onClick={closeForm} className={`${styles.closeForm} ${formStyles.close}`} aria-label="Close enquiry form"><LuX aria-hidden="true" /></button>}
           </div>
-          <p id="enquiry-form-help" className={styles.formHelp}>This form creates a text file on your device. Your details are not sent or stored by this website.</p>
-          <form onSubmit={prepareBrief} aria-describedby="enquiry-form-help" onInput={(event) => {
+          <p className={styles.formHelp}>Call <a href={`tel:${contactTelephone}`}>{contactPhone}</a> · <a href={whatsappUrl()} target="_blank" rel="noreferrer">Chat on WhatsApp</a></p>
+          <p id="enquiry-form-help" className={styles.formHelp}>Continue to WhatsApp with your details filled in. Review the message there, then tap Send.</p>
+          <form onSubmit={openWhatsApp} aria-describedby="enquiry-form-help" onInput={(event) => {
             const target = event.target;
             if (target instanceof HTMLInputElement) target.setCustomValidity("");
             if (status) setStatus("");
@@ -100,10 +83,10 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
             <div className={styles.formGrid}>
               <label htmlFor="enquiry-name">Your name <span aria-hidden="true">*</span><input ref={firstInput} id="enquiry-name" name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Name" /></label>
               <label htmlFor="enquiry-contact">Email or phone <span aria-hidden="true">*</span><input id="enquiry-contact" name="contact" required maxLength={180} placeholder="How you would like to be contacted" /></label>
-              <AnimatedSelect id="enquiry-interest" name="interest" label="What draws you here?" className={styles.fullField} defaultValue="Still exploring" options={["Still exploring", "Plantation Estates", "Private Hill Retreats", "Curated Estate Plots", "Forest & Mountain Land", "Countryside Homes"]} onValueChange={() => setStatus("")} />
+              <AnimatedSelect id="enquiry-interest" name="interest" label="What draws you here?" className={styles.fullField} defaultValue="Still exploring" options={["Still exploring", "Star Garden", "Managed Farmlands", "Madikeri Estate", "Plantation Estates", "Private Hill Retreats", "Curated Estate Plots", "Forest & Mountain Land", "Countryside Homes"]} onValueChange={() => setStatus("")} />
               <label htmlFor="enquiry-note" className={styles.fullField}>A little more <span className={styles.optional}>(optional)</span><textarea id="enquiry-note" name="note" maxLength={3000} rows={3} placeholder="Your ideal setting, preferred area, or what matters most to you…" /></label>
             </div>
-            <button type="submit" className={`${styles.downloadButton} ${formStyles.button}`}>Download my brief <LuDownload aria-hidden="true" /></button>
+            <button type="submit" className={`${styles.downloadButton} ${formStyles.button}`}>Continue on WhatsApp <FaWhatsapp aria-hidden="true" /></button>
             <p role="status" aria-live="polite" className={styles.formStatus}>{status}</p>
           </form>
         </div>

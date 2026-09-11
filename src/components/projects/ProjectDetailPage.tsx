@@ -13,7 +13,7 @@ export default function ProjectDetailPage({ project }: { project: EstateProject 
   const words = project.name.split(" ");
   const lines = [words.slice(0, -1).join(" "), words.at(-1)!];
   return <PageMotion className={styles.page} tone={ongoing ? "plantation" : "estate"}>
-    <ChapterHero chapter={ongoing ? "01" : "02"} label={`Managed Farmlands / ${ongoing ? "Ongoing" : "Completed"}`} lines={lines} description={project.summary} image={cover.src} alt={cover.alt} anchor="project-story" disclosure={cover.mediaKind === "ai-concept" ? "AI-generated concept image · Illustrative only" : undefined} />
+    <ChapterHero chapter={ongoing ? "01" : "02"} label={`Managed Farmlands / ${ongoing ? "Ongoing" : "Completed"}`} lines={lines} description={project.summary} image={cover.src} alt={cover.alt} anchor="project-story" />
     <section id="project-story" className={styles.section} aria-labelledby="project-heading">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>{project.category}</p><div className={styles.textAction}><ProjectStatus project={project} /></div></div>

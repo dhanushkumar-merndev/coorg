@@ -2,12 +2,12 @@
 .heroCollectionNav { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 25px; font-size: 16px; }
 .heroCollectionNav a { padding: 10px 0; border-bottom: 1px solid #f4f0e760; }
 .heroCollectionNav span { font-size: 12px; opacity: .65; margin-left: 12px; }
-.collectionSection { scroll-margin-top: 95px; }
+.collectionSection { scroll-margin-top: 95px; padding-top: clamp(36px, 4vw, 64px); }
 .collectionSection + .collectionSection { border-top: 1px solid #173c3226; }
-.statusIntro { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 45px; padding-bottom: 45px; margin-bottom: 60px; border-bottom: 1px solid #173c3226; }
-.statusIntro h2 { margin-top: 20px; font-size: clamp(62px, 7vw, 105px); }
+.statusIntro { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 32px; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid #173c3226; }
+.statusIntro h2 { margin-top: 14px; font-size: clamp(40px, 4.5vw, 64px); }
 .statusIntro .introCopy { margin: 0 0 8px; max-width: 430px; }
-@media (max-width: 700px) { .statusIntro { grid-template-columns: 1fr; gap: 22px; margin-bottom: 35px; padding-bottom: 28px; } }
+@media (max-width: 700px) { .statusIntro { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; } }
 .farmHero { display: flex; align-items: center; height: auto; min-height: max(760px, 92svh); max-height: none; padding: 165px var(--page-gutter) 135px; }
 .farmHero [data-chapter-depth] { position: relative; inset: auto; max-width: 1450px; width: 100%; padding-top: 0; }
 .farmHero h1 { font-size: clamp(56px, 7.1vw, 128px); }
@@ -43,6 +43,8 @@
 .viewCircle { position: absolute; bottom: 20px; right: 20px; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid #f4f0e770; border-radius: 50%; color: var(--paper); transition: background .3s, color .3s, transform .5s; }
 .cardVisual:hover .viewCircle { background: var(--paper); color: var(--forest); transform: rotate(45deg); }
 .cardCopy { padding-block: 30px; }
+.collectionSection .projectCard { align-items: start; }
+.collectionSection .cardCopy { padding-top: 0; }
 .cardMeta { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 12px; text-transform: uppercase; letter-spacing: .13em; color: #637453; }
 .cardCopy h3 { font: 400 clamp(43px, 4.5vw, 75px)/1.04 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 25px 0; max-width: 500px; }
 .cardSummary { font-size: 16px; line-height: 1.9; color: #53685e; max-width: 420px; }
@@ -121,6 +123,8 @@
   .projectList { gap: 55px; }
   .cardCopy h3 { font-size: 46px; max-width: 340px; }
   .cardCopy { padding-top: 26px; padding-bottom: 0; }
+  .collectionSection .cardCopy { order: -1; padding-bottom: 24px; }
+  .collectionSection .cardCopy h3 { margin-block: 18px; }
   .cardVisual { aspect-ratio: 1.12; }
   .cardSummary { max-width: none; }
   .cardFacts { margin-top: 23px; }

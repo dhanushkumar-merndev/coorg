@@ -71,10 +71,8 @@ test("horizontal gestures rotate cards; vertical scroll continues down the page"
 
 test("dragging a card rotates without accidentally navigating", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole("link", { name: "SCROLL TO DISCOVER", exact: true }).click();
-  // Lenis updates the anchor history when its scroll finishes. Let that
-  // navigation settle before the test begins a separate drag interaction.
-  await expect(page).toHaveURL(/\/#opportunities$/);
+  // The mobile hero uses a compact footer; scroll naturally to the carousel.
+  await page.mouse.wheel(0, 900);
   const active = page.getByRole("link", { name: "Explore Plantation Estates", exact: true });
   await active.scrollIntoViewIfNeeded();
   const box = await active.boundingBox();
@@ -88,13 +86,13 @@ test("dragging a card rotates without accidentally navigating", async ({ page })
   const next = page.getByRole("link", { name: "Explore Private Hill Retreats", exact: true });
   await expect(next).toBeVisible();
   await page.waitForTimeout(700);
-  await expect(page).toHaveURL(/\/#opportunities$/);
+  await expect(page).toHaveURL(/\/$/);
   await next.click();
   await expect(page.getByRole("dialog")).toBeVisible();
-  await expect(page).toHaveURL(/\/#opportunities$/);
+  await expect(page).toHaveURL(/\/$/);
 });
 
-test("enquiry creates a real local download and never submits personal details", async ({ page }) => {
+test("enquiry opens WhatsApp with correctly encoded form details", async ({ page }) => {
   await page.getByRole("link", { name: "Enquire Privately", exact: true }).first().click();
   await expect(page).toHaveURL(/\/enquiry$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
@@ -103,13 +101,22 @@ test("enquiry creates a real local download and never submits personal details",
   await page.getByLabel("Email or phone").fill("visitor@example.com");
   await page.getByRole("combobox", { name: /What draws you here/ }).click();
   await page.getByRole("option", { name: "Countryside Homes" }).click();
-  const mutations: string[] = [];
-  page.on("request", (request) => { if (request.method() === "POST") mutations.push(request.url()); });
-  const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Download my brief" }).click();
-  expect((await download).suggestedFilename()).toBe("land-in-coorg-enquiry.txt");
-  await expect(page.getByRole("status").filter({ hasText: "No details have been sent" })).toBeVisible();
-  expect(mutations).toEqual([]);
+  await page.getByLabel(/A little more/).fill("Coffee & stream plots + a villa?\nBudget to discuss.");
+  await page.evaluate(() => {
+    window.open = ((url: string | URL | undefined) => {
+      (window as typeof window & { openedWhatsApp?: string }).openedWhatsApp = String(url);
+      return null;
+    }) as typeof window.open;
+  });
+  await page.getByRole("button", { name: "Continue on WhatsApp" }).click();
+  const opened = await page.evaluate(() => (window as typeof window & { openedWhatsApp?: string }).openedWhatsApp);
+  const url = new URL(opened!);
+  expect(url.origin + url.pathname).toBe("https://wa.me/919743030555");
+  expect(url.searchParams.get("text")).toContain("Name: Coorg Visitor");
+  expect(url.searchParams.get("text")).toContain("Contact: visitor@example.com");
+  expect(url.searchParams.get("text")).toContain("Interest: Countryside Homes");
+  expect(url.searchParams.get("text")).toContain("Coffee & stream plots + a villa?\nBudget to discuss.");
+  await expect(page.getByRole("status").filter({ hasText: "Review it and tap Send" })).toBeVisible();
 });
 
 test("responsive layouts and reduced motion remain accessible without hydration changes", async ({ page }) => {
