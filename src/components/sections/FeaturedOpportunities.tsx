@@ -1,42 +1,24 @@
-import { getDraftPreviews } from "@/data/opportunities";
-import { OpportunityCard } from "./OpportunityCard";
-import { EditorialReveal } from "./EditorialReveal";
-import { TerrainStudy } from "./TerrainStudy";
-import styles from "./sections.module.css";
+import PageMotion from "@/components/pages/PageMotion";
+import { WordHeading } from "@/components/pages/PagePrimitives";
+import ProjectCard from "@/components/projects/ProjectCard";
+import ProjectMotion from "@/components/projects/ProjectMotion";
+import { estateProjects } from "@/data/projects";
 import TransitionLink from "../navigation/TransitionLink";
-import { LuArrowUpRight, LuAsterisk } from "react-icons/lu";
+import styles from "./sections.module.css";
+import projects from "@/components/projects/projects.module.css";
 
 export function FeaturedOpportunities() {
-  const drafts = getDraftPreviews();
-
-  return (
-    <section id="featured" className={styles.featuredSection} aria-labelledby="featured-heading">
-      <EditorialReveal>
-        <div className={styles.featuredTop}>
-          <span className={styles.sectionRule} data-editorial-rule aria-hidden="true" />
-          <p className={styles.eyebrow}>03 / Considered opportunities</p>
-          <LuAsterisk className={styles.featuredMark} size={24} aria-hidden="true" />
-        </div>
-        <div className={styles.featuredIntro}>
-          <h2 id="featured-heading" data-editorial-group="ink">
-            <span className={styles.lineClip}><span data-editorial-line>A considered collection. </span></span>
-            <span className={styles.lineClip}><span data-editorial-line><em>A personal introduction.</em></span></span>
-          </h2>
-          <div data-editorial-reveal>
-            <p>Every search begins with a sense of what matters to you. A working estate. A quiet retreat. A place to make your own.</p>
-            <TransitionLink href="/enquiry" className={styles.textLink}>Tell us what you have in mind <LuArrowUpRight size={18} aria-hidden="true" /></TransitionLink>
-          </div>
-        </div>
-        <TerrainStudy />
-        {drafts.length > 0 && (
-          <div className={styles.draftPreview}>
-            <p className={styles.previewNote}>Development preview · The following records are awaiting publication review and are hidden in production.</p>
-            <div className={styles.opportunitiesGrid}>
-              {drafts.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} />)}
-            </div>
-          </div>
-        )}
-      </EditorialReveal>
-    </section>
-  );
+  return <section id="featured" className={styles.featuredSection} aria-labelledby="featured-heading">
+    <PageMotion tone="estate">
+      <div className={projects.collectionIntro}>
+        <div><p className={styles.eyebrow}>03 / THE ESTATE COLLECTION</p><div className={projects.collectionNav}><TransitionLink href="/estates">Completed estates ↗</TransitionLink><TransitionLink href="/farm-management">Ongoing projects ↗</TransitionLink></div></div>
+        <div><WordHeading id="featured-heading" treatment="ink">Real places. A lasting sense of belonging.</WordHeading><p className={projects.introCopy} data-chapter-rise>Explore three completed Coorg estates from the Star Infra Developers portfolio. Find the setting that speaks to you.</p></div>
+      </div>
+      <ProjectMotion className={projects.compactGrid}>{estateProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} compact />)}</ProjectMotion>
+      <div className={projects.farmBand} data-chapter-rise>
+        <div><span className={styles.eyebrow}>FARM MANAGEMENT / ONGOING PROJECTS</span><h3>A story still growing.</h3><p>Take a closer look at what is underway, and the possibilities ahead.</p></div>
+        <div className={projects.priceSide}><span>The next chapter</span><TransitionLink href="/farm-management" className={projects.textLink}>Explore ongoing projects ↗</TransitionLink><p className={projects.sourceNote}>Discover the collection and indicative starting price.</p></div>
+      </div>
+    </PageMotion>
+  </section>;
 }

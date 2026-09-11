@@ -23,7 +23,7 @@
 .hero_wide .heroTitle { font-size: clamp(74px, 10.5vw, 176px); }
 .section { padding: clamp(76px, 8.5vw, 140px) var(--page-gutter); }
 .sectionTitle { font: 400 clamp(41px, 4.7vw, 80px)/1.09 var(--font-display), Georgia, serif; letter-spacing: -.032em; }
-.wordMask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; margin-bottom: -.05em; }
+.wordMask { display: inline-block; overflow: clip; vertical-align: top; padding-bottom: .09em; margin-bottom: -.08em; }
 .wordMask > span { display: inline-block; }
 .introGrid { display: grid; grid-template-columns: 1fr 1.35fr; gap: clamp(35px, 8vw, 140px); align-items: start; }
 .introGrid .sectionTitle { max-width: 900px; }
@@ -151,6 +151,7 @@
   .enquiryIntro { padding-top: 150px; padding-bottom: 35px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .wordMask { overflow: visible; }
   .depthLink .coverImage, .routeButton, .nextLink svg { transition: none; }
   .depthLink:hover .coverImage { scale: 1; }
 }

@@ -72,6 +72,9 @@ test("horizontal gestures rotate cards; vertical scroll continues down the page"
 test("dragging a card rotates without accidentally navigating", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole("link", { name: "SCROLL TO DISCOVER", exact: true }).click();
+  // Lenis updates the anchor history when its scroll finishes. Let that
+  // navigation settle before the test begins a separate drag interaction.
+  await expect(page).toHaveURL(/\/#opportunities$/);
   const active = page.getByRole("link", { name: "Explore Plantation Estates", exact: true });
   await active.scrollIntoViewIfNeeded();
   const box = await active.boundingBox();

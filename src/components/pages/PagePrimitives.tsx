@@ -4,18 +4,19 @@ import TransitionLink from "@/components/navigation/TransitionLink";
 import { LuArrowDown, LuArrowRight } from "react-icons/lu";
 import styles from "./pages.module.css";
 
-type HeroProps = { chapter: string; label: string; lines: string[]; italicLast?: boolean; description: string; image: string; alt: string; variant?: "left" | "center" | "wide"; anchor: string };
+type HeroProps = { chapter: string; label: string; lines: string[]; italicLast?: boolean; description: string; image: string; alt: string; variant?: "left" | "center" | "wide"; anchor: string; disclosure?: ReactNode; children?: ReactNode; className?: string };
 
-export function ChapterHero({ chapter, label, lines, italicLast = true, description, image, alt, variant = "left", anchor }: HeroProps) {
-  return <section className={`${styles.hero} ${styles[`hero_${variant}`]}`} data-chapter-hero aria-labelledby="chapter-title">
-    <div className={styles.heroVisual}><div className={styles.heroImage} data-chapter-image><Image src={image} alt={alt} fill sizes="100vw" preload className={styles.coverImage} /></div></div>
+export function ChapterHero({ chapter, label, lines, italicLast = true, description, image, alt, variant = "left", anchor, disclosure = <>An imagined perspective on Coorg<br />AI-generated conceptual imagery</>, children, className = "" }: HeroProps) {
+  return <section className={`${styles.hero} ${styles[`hero_${variant}`]} ${className}`} data-chapter-hero aria-labelledby="chapter-title">
+    <div className={styles.heroVisual}><div className={styles.heroImage} data-chapter-image><Image src={image} alt={alt} fill sizes="(max-width: 700px) 220vw, 100vw" preload className={styles.coverImage} /></div></div>
     <div className={styles.heroShade} aria-hidden="true" />
-    <div className={styles.heroText}>
+    <div className={styles.heroText} data-chapter-depth>
       <p className={styles.eyebrow} data-chapter-intro>{chapter} <span>/</span> {label}</p>
       <h1 id="chapter-title" className={styles.heroTitle}>{lines.map((line, index) => <span className={styles.lineMask} key={line}><span data-chapter-entry>{italicLast && index === lines.length - 1 ? <em>{line}</em> : line}</span></span>)}</h1>
       <p className={styles.heroDescription} data-chapter-intro>{description}</p>
+      {children}
     </div>
-    <div className={styles.heroFoot} data-chapter-intro><a href={`#${anchor}`} className={styles.scrollCue}><LuArrowDown size={25} aria-hidden="true" /> SCROLL INTO THE STORY</a><span className={styles.imageDisclosure}>An imagined perspective on Coorg<br />AI-generated conceptual imagery</span></div>
+    <div className={styles.heroFoot} data-chapter-intro><a href={`#${anchor}`} className={styles.scrollCue}><LuArrowDown size={25} aria-hidden="true" /> SCROLL INTO THE STORY</a><span className={styles.imageDisclosure}>{disclosure}</span></div>
   </section>;
 }
 
@@ -23,8 +24,8 @@ export function WordHeading({ children, className = "", id, treatment }: { child
   return <h2 id={id} className={`${styles.sectionTitle} ${className}`} data-chapter-words={treatment ?? ""}>{children.split(" ").map((word, index) => <Fragment key={`${word}-${index}`}><span className={styles.wordMask}><span data-chapter-word>{word}</span></span>{" "}</Fragment>)}</h2>;
 }
 
-export function LandscapeImage({ src, alt, caption, className = "" }: { src: string; alt: string; caption?: string; className?: string }) {
-  return <figure className={`${styles.landscapeFigure} ${className}`}><div className={styles.landscapeCrop}><div className={styles.landscapeImage} data-chapter-image><Image src={src} alt={alt} fill sizes="(max-width: 700px) 100vw, 65vw" className={styles.coverImage} /></div></div><figcaption>{caption && <span>{caption}</span>}<span>AI-generated conceptual imagery</span></figcaption></figure>;
+export function LandscapeImage({ src, alt, caption, className = "", disclosure = "AI-generated conceptual imagery" }: { src: string; alt: string; caption?: string; className?: string; disclosure?: ReactNode }) {
+  return <figure className={`${styles.landscapeFigure} ${className}`}><div className={styles.landscapeCrop} data-chapter-image-frame><div className={styles.landscapeImage} data-chapter-image><Image src={src} alt={alt} fill sizes="(max-width: 700px) 100vw, 65vw" className={styles.coverImage} /></div></div><figcaption>{caption && <span>{caption}</span>}<span>{disclosure}</span></figcaption></figure>;
 }
 
 export function RouteButton({ href, children, light = false }: { href: string; children: ReactNode; light?: boolean }) {

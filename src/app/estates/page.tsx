@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
 import PageMotion from "@/components/pages/PageMotion";
-import DepthCard from "@/components/pages/DepthCard";
-import { ChapterHero, WordHeading, LandscapeImage, RouteButton, NextChapter } from "@/components/pages/PagePrimitives";
-import { coorgWorlds } from "@/data/worlds";
+import { ChapterHero, WordHeading, NextChapter } from "@/components/pages/PagePrimitives";
+import ProjectCard from "@/components/projects/ProjectCard";
+import ProjectMotion from "@/components/projects/ProjectMotion";
+import { estateProjects, STAR_INFRA_SOURCE } from "@/data/projects";
+import TransitionLink from "@/components/navigation/TransitionLink";
 import styles from "@/components/pages/pages.module.css";
+import projects from "@/components/projects/projects.module.css";
 
 export const metadata: Metadata = {
-  title: "Estates & Retreats | Land in Coorg",
-  description: "Imagine a private hill retreat, a countryside home or space to build with intention. Explore the estate worlds of Land in Coorg.",
+  title: "Estates · Completed Projects | Land in Coorg",
+  description: "Explore Star Woods Estate, Star Coffee County and Star Misty Acres, completed Coorg projects from the Star Infra Developers portfolio.",
 };
 
-const estateWorlds = [coorgWorlds[1], coorgWorlds[2], coorgWorlds[4]];
-
 export default function EstatesPage() {
+  const cover = estateProjects[0].images[0];
   return <PageMotion className={styles.page} tone="estate">
-    <ChapterHero chapter="03" label="Estates & Retreats" lines={["Room for your", "kind of life."]} description="A home among the trees. A place shaped around you. Discover three ways of imagining life in the hills." image="/images/coorg/conceptual/private-hill-retreats.webp" alt="Conceptual contemporary retreat with warm windows overlooking a forested valley" anchor="estate-perspectives" />
-    <section id="estate-perspectives" className={styles.section} aria-labelledby="estate-heading">
-      <div className={styles.estateIntro}><p className={styles.eyebrow}>THREE PERSPECTIVES / ONE SENSE OF PLACE</p><WordHeading id="estate-heading">Home begins with a feeling.</WordHeading><p className={styles.bodyCopy} data-chapter-rise>It might be the shelter of a veranda, a room opening onto trees, or the possibility of a home still to be imagined. Find the perspective that feels like yours.</p></div>
-      <div className={styles.estateGrid}>{estateWorlds.map((world, index) => <DepthCard key={world.id} index={`0${index + 1}`} image={world.image} alt={world.imageAlt} title={world.title} line={world.line} href={`/opportunities/${world.id}`} />)}</div>
+    <ChapterHero chapter="02" label="Estates / Completed projects" lines={["Places with roots.", "Stories that stay."]} description="Three completed estates. Three expressions of life in the hills. Explore the Coorg collection from Star Infra Developers." image={cover.src} alt={cover.alt} anchor="completed-projects" disclosure="Illustrative marketing imagery · Star Infra Developers" />
+    <section id="completed-projects" className={styles.section} aria-labelledby="estate-heading">
+      <div className={projects.collectionIntro}>
+        <div><p className={styles.eyebrow}>THE COMPLETED COLLECTION / 03 ESTATES</p><div className={projects.collectionNav}><TransitionLink href="/estates" aria-current="page">Completed projects</TransitionLink><TransitionLink href="/farm-management">Ongoing projects ↗</TransitionLink></div></div>
+        <div><WordHeading id="estate-heading" treatment="ink">A landscape to belong to.</WordHeading><p className={projects.introCopy} data-chapter-rise>From farmland communities to weekend retreats, each place begins with a different relationship to the land.</p></div>
+      </div>
+      <ProjectMotion className={projects.projectList}>{estateProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>
+      <div className={projects.collectionFoot}><p className={projects.sourceNote}>Project details and completed status from <a href={STAR_INFRA_SOURCE} target="_blank" rel="noreferrer">Star Infra Developers</a>. Images are illustrative marketing material. The completed collection is sold out.</p><TransitionLink href="/enquiry" className={projects.textLink}>Find your own kind of place ↗</TransitionLink></div>
     </section>
-    <section className={`${styles.section} ${styles.darkSection} ${styles.wideEditorial}`}>
-      <div><p className={styles.eyebrow}>BEFORE THE FLOOR PLAN</p><WordHeading>Make room for what matters.</WordHeading><div className={styles.bodyCopy} data-chapter-rise><p>The way you arrive. The view from a favourite chair. The room to gather, and the room to be alone.</p><p>Start with how you want to live. The right questions about setting, access and everyday comforts follow from there.</p></div><div className={styles.textAction} data-chapter-rise><RouteButton href="/enquiry" light>Shape your personal brief</RouteButton></div></div>
-      <LandscapeImage src="/images/coorg/conceptual/countryside-homes.webp" alt="Conceptual tiled-roof home and shaded veranda among green plants" caption="A thought about home" />
-    </section>
-    <NextChapter href="/about-coorg" eyebrow="CONTINUE THE JOURNEY / ABOUT COORG" title="A feeling called Coorg." line="Step back and see the landscape behind the possibilities." />
+    <NextChapter href="/farm-management" eyebrow="THE NEXT CHAPTER / FARM MANAGEMENT" title="A story still growing." line="Explore ongoing projects and a more considered relationship with land." />
   </PageMotion>;
 }

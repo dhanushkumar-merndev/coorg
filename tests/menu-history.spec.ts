@@ -6,8 +6,8 @@ test("browser history closes an open mobile menu and restores scrolling", async 
   await page.goto("/", { waitUntil: "networkidle" });
   const openMenu = page.getByRole("button", { name: "Open navigation" });
   await openMenu.click();
-  await page.getByRole("dialog", { name: "Navigation" }).getByRole("link", { name: /Plantations/ }).click();
-  await expect(page).toHaveURL(/\/plantations$/);
+  await page.getByRole("dialog", { name: "Navigation" }).getByRole("link", { name: /Land & Living/ }).click();
+  await expect(page).toHaveURL(/\/land-and-living$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
 
   await openMenu.click();
@@ -22,13 +22,13 @@ test("browser history closes an open mobile menu and restores scrolling", async 
 
   await openMenu.click();
   await page.goForward();
-  await expect(page).toHaveURL(/\/plantations$/);
+  await expect(page).toHaveURL(/\/land-and-living$/);
   await expect(page.getByRole("dialog", { name: "Navigation" })).toHaveCount(0);
   await expect(page.locator("html")).not.toHaveClass(/lenis-stopped/);
 });
 
 test("switching to desktop closes the mobile menu and restores navigation", async ({ page }) => {
-  await page.goto("/plantations", { waitUntil: "networkidle" });
+  await page.goto("/land-and-living", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Open navigation" }).click();
   await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
 

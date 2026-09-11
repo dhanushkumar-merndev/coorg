@@ -228,7 +228,7 @@ export default function WorldDetail({ world, origin, reduced, returnRect, onClos
       />
       <div ref={frame} className={styles.image} style={{ width: imageWidth, height: imageHeight }} data-landed={panelOpen}>
         <div ref={picture} className={styles.picture}>
-          {cardImage && (
+          {cardImage && !sharp && (
             // eslint-disable-next-line @next/next/no-img-element -- reuses the card's decoded source for the first frame of the flight
             <img src={cardImage} alt="" className={styles.photo} draggable={false} />
           )}

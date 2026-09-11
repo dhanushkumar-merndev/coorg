@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollInk } from "@/components/ui/scrollInk";
 
 export function EditorialReveal({ children, className }: { children: ReactNode; className?: string }) {
   const root = useRef<HTMLDivElement>(null);
@@ -15,7 +16,7 @@ export function EditorialReveal({ children, className }: { children: ReactNode; 
       const compact = Boolean(conditions.conditions.compact);
       const context = gsap.context(() => {
         gsap.utils.toArray<HTMLElement>("[data-editorial-reveal]").forEach((element) => {
-          gsap.fromTo(element, { y: 32, autoAlpha: 0 }, {
+          gsap.fromTo(element, { y: compact ? 20 : 32, autoAlpha: 0.65 }, {
             y: 0,
             autoAlpha: 1,
             duration: 1.1,
@@ -27,12 +28,11 @@ export function EditorialReveal({ children, className }: { children: ReactNode; 
         // Text and image movement are separate targets, so a heading can unfold
         // while its neighbouring photograph moves gently through the crop.
         gsap.utils.toArray<HTMLElement>("[data-editorial-group]").forEach((group) => {
-          const lines = group.querySelectorAll("[data-editorial-line]");
+          const lines = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-line]"));
+          const words = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-ink-word]"));
+          const green = group.dataset.editorialInk === "green";
+          scrollInk(group, words.length ? words : lines, green ? { fromColor: "#f4f0e7", toColor: "#3f9e64" } : {});
           if (group.dataset.editorialGroup === "ink") {
-            gsap.fromTo(lines, { opacity: 0.22 }, {
-              opacity: 1, stagger: 0.35, ease: "none",
-              scrollTrigger: { trigger: group, start: "top 91%", end: "bottom 62%", scrub: true },
-            });
             return;
           }
           if (group.dataset.editorialGroup === "wipe") {
@@ -76,9 +76,14 @@ export function EditorialReveal({ children, className }: { children: ReactNode; 
         });
 
         gsap.utils.toArray<HTMLElement>("[data-editorial-sequence]").forEach((group) => {
-          gsap.fromTo(group.querySelectorAll("[data-editorial-line]"), { x: compact ? 12 : 25, opacity: 0.15 }, {
+          const lines = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-line]"));
+          const words = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-ink-word]"));
+          if (words.length) scrollInk(group, words, {
+            fromColor: "#f4f0e7", toColor: "#3f9e64",
+            start: "top 96%", end: compact ? "bottom 62%" : "bottom 48%",
+          });
+          gsap.fromTo(lines, { x: compact ? 12 : 25 }, {
             x: 0,
-            opacity: 1,
             duration: 1,
             stagger: 0.28,
             ease: "power2.out",
@@ -96,7 +101,21 @@ export function EditorialReveal({ children, className }: { children: ReactNode; 
       }, root);
       return () => context.revert();
     });
-    return () => media.revert();
+
+    // Opening a review drawer changes the page height; re-measure triggers
+    // below it once the height transition settles.
+    const node = root.current;
+    let refreshTimer = 0;
+    const refreshAfterToggle = () => {
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 520);
+    };
+    node?.addEventListener("toggle", refreshAfterToggle, true);
+    return () => {
+      node?.removeEventListener("toggle", refreshAfterToggle, true);
+      window.clearTimeout(refreshTimer);
+      media.revert();
+    };
   }, []);
 
   return <div ref={root} className={className}>{children}</div>;

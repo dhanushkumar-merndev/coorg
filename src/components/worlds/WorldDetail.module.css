@@ -13,7 +13,7 @@
 .imageCaption p { max-width: 420px; font: italic 400 clamp(28px, 2.8vw, 42px)/1.08 var(--font-display), Georgia, serif; letter-spacing: -.01em; }
 .imageCaption span { margin-top: 16px; font-size: 8px; letter-spacing: .09em; color: #f4f0e7b3; }
 
-.copy { position: absolute; z-index: 1; display: flex; flex-direction: column; padding: clamp(48px, 7vh, 72px) clamp(36px, 4.4vw, 64px) clamp(36px, 5vh, 52px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.copy { position: absolute; z-index: 1; display: flex; flex-direction: column; padding: clamp(48px, 7vh, 72px) clamp(36px, 4.4vw, 64px) clamp(36px, 5vh, 52px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
 .copy > :first-child { margin-top: auto; }
 .copy > :last-child { margin-bottom: auto; }
 .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: #5d6f63; }

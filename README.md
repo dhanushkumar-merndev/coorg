@@ -39,8 +39,12 @@ Later user refinements supersede the initial single-page/modal brief: five categ
 | --- | --- |
 | `/` | Mountain hero, five-world carousel and introductory editorial sections |
 | `/opportunities` | Five conceptual ways to belong and search considerations |
-| `/plantations` | Plantation-life editorial with scroll-linked ink reveals |
-| `/estates` | Retreat/home perspectives, depth cards and text wipes |
+| `/farm-management` | Ongoing source portfolio, indicative ₹999/sq ft hero and development-only Coorg previews |
+| `/farm-management/[slug]` | Ongoing project details and source marketing gallery |
+| `/land-and-living` | Land stewardship editorial with word-by-word green subheading reveals |
+| `/plantations` | Redirect to `/land-and-living` |
+| `/estates` | Three completed Coorg projects from Star Infra Developers |
+| `/estates/[slug]` | Completed estate details and source marketing galleries |
 | `/about-coorg` | Landscape story, image parallax and interactive terrain |
 | `/enquiry` | Dedicated personal brief form, animated custom dropdown and terrain study |
 | `/opportunities/[slug]` | Five individual world pages, generated from the category data |
@@ -49,7 +53,15 @@ World slugs are `plantation-estates`, `private-hill-retreats`, `curated-estate-p
 
 ## Content and enquiry
 
-All nine source opportunity records remain server-only drafts. Three previews appear in development; production excludes them. Category/hero art and the terrain study are explicitly conceptual. The enquiry form validates and downloads a local text brief; it sends no personal data. Its custom dropdown supports pointer, keyboard navigation and type-ahead. Direct submission/WhatsApp requires a confirmed official destination.
+All nine supplied source opportunity records remain server-only drafts. Three ongoing previews appear on Farm Management in development; production excludes them. SLN's ₹999/sq ft display rate was confirmed by the user separately from the PDF. Imported Star Infra portfolio records keep the source's Completed/Ongoing labels; the three completed Coorg estates are tagged Sold out following user confirmation, while ongoing-project availability remains on enquiry. The source's ongoing Arkha Sanctuary retains its actual Bengaluru location, following the user's scope clarification. Category/hero art and the terrain study are explicitly conceptual. The enquiry form validates and downloads a local text brief; it sends no personal data. Its custom dropdown supports pointer, keyboard navigation and type-ahead. Direct submission/WhatsApp requires a confirmed official destination.
+
+## Branding and link sharing
+
+`public/logo.png` is the transparent company logo used by the header, mobile menu and footer. A transparent forest-ink variant keeps its white strokes readable on light sections. Favicon, Apple and Android assets keep the white-and-red logo on a black circular backing and are connected through metadata and `public/site.webmanifest`. Regenerate them after a logo change with `node scripts/generate-brand-assets.mjs`. Open Graph and Twitter images are generated locally at 1200×630 using the company logo and conceptual Coorg artwork.
+
+Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS website origin before the production build so shared image links use the public domain. See `.env.example`. Vercel's production hostname is used automatically when available; local development falls back to `http://localhost:3000`.
+
+Project extraction and image mappings are recorded in [Star Infra source notes](doc/STAR_INFRA_SOURCES.md).
 
 See [implementation and QA notes](docs/IMPLEMENTATION.md), [supplied asset provenance](docs/asset-provenance.md), and [generated image prompts and mappings](docs/image-generation.md). Original source files remain under `doc/`.
 

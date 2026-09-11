@@ -3,10 +3,12 @@
 import { AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { isNavigationActive, navLinks } from "@/data/navigation";
 import TransitionLink from "./TransitionLink";
 import { LuMenu } from "react-icons/lu";
-import { ArrowIcon, MountainMark } from "../ui/Icons";
-import MobileMenu, { navLinks } from "./MobileMenu";
+import { ArrowIcon } from "../ui/Icons";
+import CompanyLogo from "../ui/CompanyLogo";
+import MobileMenu from "./MobileMenu";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -14,7 +16,7 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const close = useCallback(() => setMenuOpen(false), []);
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 901px)");
+    const desktop = window.matchMedia("(min-width: 1101px)");
     const closeOnDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) close();
     };
@@ -38,8 +40,8 @@ export default function SiteHeader() {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className={`site-header ${scrolled || pathname === "/enquiry" ? "is-scrolled" : ""}`}>
-      <TransitionLink href="/" className="brand" aria-label="Land in Coorg home"><MountainMark /><span>LAND IN COORG<small>A DIFFERENT KIND OF BELONGING</small></span></TransitionLink>
-      <nav aria-label="Main navigation" className="desktop-nav">{navLinks.map((link) => <TransitionLink key={link.label} href={link.href} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</TransitionLink>)}</nav>
+      <TransitionLink href="/" className="brand" aria-label="Land in Coorg home"><CompanyLogo /><span>LAND IN COORG<small>A DIFFERENT KIND OF BELONGING</small></span></TransitionLink>
+      <nav aria-label="Main navigation" className="desktop-nav">{navLinks.map((link) => <TransitionLink key={link.label} href={link.href} aria-current={isNavigationActive(pathname, link.href) ? "page" : undefined}>{link.label}</TransitionLink>)}</nav>
       <TransitionLink href="/enquiry" className="nav-enquire" aria-current={pathname === "/enquiry" ? "page" : undefined}>Enquire Privately <ArrowIcon /></TransitionLink>
       <button className="menu-toggle" aria-expanded={menuOpen} aria-label="Open navigation" onClick={() => setMenuOpen(true)}><LuMenu size={24} strokeWidth={1.2} aria-hidden="true" /></button>
     </header>

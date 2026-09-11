@@ -167,8 +167,8 @@ export const opportunities: Opportunity[] = [
     id: "sln-plantations",
     name: "SLN Plantations",
     areaLabel: "80 (79.86) acres, as stated in the source PDF",
-    priceLabel: null,
-    priceBasisConfirmed: false,
+    priceLabel: "₹999 per sq ft (user-confirmed display rate)",
+    priceBasisConfirmed: true,
     locationLabel: "Garwale, Madhapur, Coorg, Karnataka (source wording)",
     coordinates: null,
     typeLabel: "Plantation estate",
@@ -185,6 +185,7 @@ export const opportunities: Opportunity[] = [
     }],
     sourceNotes: [
       "Original source: doc/01_SOURCE_DOCUMENTS/COORG/SLN_Plantations_Madapur.pdf.",
+      "2026-09-11: The user confirmed 999 per sq in response to the SLN sale-price question. Record ₹999 per sq ft as the user-confirmed display rate; this rate is not supplied by the SLN PDF and does not resolve its crop-revenue statements.",
       "Source states altitude over 3,900 ft and annual rainfall over 110 inches.",
       "Avocado: 50 acres, 3,800 trees, 3,000 yielding; source average 100 kg per plant.",
       "Litchi: 10 acres. Robusta coffee: 10 acres. Arecanut: 15 acres interplanted, over 15,000 trees. These crop areas must not be added into a new total area.",
@@ -192,7 +193,7 @@ export const opportunities: Opportunity[] = [
       "The top point is marketed for a 5,000 sq ft estate bungalow; this is not a verified building permission.",
     ],
     cautions: [
-      "Source association confirmed; property publication is pending price, price basis, map, legal wording and public contact.",
+      "Source association and user-supplied display rate confirmed; property publication is pending map, legal wording and public contact.",
       "The PDF's revenue statements conflict. Current/projected revenue and ROI are withheld.",
     ],
   },

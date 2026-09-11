@@ -1,6 +1,11 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import { EditorialReveal } from "./EditorialReveal";
 import styles from "./sections.module.css";
+
+function StoryWords({ children }: { children: string }) {
+  return children.split(" ").map((word, index) => <Fragment key={`${word}-${index}`}><span data-editorial-ink-word>{word}</span>{" "}</Fragment>);
+}
 
 export function LandStory() {
   return (
@@ -12,15 +17,15 @@ export function LandStory() {
         <div className={styles.storyShade} aria-hidden="true" />
         <div className={styles.storyContent}>
           <p className={styles.eyebrow} data-editorial-reveal>04 / Beyond the boundaries</p>
-          <h2 id="land-story-heading" data-editorial-group="wipe">
-            <span className={styles.lineClip}><span data-editorial-line>Land is more </span></span>
-            <span className={styles.lineClip}><span data-editorial-line>than <em>area.</em></span></span>
+          <h2 id="land-story-heading" data-editorial-group="wipe" data-editorial-ink="green">
+            <span className={styles.lineClip}><span data-editorial-line><StoryWords>Land is more</StoryWords></span></span>
+            <span className={styles.lineClip}><span data-editorial-line><StoryWords>than</StoryWords><em><StoryWords>area.</StoryWords></em></span></span>
           </h2>
           <div className={styles.storyLines} data-editorial-sequence>
-            <p className={styles.lineClip}><span data-editorial-line>It is the road in.</span></p>
-            <p className={styles.lineClip}><span data-editorial-line>The tree line.</span></p>
-            <p className={styles.lineClip}><span data-editorial-line>The rain pattern.</span></p>
-            <p className={styles.lineClip}><span data-editorial-line>The view you wake up to.</span></p>
+            <p className={styles.lineClip}><span data-editorial-line><StoryWords>It is the road in.</StoryWords></span></p>
+            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The tree line.</StoryWords></span></p>
+            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The rain pattern.</StoryWords></span></p>
+            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The view you wake up to.</StoryWords></span></p>
           </div>
         </div>
         <div className={styles.storyProgress} aria-hidden="true"><span data-editorial-progress /></div>

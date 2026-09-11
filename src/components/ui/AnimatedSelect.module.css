@@ -10,7 +10,7 @@
 .chevron svg { width: 17px; height: 17px; }
 .popup { position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; right: 0; overflow: hidden; border: 1px solid #c8d0bc; border-radius: 8px; background: #f4f0e7; box-shadow: 0 16px 40px #163b2924; }
 .popup[data-side="top"] { top: auto; bottom: calc(100% - 19px); }
-.list { margin: 0; padding: 7px; list-style: none; max-height: 286px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #adb9a0 transparent; }
+.list { margin: 0; padding: 7px; list-style: none; max-height: 286px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
 .option { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 12px 11px; border-radius: 5px; font: 400 12px/1.5 var(--font-sans), sans-serif; color: #173c32; cursor: pointer; transition: color .12s, background .12s; }
 .option[data-active="true"] { background: #e1e6d6; }
 .option[aria-selected="true"] { color: #173c32; font-weight: 600; }
