@@ -1,0 +1,49 @@
+.veil {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  touch-action: none;
+  isolation: isolate;
+  contain: strict;
+}
+
+.veil:not([data-phase="idle"]) {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.veil[data-phase="idle"] .bank { will-change: auto; }
+
+.density {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(145deg, #d7dfd4, #e5e8de 46%, #cbd7cb);
+}
+
+/* Small pre-baked noise textures, moved only while a route is changing. */
+.bank {
+  position: absolute;
+  left: -35%;
+  top: -30%;
+  width: 170%;
+  height: 160%;
+  opacity: 0;
+  will-change: transform, opacity;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 70%);
+}
+.bankNear { left: -45%; top: -8%; width: 185%; height: 135%; }
+.bankFar { top: -60%; height: 185%; }
+.bankLow { left: -20%; top: 10%; width: 145%; height: 140%; }
+
+/* Keep the scrollbar width stable while Lenis pauses under the cover. */
+:global(html[data-page-transition].lenis.lenis-stopped) {
+  overflow-y: scroll;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bank { display: none; will-change: auto; }
+}

@@ -1,0 +1,17 @@
+.flock { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; color: #263c33; }
+.bird { position: absolute; top: var(--bird-top); left: -8%; width: var(--bird-size); opacity: var(--bird-opacity); animation: crossing var(--bird-duration) linear var(--bird-delay) infinite; }
+.bird svg { width: 100%; overflow: visible; transform: rotate(-9deg); }
+.wings { transform-origin: 16px 11px; animation: wingbeat var(--wing-duration) ease-in-out var(--bird-delay) infinite; }
+.bird:nth-child(3n) .wings { animation-duration: 3.8s; }
+.bird:nth-child(4n) { animation-direction: reverse; }
+.flock[data-active="false"] .bird, .flock[data-active="false"] .wings { animation-play-state: paused; }
+@keyframes crossing {
+  0% { transform: translate3d(-3vw, 10px, 0) scale(.75); }
+  25% { transform: translate3d(28vw, -14px, 0) scale(.88); }
+  50% { transform: translate3d(60vw, 6px, 0) scale(1); }
+  75% { transform: translate3d(89vw, -17px, 0) scale(.87); }
+  100% { transform: translate3d(119vw, -5px, 0) scale(.7); }
+}
+@keyframes wingbeat { 0%, 100% { transform: scaleY(1); } 42% { transform: scaleY(-.32); } 65%, 82% { transform: scaleY(.8); } }
+@media (max-width: 600px) { .bird:nth-child(n + 9) { display: none; } .bird { width: calc(var(--bird-size) * .8); } }
+@media (prefers-reduced-motion: reduce) { .flock { display: none; } }

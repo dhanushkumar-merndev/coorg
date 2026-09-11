@@ -1,0 +1,15 @@
+.formMotion { width: 100%; }
+.section.standalone { padding-top: 0; padding-bottom: 40px; }
+.standalone .panel { margin-top: 0; }
+.panel { border-radius: 8px; }
+.panel input:not([type="hidden"]), .panel textarea { padding: 13px 14px; margin-top: 11px; border: 1px solid #aeb8a2; border-radius: 8px; background: #f4f0e78c; transition: border-color .2s, box-shadow .2s, background .2s; }
+.panel input:not([type="hidden"]):hover, .panel textarea:hover { border-color: #7c9070; }
+.panel input:not([type="hidden"]):focus, .panel textarea:focus { outline: none; border-color: #315d45; background: #f4f0e7; box-shadow: 0 0 0 3px #315d4518; }
+.panel input:not([type="hidden"]):focus-visible, .panel textarea:focus-visible { outline: 2px solid #315d45; outline-offset: 3px; }
+.section button:focus-visible { outline: 2px solid #315d45; outline-offset: 4px; }
+.button { border-radius: 8px; }
+.button svg { width: 19px; height: 19px; flex-shrink: 0; }
+.close { border-radius: 8px; }
+.close svg { width: 19px; height: 19px; }
+.landscape { stroke-width: .65; }
+@media (prefers-reduced-motion: reduce) { .panel input:not([type="hidden"]), .panel textarea { transition: none; } }
