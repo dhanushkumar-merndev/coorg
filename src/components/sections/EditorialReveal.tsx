@@ -77,11 +77,6 @@ export function EditorialReveal({ children, className }: { children: ReactNode; 
 
         gsap.utils.toArray<HTMLElement>("[data-editorial-sequence]").forEach((group) => {
           const lines = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-line]"));
-          const words = Array.from(group.querySelectorAll<HTMLElement>("[data-editorial-ink-word]"));
-          if (words.length) scrollInk(group, words, {
-            fromColor: "#f4f0e7", toColor: "#3f9e64",
-            start: "top 96%", end: compact ? "bottom 62%" : "bottom 48%",
-          });
           gsap.fromTo(lines, { x: compact ? 12 : 25 }, {
             x: 0,
             duration: 1,

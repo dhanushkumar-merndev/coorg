@@ -64,7 +64,7 @@ function sourceImage(name: string, alt: string): ProjectImage {
 // These portfolio records are not approved property sale listings. Missing price,
 // title, survey and availability information remains null until it is supplied.
 // Imported media is presented as source marketing imagery, not verified site photos.
-export const estateProjects: EstateProject[] = [
+export const completedProjects: EstateProject[] = [
   {
     id: "star-woods-estate",
     name: "Star Woods Estate",
@@ -153,8 +153,8 @@ export const estateProjects: EstateProject[] = [
 
 // The user explicitly expanded the requested ongoing portfolio to the source's
 // ongoing project. Preserve its Bengaluru location and residential classification:
-// this is not a Coorg estate or a farm-management development.
-export const farmProjects: EstateProject[] = [
+// this is not a Coorg estate or a managed-farmlands development.
+export const ongoingProjects: EstateProject[] = [
   {
     id: "arkha-sanctuary",
     name: "Arkha Sanctuary",
@@ -231,7 +231,7 @@ export const farmProjects: EstateProject[] = [
   },
 ];
 
-export type FarmManagementPreview = {
+export type ManagedFarmlandsPreview = {
   id: string;
   contentRole: "programme-preview";
   name: string;
@@ -248,10 +248,10 @@ export type FarmManagementPreview = {
 // No ongoing Coorg project is named by the supplied website. Keep this as a
 // programme preview rather than inventing an active project, inventory or location.
 // The requested rate is a temporary user-supplied display value, not a source quote.
-export const farmManagementPreview: FarmManagementPreview = {
-  id: "farm-management-preview",
+export const managedFarmlandsPreview: ManagedFarmlandsPreview = {
+  id: "managed-farmlands-preview",
   contentRole: "programme-preview",
-  name: "Farm Management",
+  name: "Managed Farmlands",
   projectName: null,
   projectStatus: null,
   availability: null,
@@ -261,3 +261,7 @@ export const farmManagementPreview: FarmManagementPreview = {
   publicReady: false,
   sourceProject: null,
 };
+
+export const estateProjects = completedProjects;
+export const farmProjects = ongoingProjects;
+export const managedFarmlandProjects = [...ongoingProjects, ...completedProjects];

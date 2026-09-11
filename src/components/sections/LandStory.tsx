@@ -22,10 +22,10 @@ export function LandStory() {
             <span className={styles.lineClip}><span data-editorial-line><StoryWords>than</StoryWords><em><StoryWords>area.</StoryWords></em></span></span>
           </h2>
           <div className={styles.storyLines} data-editorial-sequence>
-            <p className={styles.lineClip}><span data-editorial-line><StoryWords>It is the road in.</StoryWords></span></p>
-            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The tree line.</StoryWords></span></p>
-            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The rain pattern.</StoryWords></span></p>
-            <p className={styles.lineClip}><span data-editorial-line><StoryWords>The view you wake up to.</StoryWords></span></p>
+            <p className={styles.lineClip}><span data-editorial-line>It is the road in.</span></p>
+            <p className={styles.lineClip}><span data-editorial-line>The tree line.</span></p>
+            <p className={styles.lineClip}><span data-editorial-line>The rain pattern.</span></p>
+            <p className={styles.lineClip}><span data-editorial-line>The view you wake up to.</span></p>
           </div>
         </div>
         <div className={styles.storyProgress} aria-hidden="true"><span data-editorial-progress /></div>

@@ -16,7 +16,7 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const close = useCallback(() => setMenuOpen(false), []);
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1101px)");
+    const desktop = window.matchMedia("(min-width: 1201px)");
     const closeOnDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) close();
     };

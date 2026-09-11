@@ -5,17 +5,17 @@
 .coverImage { object-fit: cover; }
 .heroShade { background: linear-gradient(180deg, #102b2380, #102b2310 32%, #102b2370 75%, #102b23b0), linear-gradient(90deg, #102b2355, transparent 75%); }
 .heroText { position: absolute; bottom: 18%; left: var(--page-gutter); right: var(--page-gutter); max-width: 1100px; padding-top: 135px; }
-.eyebrow { font-size: 10px; letter-spacing: .19em; text-transform: uppercase; font-weight: 500; line-height: 1.8; }
+.eyebrow { font-size: 12px; letter-spacing: .19em; text-transform: uppercase; font-weight: 500; line-height: 1.8; }
 .eyebrow > span { display: inline-block; margin-inline: 17px; opacity: .65; }
 .heroTitle { font: 400 clamp(68px, 8.4vw, 146px)/.98 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 27px 0 25px; }
 .lineMask { display: block; overflow: hidden; padding-bottom: .075em; margin-bottom: -.04em; }
 .lineMask > span { display: block; }
 .heroTitle em { font-weight: 400; }
-.heroDescription { max-width: 430px; font-size: 13px; line-height: 1.85; color: #f4f0e7e0; }
+.heroDescription { max-width: 430px; font-size: 16px; line-height: 1.85; color: #f4f0e7e0; }
 .heroFoot { position: absolute; bottom: 34px; left: var(--page-gutter); right: var(--page-gutter); display: flex; align-items: end; justify-content: space-between; gap: 20px; }
-.scrollCue { display: inline-flex; align-items: center; gap: 17px; font-size: 9px; letter-spacing: .14em; min-height: 44px; }
+.scrollCue { display: inline-flex; align-items: center; gap: 17px; font-size: 12px; letter-spacing: .14em; min-height: 44px; }
 .scrollCue > span { font-size: 25px; line-height: 1; }
-.imageDisclosure { font-size: 8px; line-height: 1.8; font-weight: 400; letter-spacing: .02em; opacity: .72; }
+.imageDisclosure { font-size: 12px; line-height: 1.8; font-weight: 400; letter-spacing: .02em; opacity: .72; }
 .heroFoot > .imageDisclosure { text-align: right; }
 .hero_center .heroText { max-width: none; text-align: center; bottom: 19%; }
 .hero_center .heroDescription { margin-inline: auto; }
@@ -27,11 +27,11 @@
 .wordMask > span { display: inline-block; }
 .introGrid { display: grid; grid-template-columns: 1fr 1.35fr; gap: clamp(35px, 8vw, 140px); align-items: start; }
 .introGrid .sectionTitle { max-width: 900px; }
-.bodyCopy { font-size: 13px; line-height: 1.95; color: #53685e; max-width: 490px; }
+.bodyCopy { font-size: 16px; line-height: 1.95; color: #53685e; max-width: 490px; }
 .bodyCopy p + p { margin-top: 19px; }
 .introText { margin-top: 27px; max-width: 570px; }
 .rule { display: block; height: 1px; background: currentColor; opacity: .25; width: 100%; }
-.routeButton { display: inline-flex; justify-content: space-between; align-items: center; gap: 38px; min-height: 54px; padding: 15px 22px; font-size: 11px; border: 1px solid #173c3250; border-radius: var(--radius-button); transition: background .3s, color .3s; }
+.routeButton { display: inline-flex; justify-content: space-between; align-items: center; gap: 38px; min-height: 54px; padding: 15px 22px; font-size: 14px; border: 1px solid #173c3250; border-radius: var(--radius-button); transition: background .3s, color .3s; }
 .routeButton:hover { background: var(--forest); color: var(--paper); }
 .routeButtonLight { border-color: #f4f0e766; color: var(--paper); }
 .routeButtonLight:hover { background: var(--paper); color: var(--forest); }
@@ -39,13 +39,13 @@
 .fieldNotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 60px; }
 .fieldNote { position: relative; padding-top: 28px; }
 .fieldNote > .rule { position: absolute; top: 0; }
-.fieldNote > span:not(.rule) { font-size: 10px; opacity: .65; }
+.fieldNote > span:not(.rule) { font-size: 12px; opacity: .65; }
 .fieldNote h3 { font: 400 clamp(28px, 2.6vw, 43px)/1.15 var(--font-display), serif; margin: 22px 0 15px; }
-.fieldNote p { font-size: 12px; line-height: 1.9; max-width: 330px; opacity: .73; }
+.fieldNote p { font-size: 16px; line-height: 1.9; max-width: 330px; opacity: .73; }
 .landscapeFigure { margin: 0; min-width: 0; }
 .landscapeCrop { position: relative; overflow: hidden; aspect-ratio: 4/5; border-radius: 5px; background: var(--moss); }
 .landscapeImage { position: absolute; inset: -13% 0; }
-.landscapeFigure figcaption { display: flex; justify-content: space-between; gap: 20px; padding-top: 13px; font-size: 8px; line-height: 1.8; opacity: .65; }
+.landscapeFigure figcaption { display: flex; justify-content: space-between; gap: 20px; padding-top: 13px; font-size: 12px; line-height: 1.8; opacity: .65; }
 .plantationGrid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(45px, 9vw, 155px); }
 .plantationCopy .sectionTitle { margin-top: 23px; }
 .plantationCopy .bodyCopy { margin-top: 26px; }
@@ -71,13 +71,13 @@
 .depthLink .coverImage { transition: scale .7s var(--ease-soft); }
 .depthLink:hover .coverImage { scale: 1.045; }
 .cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, #102b2330, transparent 24%, #102b2340 40%, #102b23e0); }
-.cardTop { position: relative; display: flex; justify-content: space-between; padding: clamp(24px, 3.2vw, 50px); font-size: 9px; letter-spacing: .15em; align-items: center; }
+.cardTop { position: relative; display: flex; justify-content: space-between; padding: clamp(24px, 3.2vw, 50px); font-size: 12px; letter-spacing: .15em; align-items: center; }
 .cardTop svg { width: 20px; transform: rotate(-40deg); }
 .cardContent { position: relative; padding: clamp(24px, 3.2vw, 50px); }
 .cardContent h3 { font: 400 clamp(35px, 3.4vw, 58px)/1.04 var(--font-display), serif; letter-spacing: -.025em; max-width: 380px; }
-.cardLine { display: block; font-size: 11px; line-height: 1.75; opacity: .85; margin-top: 15px; }
+.cardLine { display: block; font-size: 14px; line-height: 1.75; opacity: .85; margin-top: 15px; }
 .cardRule { display: block; height: 1px; background: #f4f0e750; margin: 30px 0 21px; }
-.cardAction { display: flex; align-items: center; justify-content: space-between; font-size: 10px; }
+.cardAction { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
 .cardContent .imageDisclosure { display: block; margin-top: 24px; }
 .wideEditorial { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 8vw, 135px); align-items: center; }
 .wideEditorial .sectionTitle { margin-top: 22px; }
@@ -99,12 +99,12 @@
 .nextLink { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 23px 0; font: 400 clamp(45px, 6.6vw, 112px)/1.05 var(--font-display), serif; letter-spacing: -.035em; }
 .nextLink svg { width: clamp(32px, 5vw, 75px); height: auto; flex-shrink: 0; transition: transform .45s var(--ease-soft); }
 .nextLink:hover svg { transform: translateX(10px); }
-.nextDescription { font-size: 12px; line-height: 1.8; opacity: .65; }
+.nextDescription { font-size: 16px; line-height: 1.8; opacity: .65; }
 .enquiryIntro { position: relative; padding: 190px var(--page-gutter) 75px; text-align: center; }
 .enquiryIntro h1 { font: 400 clamp(58px, 6.5vw, 110px)/1.04 var(--font-display), serif; letter-spacing: -.03em; margin: 25px 0; }
 .enquiryIntro .bodyCopy { margin-inline: auto; max-width: 510px; }
 .enquiryContour { position: absolute; width: 270px; left: -90px; top: 200px; opacity: .17; transform: rotate(-25deg); pointer-events: none; }
-.smallNote { margin-top: 18px; font-size: 10px; line-height: 1.8; opacity: .7; }
+.smallNote { margin-top: 18px; font-size: 12px; line-height: 1.8; opacity: .7; }
 @media (min-width: 1600px) { .heroText { bottom: 19%; } }
 @media (max-width: 1000px) {
   .hero { height: 87svh; min-height: 680px; }
@@ -120,11 +120,11 @@
   .hero { height: 90svh; min-height: 670px; max-height: 850px; }
   .heroText { bottom: 21%; }
   .heroTitle, .hero_center .heroTitle, .hero_wide .heroTitle { font-size: clamp(56px, 12.5vw, 88px); margin-block: 24px; }
-  .heroDescription { font-size: 12px; max-width: 340px; }
+  .heroDescription { font-size: 16px; max-width: 340px; }
   .heroFoot { align-items: start; bottom: 23px; }
-  .heroFoot > .imageDisclosure { max-width: 155px; font-size: 7px; }
-  .scrollCue { font-size: 7px; gap: 10px; max-width: 160px; }
-  .eyebrow { font-size: 9px; letter-spacing: .14em; }
+  .heroFoot > .imageDisclosure { max-width: 155px; font-size: 12px; }
+  .scrollCue { font-size: 12px; gap: 10px; max-width: 160px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; }
   .introGrid, .plantationGrid, .wideEditorial, .terrainIntro { grid-template-columns: 1fr; gap: 28px; }
   .plantationGrid > .landscapeFigure { order: 2; }
   .plantationDetail { display: none; }

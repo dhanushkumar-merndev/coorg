@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const routes = ["/opportunities", "/farm-management", "/land-and-living", "/estates", "/about-coorg", "/enquiry"];
+const routes = ["/opportunities", "/managed-farmlands", "/gallery", "/estates", "/about-coorg", "/enquiry"];
 const worlds = ["plantation-estates", "private-hill-retreats", "curated-estate-plots", "forest-mountain-land", "countryside-homes"];
 
 test("every chapter and world supports direct loading with its own content", async ({ page }) => {
@@ -23,31 +23,31 @@ test("every chapter and world supports direct loading with its own content", asy
   expect(errors).toEqual([]);
 });
 
-test("the former plantations route redirects to Land & Living", async ({ page }) => {
+test("the former plantations route redirects to Gallery", async ({ page }) => {
   const response = await page.goto("/plantations", { waitUntil: "networkidle" });
   expect(response?.status()).toBe(200);
-  await expect(page).toHaveURL(/\/land-and-living$/);
+  await expect(page).toHaveURL(/\/gallery$/);
   await expect(page.locator("h1")).toHaveCount(1);
-  await expect(page.locator("h1")).toContainText("A little more land.");
-  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Land & Living", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(page.locator("h1")).toContainText("A little closer.");
+  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Gallery", exact: true })).toHaveAttribute("aria-current", "page");
 });
 
 test("fog covers before navigation, releases focus and supports history", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   const nav = page.getByRole("navigation", { name: "Main navigation" });
-  await nav.getByRole("link", { name: "Land & Living", exact: true }).click();
+  await nav.getByRole("link", { name: "Gallery", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-page-transition", "covering");
   expect(new URL(page.url()).pathname).toBe("/");
-  await expect(page).toHaveURL(/\/land-and-living$/);
+  await expect(page).toHaveURL(/\/gallery$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await expect(page.locator("h1")).toBeFocused();
-  await expect(nav.getByRole("link", { name: "Land & Living", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(nav.getByRole("link", { name: "Gallery", exact: true })).toHaveAttribute("aria-current", "page");
   expect(await page.evaluate(() => scrollY)).toBe(0);
   await nav.getByRole("link", { name: "Estates", exact: true }).click();
   await expect(page).toHaveURL(/\/estates$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goBack();
-  await expect(page).toHaveURL(/\/land-and-living$/);
+  await expect(page).toHaveURL(/\/gallery$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goForward();
   await expect(page).toHaveURL(/\/estates$/);
@@ -93,14 +93,14 @@ test("custom enquiry dropdown supports keyboard selection and Escape", async ({ 
 });
 
 test("browser Back restores the previous chapter scroll position with motion enabled", async ({ page }) => {
-  await page.goto("/land-and-living", { waitUntil: "networkidle" });
+  await page.goto("/gallery", { waitUntil: "networkidle" });
   await page.evaluate(() => scrollTo({ top: 900, behavior: "instant" }));
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(900);
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Estates", exact: true }).click();
   await expect(page).toHaveURL(/\/estates$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goBack();
-  await expect(page).toHaveURL(/\/land-and-living$/);
+  await expect(page).toHaveURL(/\/gallery$/);
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(900);
   await page.waitForTimeout(800);
   expect(await page.evaluate(() => scrollY)).toBe(900);

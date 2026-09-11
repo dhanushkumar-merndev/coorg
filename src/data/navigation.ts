@@ -1,7 +1,8 @@
 export const navLinks = [
-  { label: "Farm Management", href: "/farm-management" },
+  { label: "Home", href: "/" },
+  { label: "Managed Farmlands", href: "/managed-farmlands" },
   { label: "Estates", href: "/estates" },
-  { label: "Land & Living", href: "/land-and-living" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About Coorg", href: "/about-coorg" },
 ] as const;
 

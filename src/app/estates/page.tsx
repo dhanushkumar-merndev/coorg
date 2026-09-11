@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 import PageMotion from "@/components/pages/PageMotion";
 import { ChapterHero, WordHeading, NextChapter } from "@/components/pages/PagePrimitives";
-import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectMotion from "@/components/projects/ProjectMotion";
-import { estateProjects, STAR_INFRA_SOURCE } from "@/data/projects";
-import TransitionLink from "@/components/navigation/TransitionLink";
+import EstateCard from "@/components/estates/EstateCard";
+import { estateListings } from "@/data/estate-listings";
 import styles from "@/components/pages/pages.module.css";
 import projects from "@/components/projects/projects.module.css";
+import estates from "@/components/estates/estates.module.css";
 
 export const metadata: Metadata = {
-  title: "Estates · Completed Projects | Land in Coorg",
-  description: "Explore Star Woods Estate, Star Coffee County and Star Misty Acres, completed Coorg projects from the Star Infra Developers portfolio.",
+  title: "Estates · Land & Plantation Profiles | Land in Coorg",
+  description: "Explore Coorg estate profiles, source-stated acreage and supplied property photographs. Discover SLN Plantations and the wider land collection.",
+  alternates: { canonical: "/estates" },
 };
 
 export default function EstatesPage() {
+  const photographed = estateListings.filter((estate) => estate.photos.length);
+  const land = estateListings.filter((estate) => !estate.photos.length);
   return <PageMotion className={styles.page} tone="estate">
-    <ChapterHero chapter="02" label="Estates / Completed projects" lines={["Places with roots.", "Stories that stay."]} description="Three completed estates. Three expressions of life in the hills. Explore the Coorg collection from Star Infra Developers." image="/images/coorg/estates-hero.webp" alt="Completed luxury hillside estate cottages with tiled roofs along a winding road in Coorg" anchor="completed-projects" disclosure="Illustrative marketing imagery · Star Infra Developers" />
-    <section id="completed-projects" className={styles.section} aria-labelledby="estate-heading">
-      <div className={projects.collectionIntro}>
-        <div><p className={styles.eyebrow}>THE COMPLETED COLLECTION / 03 ESTATES</p><div className={projects.collectionNav}><TransitionLink href="/estates" aria-current="page">Completed projects</TransitionLink><TransitionLink href="/farm-management">Ongoing projects ↗</TransitionLink></div></div>
-        <div><WordHeading id="estate-heading" treatment="ink">A landscape to belong to.</WordHeading><p className={projects.introCopy} data-chapter-rise>From farmland communities to weekend retreats, each place begins with a different relationship to the land.</p></div>
-      </div>
-      <ProjectMotion className={projects.projectList}>{estateProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>
-      <div className={projects.collectionFoot}><p className={projects.sourceNote}>Project details and completed status from <a href={STAR_INFRA_SOURCE} target="_blank" rel="noreferrer">Star Infra Developers</a>. Images are illustrative marketing material. The completed collection is sold out.</p><TransitionLink href="/enquiry" className={projects.textLink}>Find your own kind of place ↗</TransitionLink></div>
+    <ChapterHero className={projects.farmHero} chapter="02" label="Estates / Land in Coorg" lines={["A closer look", "at the land."]} description="Plantation landscapes, villa settings and room to grow. Explore the acreage and character of the supplied Coorg collection." image="/images/coorg/supplied/sln/plantation.webp" alt="SLN Plantations hillside with green planting and tall trees" anchor="estate-collection" disclosure="SLN Plantations · photograph from the supplied brochure" />
+    <section id="estate-collection" className={styles.section} aria-labelledby="estate-heading">
+      <div className={projects.collectionIntro}><p className={styles.eyebrow}>THE ESTATE COLLECTION</p><div><WordHeading id="estate-heading">Get to know the ground.</WordHeading><p className={projects.introCopy}>Acreage, landscape and the details that make each place its own. Begin with the photographs and explore each profile.</p></div></div>
+      <ProjectMotion className={projects.projectList}>{photographed.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index} />)}</ProjectMotion>
     </section>
-    <NextChapter href="/farm-management" eyebrow="THE NEXT CHAPTER / FARM MANAGEMENT" title="A story still growing." line="Explore ongoing projects and a more considered relationship with land." />
+    <section className={styles.section} aria-labelledby="acreage-heading">
+      <div className={projects.collectionIntro}><p className={styles.eyebrow}>MORE ROOM TO EXPLORE</p><div><WordHeading id="acreage-heading">Land, in different measures.</WordHeading><p className={projects.introCopy}>More profiles from the supplied collection. Property photographs and further site details can be discussed on enquiry.</p></div></div>
+      <ProjectMotion className={estates.acreageGrid}>{land.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index + photographed.length} />)}</ProjectMotion>
+    </section>
+    <NextChapter href="/gallery" eyebrow="CONTINUE TO THE GALLERY" title="See a little more." line="Wander through the plantation, the trees and the spaces in between." />
   </PageMotion>;
 }

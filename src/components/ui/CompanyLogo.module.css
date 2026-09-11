@@ -4,5 +4,5 @@
 .logo .onLight { position: absolute; inset: 0; }
 :global(.site-header:not(.is-scrolled)) .onDark { opacity: 1; }
 :global(.site-header:not(.is-scrolled)) .onLight { opacity: 0; }
-@media (max-width: 1100px) { .logo { width: 46px; height: 46px; flex-basis: 46px; } }
+@media (max-width: 1200px) { .logo { width: 46px; height: 46px; flex-basis: 46px; } }
 @media (max-width: 600px) { .logo { width: 42px; height: 42px; flex-basis: 42px; } }

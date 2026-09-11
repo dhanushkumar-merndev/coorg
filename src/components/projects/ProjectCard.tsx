@@ -13,11 +13,13 @@ export function ProjectStatus({ project }: { project: Pick<EstateProject, "statu
 
 export default function ProjectCard({ project, index, compact = false }: { project: EstateProject; index: number; compact?: boolean }) {
   const cover = project.images[0];
-  const href = `/${project.status === "ongoing" ? "farm-management" : "estates"}/${project.id}`;
+  const href = `/managed-farmlands/${project.id}`;
   return <article className={`${styles.projectCard} ${compact ? styles.compactCard : ""}`} aria-labelledby={`project-${project.id}`}>
-    <TransitionLink href={href} className={styles.cardVisual} aria-label={`Explore ${project.name}`} data-project-frame>
+    <TransitionLink href={href} className={styles.cardVisual} aria-label={`Explore ${project.name}`}>
+      <div className={styles.imageViewport} data-project-frame>
       <div className={styles.cardImage} data-project-image><Image src={cover.src} alt={cover.alt} fill sizes={compact ? "(max-width: 700px) 100vw, 33vw" : "(max-width: 700px) 100vw, 58vw"} /></div>
       <div className={styles.cardShade} aria-hidden="true" />
+      </div>
       <ProjectStatus project={project} />
       <span className={styles.imageCaption}>STAR INFRA DEVELOPERS · MARKETING IMAGERY</span>
       <span className={styles.viewCircle} aria-hidden="true"><LuArrowUpRight size={25} /></span>

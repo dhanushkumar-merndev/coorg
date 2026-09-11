@@ -1,0 +1,14 @@
+.acreageGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
+.acreageCard { padding: clamp(24px, 2.7vw, 45px); background: #eae7dc85; border: 1px solid #173c321c; border-radius: 8px; position: relative; }
+.acreage { font: 400 clamp(35px, 3.8vw, 60px)/1.1 var(--font-display), Georgia, serif; letter-spacing: -.04em; margin: 35px 0 24px; color: var(--forest); }
+.acreageCopy h3 { font: 400 25px/1.25 var(--font-display), Georgia, serif; margin: 0 0 18px; }
+.acreageCopy { display: flex; flex-direction: column; height: 100%; }
+.acreageCopy > a { margin-top: auto; padding-top: 25px; }
+.areaNote { font-size: 12px; line-height: 1.8; max-width: 420px; color: #53685e; }
+.plainHero { background: var(--deep-forest); color: var(--paper); padding: 170px var(--page-gutter) 95px; position: relative; overflow: hidden; }
+.plainHero h1 { font: 400 clamp(56px, 7.5vw, 120px)/1.05 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 30px 0; max-width: 1100px; }
+.plainHero > p:last-child { font-size: 14px; line-height: 1.9; max-width: 550px; color: #d2d9c8; }
+.detailFacts { margin-top: 60px; }
+.photoNote { padding-top: 20px; font-size: 14px; line-height: 1.85; color: #53685e; max-width: 630px; }
+@media (max-width: 1100px) { .acreageGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .acreageGrid { grid-template-columns: 1fr; } .plainHero { padding-top: 140px; padding-bottom: 65px; } }

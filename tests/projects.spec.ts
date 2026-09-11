@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 const estateNames = ["Star Woods Estate", "Star Coffee County", "Star Misty Acres"];
 
 test("completed estates retain their source status and connect to project details", async ({ page }) => {
-  await page.goto("/estates", { waitUntil: "networkidle" });
+  await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
   const projects = page.locator("#completed-projects article");
   await expect(projects).toHaveCount(3);
   for (const name of estateNames) {
@@ -13,16 +13,16 @@ test("completed estates retain their source status and connect to project detail
   }
   await expect(page.getByText("Sold out", { exact: true })).toHaveCount(6);
   await projects.first().getByRole("link", { name: "Discover the estate", exact: true }).click();
-  await expect(page).toHaveURL(/\/estates\/star-woods-estate$/);
+  await expect(page).toHaveURL(/\/managed-farmlands\/star-woods-estate$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
-  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Estates", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Managed Farmlands", exact: true })).toHaveAttribute("aria-current", "page");
   await expect(page.locator("h1")).toContainText("Star Woods");
   const paths = await page.locator("img").evaluateAll((images) => images.map((image) => image.getAttribute("src")!));
   for (const path of paths) expect((await page.request.get(path)).ok()).toBe(true);
 });
 
 test("ongoing project keeps its actual city and starting price stays in the hero", async ({ page }) => {
-  await page.goto("/farm-management", { waitUntil: "networkidle" });
+  await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
   await expect(page.locator("[data-chapter-hero]")).toContainText("Starting from₹999 per sq ft");
   const project = page.locator("#ongoing-projects article");
   await expect(project.getByRole("heading", { name: "Arkha Sanctuary" })).toHaveCount(1);
@@ -31,7 +31,7 @@ test("ongoing project keeps its actual city and starting price stays in the hero
   await expect(project).not.toContainText("₹999");
   await expect(project).not.toContainText("Coorg estate");
   await project.getByRole("link", { name: "Explore the project", exact: true }).click();
-  await expect(page).toHaveURL(/\/farm-management\/arkha-sanctuary$/);
+  await expect(page).toHaveURL(/\/managed-farmlands\/arkha-sanctuary$/);
   await expect(page.locator("h1")).toContainText("Arkha");
 });
 
@@ -42,7 +42,7 @@ test("project pages remain readable at mobile size with reduced motion and rejec
   page.on("pageerror", (error) => errors.push(error.message));
   const media: string[] = [];
   page.on("request", (request) => { if (/\.(mp4|webm)(?:\?|$)/.test(request.url())) media.push(request.url()); });
-  for (const route of ["/estates", "/farm-management", "/estates/star-misty-acres", "/farm-management/arkha-sanctuary"]) {
+  for (const route of ["/estates", "/managed-farmlands", "/managed-farmlands/star-misty-acres", "/managed-farmlands/arkha-sanctuary", "/estates/sln-plantations", "/estates/12-acre-villa", "/gallery"]) {
     await page.goto(route, { waitUntil: "networkidle" });
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toBeVisible();
@@ -55,11 +55,11 @@ test("project pages remain readable at mobile size with reduced motion and rejec
   expect(missing?.status()).toBe(404);
 });
 
-test("Farm Management heading and price stay inside the hero at wide and short viewports", async ({ page }) => {
+test("Managed Farmlands heading and price stay inside the hero at wide and short viewports", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const [width, height] of [[1920, 900], [1440, 800], [1024, 768], [390, 667]]) {
     await page.setViewportSize({ width, height });
-    await page.goto("/farm-management", { waitUntil: "networkidle" });
+    await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
     const heading = await page.locator("h1").boundingBox();
     const header = await page.locator("header").boundingBox();
     const hero = await page.locator("[data-chapter-hero]").boundingBox();

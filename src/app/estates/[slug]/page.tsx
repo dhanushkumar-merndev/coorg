@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import ProjectDetailPage from "@/components/projects/ProjectDetailPage";
-import { estateProjects } from "@/data/projects";
+import { notFound, permanentRedirect } from "next/navigation";
+import EstateDetailPage from "@/components/estates/EstateDetailPage";
+import { estateListings, getEstateListing } from "@/data/estate-listings";
+import { completedProjects } from "@/data/projects";
 
 type Props = { params: Promise<{ slug: string }> };
-
-function getProject(slug: string) {
-  const project = estateProjects.find((item) => item.id === slug);
-  if (!project) notFound();
-  return project;
+function resolveEstate(slug: string) {
+  if (completedProjects.some((project) => project.id === slug)) permanentRedirect(`/managed-farmlands/${slug}`);
+  const estate = getEstateListing(slug);
+  if (!estate) notFound();
+  return estate;
 }
-
 export function generateStaticParams() {
-  return estateProjects.map(({ id }) => ({ slug: id }));
+  return [...estateListings, ...completedProjects].map(({ id }) => ({ slug: id }));
 }
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProject((await params).slug);
-  return { title: `${project.name} · Completed Estate | Land in Coorg`, description: `${project.name}, a completed project in ${project.location} from the Star Infra Developers portfolio. ${project.summary}` };
+  const estate = resolveEstate((await params).slug);
+  return { title: `${estate.name} · Estates | Land in Coorg`, description: estate.summary, alternates: { canonical: `/estates/${estate.id}` } };
 }
-
 export default async function EstatePage({ params }: Props) {
-  return <ProjectDetailPage project={getProject((await params).slug)} />;
+  return <EstateDetailPage estate={resolveEstate((await params).slug)} />;
 }
