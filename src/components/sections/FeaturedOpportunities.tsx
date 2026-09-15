@@ -16,7 +16,7 @@ export function FeaturedOpportunities() {
       </div>
       <ProjectMotion className={projects.compactGrid}>{ongoingProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} compact />)}</ProjectMotion>
       <div className={projects.farmBand} data-chapter-rise>
-        <div><span className={styles.eyebrow}>MANAGED FARMLANDS / ONGOING PROJECTS</span><h3>Star Garden</h3><p>Premium coffee estate plots at Madikeri. Explore a 10-acre development with 30 exclusive plots.</p></div>
+        <div><span className={styles.eyebrow}>MANAGED FARMLANDS / ONGOING PROJECTS</span><h3>Star Garden</h3><p>Premium coffee estate plots at Madikeri. Explore a 10-acre development with 33 exclusive plots.</p></div>
         <div className={projects.priceSide}><span>The next chapter</span><TransitionLink href="/managed-farmlands/star-garden" className={projects.textLink}>Explore Star Garden ↗</TransitionLink><p className={projects.sourceNote}>Discover the estate, amenities and project details.</p></div>
       </div>
     </PageMotion>

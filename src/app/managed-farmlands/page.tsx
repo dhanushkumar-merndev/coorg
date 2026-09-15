@@ -22,7 +22,7 @@ export default function ManagedFarmlandsPage() {
     <section id="ongoing-projects" className={`${styles.section} ${projects.collectionSection}`} aria-labelledby="ongoing-heading">
       <div className={projects.statusIntro}>
         <div><p className={styles.eyebrow}>MANAGED FARMLANDS / IN THE MAKING</p><WordHeading id="ongoing-heading" treatment="ink">Ongoing Projects</WordHeading></div>
-        <p className={projects.introCopy}>Meet Star Garden. A 10-acre coffee estate development at Madikeri, with 30 exclusive plots surrounded by nature.</p>
+        <p className={projects.introCopy}>Meet Star Garden. A 10-acre coffee estate development at Madikeri, with 33 exclusive plots surrounded by nature.</p>
       </div>
       <ProjectMotion className={projects.projectList}>{ongoingProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>
     </section>

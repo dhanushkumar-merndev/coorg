@@ -111,7 +111,7 @@ test("enquiry opens WhatsApp with correctly encoded form details", async ({ page
   await page.getByRole("button", { name: "Continue on WhatsApp" }).click();
   const opened = await page.evaluate(() => (window as typeof window & { openedWhatsApp?: string }).openedWhatsApp);
   const url = new URL(opened!);
-  expect(url.origin + url.pathname).toBe("https://wa.me/919743030555");
+  expect(url.origin + url.pathname).toBe("https://wa.me/919742606830");
   expect(url.searchParams.get("text")).toContain("Name: Coorg Visitor");
   expect(url.searchParams.get("text")).toContain("Contact: visitor@example.com");
   expect(url.searchParams.get("text")).toContain("Interest: Countryside Homes");

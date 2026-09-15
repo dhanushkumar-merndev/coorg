@@ -276,9 +276,9 @@ export const ongoingProjects: EstateProject[] = [
     name: "Star Garden",
     location: "Madikeri, Coorg",
     category: "Premium Coffee Estate Plots",
-    summary: "Thirty plots cut into ten acres of working coffee.",
+    summary: "Thirty-three plots cut into ten acres of working coffee.",
     description: [
-      "Ten acres of coffee at Madikeri, divided into thirty plots. Nine of them meet the stream that runs down through the property.",
+      "Ten acres of coffee at Madikeri, divided into thirty-three plots. Nine of them meet the stream that runs down through the property.",
       "The plantation stays. Plots are cut into a working estate rather than a cleared site, so the ground already carries shade trees, coffee and a season of its own before anything is built on it.",
     ],
     status: "ongoing",
@@ -286,7 +286,7 @@ export const ongoingProjects: EstateProject[] = [
     areaLabel: "10 acres",
     highlights: [
       { label: "Total area", value: "10 acres" },
-      { label: "Total plots", value: "30 exclusive plots" },
+      { label: "Total plots", value: "33 exclusive plots" },
       { label: "Stream-attached plots", value: "9 premium plots" },
       { label: "Plots sold", value: "12 plots" },
       { label: "Internal roads", value: "Developed with CC roads" },
