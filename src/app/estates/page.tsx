@@ -15,17 +15,17 @@ export const metadata: Metadata = {
 };
 
 export default function EstatesPage() {
-  const photographed = estateListings.filter((estate) => estate.photos.length);
-  const land = estateListings.filter((estate) => !estate.photos.length);
+  const featured = estateListings.slice(0, 2);
+  const land = estateListings.slice(2);
   return <PageMotion className={styles.page} tone="estate">
-    <ChapterHero className={projects.farmHero} chapter="02" label="Estates / Land in Coorg" lines={["A closer look", "at the land."]} description="Plantation landscapes, villa settings and room to grow. Explore the acreage and character of the Coorg collection." image="/images/coorg/supplied/sln/plantation.webp" alt="Madikeri Estate hillside with green planting and tall trees" anchor="estate-collection" />
+    <ChapterHero className={projects.farmHero} chapter="02" label="Estates / Land in Coorg" lines={["A closer look", "at the land."]} description="Plantation landscapes, villa settings and room to grow. Explore the acreage and character of the Coorg collection." image="/images/coorg/estates-hero.webp" alt="High-altitude coffee and spice plantation estate hillside in Coorg with mountain ridges and mist" anchor="estate-collection" />
     <section id="estate-collection" className={styles.section} aria-labelledby="estate-heading">
       <div className={projects.collectionIntro}><p className={styles.eyebrow}>THE ESTATE COLLECTION</p><div><WordHeading id="estate-heading">Get to know the ground.</WordHeading><p className={projects.introCopy}>Acreage, landscape and the details that make each place its own. Begin with the photographs and explore each profile.</p></div></div>
-      <ProjectMotion className={projects.projectList}>{photographed.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index} />)}</ProjectMotion>
+      <ProjectMotion className={projects.projectList}>{featured.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index} />)}</ProjectMotion>
     </section>
     <section className={styles.section} aria-labelledby="acreage-heading">
       <div className={projects.collectionIntro}><p className={styles.eyebrow}>MORE ROOM TO EXPLORE</p><div><WordHeading id="acreage-heading">Land, in different measures.</WordHeading><p className={projects.introCopy}>Explore more of the collection. Property photographs and further site details can be discussed on enquiry.</p></div></div>
-      <ProjectMotion className={estates.acreageGrid}>{land.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index + photographed.length} />)}</ProjectMotion>
+      <ProjectMotion className={estates.acreageGrid}>{land.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index + featured.length} compact />)}</ProjectMotion>
     </section>
     <NextChapter href="/gallery" eyebrow="CONTINUE TO THE GALLERY" title="See a little more." line="Wander through the plantation, the trees and the spaces in between." />
   </PageMotion>;

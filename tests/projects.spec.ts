@@ -1,30 +1,20 @@
 import { test, expect } from "@playwright/test";
 
-const estateNames = ["Star Woods Estate", "Star Coffee County", "Star Misty Acres"];
-
-test("completed estates retain their source status and connect to project details", async ({ page }) => {
+test("Managed Farmlands contains only the current ongoing project", async ({ page }) => {
   await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
-  const projects = page.locator("#completed-projects article");
-  await expect(projects).toHaveCount(3);
-  for (const name of estateNames) {
-    const card = projects.filter({ has: page.getByRole("heading", { name, exact: true }) });
-    await expect(card.getByText("Completed", { exact: true })).toBeVisible();
-    await expect(card.getByText("Sold out", { exact: true })).toHaveCount(2);
+  await expect(page.locator("#completed-projects")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Completed Projects", exact: true })).toHaveCount(0);
+  await expect(page.getByText("Sold out", { exact: true })).toHaveCount(0);
+  for (const name of ["Star Woods Estate", "Star Coffee County", "Star Misty Acres"]) {
+    await expect(page.getByRole("heading", { name, exact: true })).toHaveCount(0);
   }
-  await expect(page.getByText("Sold out", { exact: true })).toHaveCount(6);
-  await projects.first().getByRole("link", { name: "Discover the estate", exact: true }).click();
-  await expect(page).toHaveURL(/\/managed-farmlands\/star-woods-estate$/);
-  await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
-  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Managed Farmlands", exact: true })).toHaveAttribute("aria-current", "page");
-  await expect(page.locator("h1")).toContainText("Star Woods");
-  const paths = await page.locator("img").evaluateAll((images) => images.map((image) => image.getAttribute("src")!));
-  for (const path of paths) expect((await page.request.get(path)).ok()).toBe(true);
+  await expect(page.locator("#ongoing-projects article")).toHaveCount(1);
 });
 
 test("Star Garden leads the ongoing collection with its concept image and qualified project details", async ({ page }) => {
   await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
   await expect(page.locator("[data-chapter-hero]")).toContainText("Starting from₹999 per sq ft");
-  expect(await page.locator("#ongoing-projects, #completed-projects").evaluateAll((sections) => sections.map((section) => section.id))).toEqual(["ongoing-projects", "completed-projects"]);
+  expect(await page.locator("#ongoing-projects").evaluateAll((sections) => sections.map((section) => section.id))).toEqual(["ongoing-projects"]);
   await expect(page.getByRole("navigation", { name: "Project collections" }).getByRole("link").first()).toHaveAttribute("href", "#ongoing-projects");
   const project = page.locator("#ongoing-projects article");
   await expect(project).toHaveCount(1);
@@ -77,7 +67,7 @@ test("project pages remain readable at mobile size with reduced motion and rejec
   page.on("pageerror", (error) => errors.push(error.message));
   const media: string[] = [];
   page.on("request", (request) => { if (/\.(mp4|webm)(?:\?|$)/.test(request.url())) media.push(request.url()); });
-  for (const route of ["/estates", "/managed-farmlands", "/managed-farmlands/star-misty-acres", "/managed-farmlands/star-garden", "/estates/sln-plantations", "/estates/12-acre-villa", "/gallery"]) {
+  for (const route of ["/estates", "/managed-farmlands", "/estates/star-misty-acres", "/managed-farmlands/star-garden", "/estates/sln-plantations", "/estates/12-acre-villa", "/gallery"]) {
     await page.goto(route, { waitUntil: "networkidle" });
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toBeVisible();

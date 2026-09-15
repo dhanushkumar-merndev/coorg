@@ -57,10 +57,17 @@ export default function PageMotion({ children, className, tone = "editorial" }: 
           }
         });
         gsap.utils.toArray<HTMLElement>("[data-chapter-depth]").forEach((copy) => {
-          gsap.to(copy, {
+          // fromTo, not to: a route change mounts this page while the window is
+          // still scrolled, so the trigger is born past its end and the hero copy
+          // renders displaced. A bare .to() then re-reads that displacement as its
+          // start value on the next refresh and the offset never unwinds.
+          gsap.fromTo(copy, { y: 0 }, {
             y: compact ? -20 : -70,
             ease: "none",
-            scrollTrigger: { trigger: copy.closest("[data-chapter-hero]"), start: "top top", end: "bottom top", scrub: 0.8 },
+            scrollTrigger: {
+              trigger: copy.closest("[data-chapter-hero]"),
+              start: "top top", end: "bottom top", scrub: 0.8, invalidateOnRefresh: true,
+            },
           });
         });
         gsap.utils.toArray<HTMLElement>("[data-chapter-image]").forEach((image) => {

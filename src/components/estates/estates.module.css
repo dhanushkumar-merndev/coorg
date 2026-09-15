@@ -1,16 +1,283 @@
-.acreageGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
-.acreageCard { padding: clamp(24px, 2.7vw, 45px); background: #eae7dc85; border: 1px solid #173c321c; border-radius: 8px; position: relative; }
-.acreage { font: 400 clamp(35px, 3.8vw, 60px)/1.1 var(--font-display), Georgia, serif; letter-spacing: -.04em; margin: 35px 0 24px; color: var(--forest); }
-.acreageCopy h3 { font: 400 25px/1.25 var(--font-display), Georgia, serif; margin: 0 0 18px; }
-.acreageCopy { display: flex; flex-direction: column; height: 100%; }
-.acreageCopy > a { margin-top: auto; padding-top: 25px; }
-.areaNote { font-size: 12px; line-height: 1.8; max-width: 420px; color: #53685e; }
-.plainHero { background: var(--deep-forest); color: var(--paper); padding: 170px var(--page-gutter) 95px; position: relative; overflow: hidden; }
-.plainHero h1 { font: 400 clamp(56px, 7.5vw, 120px)/1.05 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 30px 0; max-width: 1100px; }
-.plainHero > p:last-child { font-size: 14px; line-height: 1.9; max-width: 550px; color: #d2d9c8; }
-.detailFacts { margin-top: 60px; }
-.photoNote { padding-top: 20px; font-size: 14px; line-height: 1.85; color: #53685e; max-width: 630px; }
-@media (max-width: 1100px) { .acreageGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 700px) { .acreageGrid { grid-template-columns: 1fr; } .plainHero { padding-top: 140px; padding-bottom: 65px; } }
+.acreageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
 
-@media (max-width: 1000px) { .plainHero { text-align: center; } .plainHero > p:last-child { margin-inline: auto; } }
+.acreageCard {
+  background: #eae7dc85;
+  border: 1px solid #173c321c;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: 100%;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.3s;
+}
+
+.acreageCard:hover {
+  transform: translateY(-4px);
+  border-color: #173c3238;
+  box-shadow: 0 16px 36px -12px rgba(23, 60, 50, 0.12);
+}
+
+.cardVisual {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #6f7e66;
+  margin: 0;
+  border-radius: 0;
+}
+
+.tagRibbon {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 12px;
+  background: var(--paper);
+  color: var(--forest);
+  font-size: 11.5px;
+  font-weight: 550;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid #173c3220;
+  border-left: none;
+  border-radius: 0 9999px 9999px 0;
+  box-shadow: 0 4px 14px rgba(16, 43, 35, 0.14);
+}
+
+.imageViewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+}
+
+.cardVisual img,
+.cardVisual :global([data-project-image]) img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out-expo);
+}
+
+.cardVisual:hover img,
+.cardVisual:hover :global([data-project-image]) img {
+  transform: scale(1.05);
+}
+
+.cardVisual:hover :global(.viewCircle) {
+  background: var(--paper);
+  color: var(--forest);
+  transform: rotate(45deg);
+}
+
+.acreage {
+  font: 400 clamp(35px, 3.8vw, 60px)/1.1 var(--font-display), Georgia, serif;
+  letter-spacing: -.04em;
+  margin: 35px 0 24px;
+  color: var(--forest);
+}
+
+.acreageCopy {
+  padding: 22px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #637453;
+  margin-bottom: 8px;
+}
+
+.acreageCopy h3 {
+  font: 400 clamp(20px, 1.6vw, 24px)/1.2 var(--font-display), Georgia, serif;
+  margin: 0 0 8px;
+  letter-spacing: -.02em;
+  color: var(--forest);
+}
+
+.acreageCopy h3 a {
+  transition: color 0.2s;
+}
+
+.acreageCopy h3 a:hover {
+  color: #0b251e;
+}
+
+.cardSummary {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #435b50;
+  margin: 0 0 12px;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tagBadge {
+  font-size: 11px;
+  letter-spacing: .02em;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: #173c320c;
+  border: 1px solid #173c3216;
+  color: #27453b;
+  font-weight: 450;
+}
+
+.featureBullets {
+  list-style: none;
+  padding: 10px 0 0;
+  margin: 0 0 14px;
+  border-top: 1px solid #173c3214;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.featureBullets li {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #53685e;
+  position: relative;
+  padding-left: 13px;
+}
+
+.featureBullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--forest);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.cardActionRow {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #173c3214;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--forest);
+  padding: 4px 0;
+  transition: color 0.2s, gap 0.25s;
+}
+
+.cardLink svg {
+  transition: transform 0.25s var(--ease-soft);
+}
+
+.cardLink:hover {
+  color: #0b251e;
+  gap: 12px;
+}
+
+.cardLink:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.areaNote {
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 420px;
+  color: #53685e;
+}
+
+.plainHero {
+  background: var(--deep-forest);
+  color: var(--paper);
+  padding: 170px var(--page-gutter) 95px;
+  position: relative;
+  overflow: hidden;
+}
+
+.plainHero h1 {
+  font: 400 clamp(56px, 7.5vw, 120px)/1.05 var(--font-display), Georgia, serif;
+  letter-spacing: -.035em;
+  margin: 30px 0;
+  max-width: 1100px;
+}
+
+.plainHero > p:last-child {
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 550px;
+  color: #d2d9c8;
+}
+
+.detailFacts {
+  margin-top: 60px;
+}
+
+.photoNote {
+  padding-top: 20px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #53685e;
+  max-width: 630px;
+}
+
+@media (max-width: 1100px) {
+  .acreageGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .acreageGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .plainHero {
+    padding-top: 140px;
+    padding-bottom: 65px;
+  }
+  .acreageCopy {
+    padding: 18px 18px 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .plainHero {
+    text-align: center;
+  }
+  .plainHero > p:last-child {
+    margin-inline: auto;
+  }
+}
+

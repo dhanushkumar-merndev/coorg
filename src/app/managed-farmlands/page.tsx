@@ -3,21 +3,21 @@ import PageMotion from "@/components/pages/PageMotion";
 import { ChapterHero, WordHeading, NextChapter, ContourMark } from "@/components/pages/PagePrimitives";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectMotion from "@/components/projects/ProjectMotion";
-import { ongoingProjects, completedProjects, managedFarmlandsPreview } from "@/data/projects";
+import { ongoingProjects, managedFarmlandsPreview } from "@/data/projects";
 import styles from "@/components/pages/pages.module.css";
 import projects from "@/components/projects/projects.module.css";
 
 export const metadata: Metadata = {
-  title: "Managed Farmlands · Ongoing & Completed | Land in Coorg",
-  description: "Explore ongoing and completed Coorg projects, including Star Garden coffee estate plots at Madikeri.",
+  title: "Managed Farmlands | Land in Coorg",
+  description: "Explore current managed farmland opportunities in Coorg, including Star Garden coffee estate plots at Madikeri.",
   alternates: { canonical: "/managed-farmlands" },
 };
 
 export default function ManagedFarmlandsPage() {
   return <PageMotion className={styles.page} tone="plantation">
-    <ChapterHero className={projects.farmHero} chapter="01" label="Managed Farmlands" lines={["Rooted in the land.", "Growing with care."]} description="Explore the ongoing and completed collection. A longer view of land, and a place for every chapter." image="/images/coorg/managed-farmlands-hero.webp" alt="Lush managed coffee and spice farmland with winding red earth trail and soft morning sunlight over misty Coorg hills" anchor="ongoing-projects">
-      <div className={projects.heroPrice} data-chapter-intro><span>Starting from</span><strong>₹{managedFarmlandsPreview.price.amount.toLocaleString("en-IN")} <small>per sq ft</small></strong><p>Indicative starting price · project-specific pricing on enquiry</p></div>
-      <nav className={projects.heroCollectionNav} aria-label="Project collections" data-chapter-intro><a href="#ongoing-projects">Ongoing <span>{String(ongoingProjects.length).padStart(2, "0")}</span> ↘</a><a href="#completed-projects">Completed <span>{String(completedProjects.length).padStart(2, "0")}</span> ↘</a></nav>
+    <ChapterHero className={projects.farmHero} chapter="01" label="Managed Farmlands" lines={["Rooted in the land.", "Growing with care."]} description="Explore the current collection. A longer view of land, and a place for every chapter." image="/images/coorg/managed-farmlands-hero.webp" alt="Lush managed coffee and spice farmland with winding red earth trail and soft morning sunlight over misty Coorg hills" anchor="ongoing-projects">
+      <div className={projects.heroPrice} data-chapter-intro><span>Pricing</span><strong>On enquiry</strong><p>{managedFarmlandsPreview.pricingNote}</p></div>
+      <nav className={projects.heroCollectionNav} aria-label="Project collections" data-chapter-intro><a href="#ongoing-projects">Ongoing <span>{String(ongoingProjects.length).padStart(2, "0")}</span> ↘</a></nav>
     </ChapterHero>
     <section id="ongoing-projects" className={`${styles.section} ${projects.collectionSection}`} aria-labelledby="ongoing-heading">
       <div className={projects.statusIntro}>
@@ -25,14 +25,6 @@ export default function ManagedFarmlandsPage() {
         <p className={projects.introCopy}>Meet Star Garden. A 10-acre coffee estate development at Madikeri, with 30 exclusive plots surrounded by nature.</p>
       </div>
       <ProjectMotion className={projects.projectList}>{ongoingProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>
-      <div className={projects.collectionFoot}><a href="#completed-projects" className={projects.textLink}>Discover completed projects ↓</a></div>
-    </section>
-    <section id="completed-projects" className={`${styles.section} ${projects.collectionSection}`} aria-labelledby="completed-heading">
-      <div className={projects.statusIntro}>
-        <div><p className={styles.eyebrow}>MANAGED FARMLANDS / THE COORG COLLECTION</p><WordHeading id="completed-heading" treatment="ink">Completed Projects</WordHeading></div>
-        <p className={projects.introCopy}>Three places with a story of their own. Discover the completed Coorg collection, now sold out.</p>
-      </div>
-      <ProjectMotion className={projects.projectList}>{completedProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>
     </section>
     <section className={`${styles.section} ${styles.darkSection}`} aria-labelledby="land-care-heading">
       <ContourMark className={styles.contour} />

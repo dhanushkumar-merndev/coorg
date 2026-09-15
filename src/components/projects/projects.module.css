@@ -19,7 +19,7 @@
 .collectionIntro { display: grid; grid-template-columns: .65fr 1.35fr; gap: 60px; align-items: start; margin-bottom: 75px; }
 .collectionIntro h2 { max-width: 820px; }
 .collectionIntro p + p { margin-top: 20px; }
-.introCopy { max-width: 470px; margin-top: 28px; font-size: 16px; line-height: 1.95; color: #53685e; }
+.introCopy { max-width: min(100%, 780px); margin-top: 28px; font-size: 16px; line-height: 1.95; color: #53685e; }
 .collectionNav { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 32px; font-size: 14px; }
 .collectionNav a { border-bottom: 1px solid #173c3260; padding: 10px 0; }
 .collectionNav a[aria-current="page"] { font-weight: 700; }
@@ -33,23 +33,29 @@
 .cardImage img { object-fit: cover; transition: transform 1.2s var(--ease-out-expo); }
 .cardVisual:hover .cardImage img { transform: scale(1.05); }
 .cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, #0d281b40, transparent 35%, transparent 65%, #0d281ba6); pointer-events: none; }
-.badges { position: relative; display: flex; gap: 8px; flex-wrap: wrap; }
-.cardVisual > .badges { position: absolute; top: 23px; left: 23px; right: 23px; }
-.status { display: inline-flex; gap: 8px; align-items: center; padding: 9px 13px; font-size: 12px; letter-spacing: .025em; background: var(--paper); border: 1px solid #173c3220; color: var(--forest); border-radius: 30px; }
+.badges { position: relative; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; z-index: 2; }
+.cardVisual > .badges { position: absolute; top: 20px; left: 0; right: auto; }
+.status { display: inline-flex; gap: 8px; align-items: center; padding: 7px 15px 7px 12px; font-size: 11.5px; font-weight: 550; letter-spacing: .03em; text-transform: uppercase; background: var(--paper); border: 1px solid #173c3220; border-left: none; color: var(--forest); border-radius: 0 9999px 9999px 0; box-shadow: 0 4px 14px rgba(16, 43, 35, 0.14); }
 .status i { width: 5px; height: 5px; border-radius: 50%; background: #637453; }
 .available { background: #d6e2c5; }
 .soldOut { background: #decdbb; color: #563b2a; }
 .imageCaption { position: absolute; bottom: 25px; left: 25px; right: 78px; font-size: 12px; letter-spacing: .12em; line-height: 1.8; color: var(--paper); }
 .viewCircle { position: absolute; bottom: 20px; right: 20px; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid #f4f0e770; border-radius: 50%; color: var(--paper); transition: background .3s, color .3s, transform .5s; }
 .cardVisual:hover .viewCircle { background: var(--paper); color: var(--forest); transform: rotate(45deg); }
-.cardCopy { padding-block: 30px; }
+.cardCopy { padding-block: 24px; }
 .collectionSection .projectCard { align-items: start; }
 .collectionSection .cardCopy { padding-top: 0; }
-.cardMeta { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 12px; text-transform: uppercase; letter-spacing: .13em; color: #637453; }
-.cardCopy h3 { font: 400 clamp(43px, 4.5vw, 75px)/1.04 var(--font-display), Georgia, serif; letter-spacing: -.035em; margin: 25px 0; max-width: 500px; }
-.cardSummary { font-size: 16px; line-height: 1.9; color: #53685e; max-width: 420px; }
-.cardFacts { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; padding: 23px 0; margin: 28px 0 8px; border-top: 1px solid #173c3226; border-bottom: 1px solid #173c3226; font-size: 12px; }
-.textLink { display: inline-flex; gap: 25px; align-items: center; font-size: 14px; padding-block: 17px; min-height: 44px; }
+.cardMeta { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 12px; text-transform: uppercase; letter-spacing: .13em; color: #637453; margin-bottom: 12px; }
+.cardCopy h3 { font: 400 clamp(38px, 4vw, 68px)/1.06 var(--font-display), Georgia, serif; letter-spacing: -.03em; margin: 0 0 14px; max-width: 540px; }
+.cardSummary { font-size: 15.5px; line-height: 1.8; color: #53685e; max-width: 540px; margin: 0 0 14px; }
+.badgeRow { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 16px; }
+.tagBadge { font-size: 11.5px; letter-spacing: .02em; padding: 4px 10px; border-radius: 20px; background: #173c320c; border: 1px solid #173c3216; color: #27453b; font-weight: 450; }
+.cardDetailText { font-size: 14.5px; line-height: 1.85; color: #435b50; margin: 12px 0 16px; max-width: 540px; }
+.featureBullets { list-style: none; padding: 14px 0 0; margin: 0 0 18px; border-top: 1px solid #173c3214; display: flex; flex-direction: column; gap: 8px; }
+.featureBullets li { font-size: 13.5px; line-height: 1.6; color: #4b6256; position: relative; padding-left: 16px; }
+.featureBullets li::before { content: "•"; position: absolute; left: 0; color: var(--forest); font-size: 15px; line-height: 1; }
+.cardFacts { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; padding: 18px 0; margin: 16px 0 8px; border-top: 1px solid #173c3226; border-bottom: 1px solid #173c3226; font-size: 12px; }
+.textLink { display: inline-flex; gap: 25px; align-items: center; font-size: 14px; padding-block: 14px; min-height: 44px; }
 .textLink svg { transition: transform .35s; }
 .textLink:hover svg { transform: translate(3px, -3px); }
 .projectNumber { position: absolute; z-index: -1; right: 1%; top: -12%; font: 400 clamp(140px, 18vw, 280px)/1 var(--font-display), serif; color: #173c3209; pointer-events: none; }
@@ -58,7 +64,7 @@
 .compactCard, .compactCard:nth-child(even) { display: block; }
 .compactCard .cardVisual { aspect-ratio: 1.08; }
 .compactCard .cardCopy { padding: 25px 0 0; }
-.compactCard .cardCopy h3 { font-size: clamp(32px, 2.8vw, 48px); margin: 20px 0 17px; }
+.compactCard .cardCopy h3 { font-size: clamp(32px, 2.8vw, 48px); margin: 0 0 14px; }
 .compactCard .cardMeta { font-size: 12px; }
 .compactCard .cardFacts { margin-top: 24px; }
 .compactCard .cardSummary { font-size: 16px; min-height: 6em; }
@@ -92,7 +98,7 @@
 .fact dd { font: 400 clamp(24px, 2.3vw, 38px)/1.3 var(--font-display), serif; margin: 14px 0 0; }
 .detailsSection { border-top: 1px solid #173c3226; }
 .detailsSection > h2 { margin-top: 20px; }
-.highlightsGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.highlightsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .locationList { margin: 0; }
 .locationList > div { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 24px 0; border-bottom: 1px solid #173c3226; }
 .locationList dt { font-size: 16px; color: #53685e; }
@@ -103,13 +109,32 @@
 .investmentCopy > p + p { margin-top: 24px; }
 .investmentFacts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-block: 32px; color: var(--forest); }
 .roiProjection { color: var(--forest); }
+.investmentHeading { font: 400 clamp(22px, 2.4vw, 30px)/1.25 var(--font-display), serif; color: var(--forest); margin-bottom: 18px; }
+.investmentCopy > .investmentHeading + p { margin-top: 0; }
+.investmentCopy > * + .investmentHeading { margin-top: 44px; }
+.optionalNote { padding: 16px 20px; border-left: 2px solid #173c3235; background: #173c320a; border-radius: 0 8px 8px 0; font-size: 15px; }
+.investmentCopy > .optionalNote { margin-top: 8px; }
 .projectionDisclaimer { padding-top: 24px; border-top: 1px solid #173c3235; font-size: 14px; line-height: 1.85; }
 .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .gallery figure { margin: 0; min-width: 0; }
 .gallery figure:nth-child(2) { margin-top: 90px; }
+.galleryButton { display: block; width: 100%; padding: 0; border: 0; border-radius: 8px; color: inherit; background: transparent; cursor: zoom-in; text-align: inherit; }
 .galleryImage { position: relative; aspect-ratio: 1.15; overflow: hidden; border-radius: 8px; background: var(--moss); }
 .galleryImage img { object-fit: cover; }
+.galleryExpand { position: absolute; right: 17px; bottom: 17px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #f4f0e799; border-radius: 50%; color: var(--paper); background: #173c3229; font-size: 21px; transition: transform .35s var(--ease-out-expo), background .35s; }
+.galleryButton:hover .galleryExpand, .galleryButton:focus-visible .galleryExpand { background: var(--paper); color: var(--forest); transform: rotate(45deg); }
+.galleryButton:focus-visible { outline: 2px solid var(--clay); outline-offset: 5px; }
 .gallery figcaption { margin-top: 14px; font-size: 12px; line-height: 1.8; color: #53685e; }
+.lightbox { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: clamp(18px, 4vw, 58px); }
+.lightboxBackdrop { position: absolute; inset: 0; border: 0; background: #08150ff0; cursor: zoom-out; }
+.lightboxDialog { position: relative; z-index: 1; width: min(1180px, 100%); max-height: 100%; display: grid; gap: 15px; }
+.lightboxImage { position: relative; width: 100%; height: min(76svh, 820px); overflow: hidden; border-radius: 8px; background: #10271d; box-shadow: 0 24px 80px #00000070; }
+.lightboxImage img { object-fit: contain; }
+.lightboxBar { display: flex; align-items: center; justify-content: space-between; gap: 18px; color: var(--paper); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.lightboxBar p { margin: 0; }
+.lightboxControls { display: flex; align-items: center; gap: 8px; }
+.lightboxControls button { min-height: 40px; padding: 0 14px; border: 1px solid #f4f0e766; border-radius: 999px; color: var(--paper); background: transparent; cursor: pointer; font: inherit; transition: color .2s, background .2s; }
+.lightboxControls button:hover, .lightboxControls button:focus-visible { color: var(--forest); background: var(--paper); outline: none; }
 .featureList { list-style: none; padding: 0; margin: 30px 0; display: grid; gap: 0; }
 .featureList li { display: flex; align-items: baseline; gap: 18px; padding: 18px 0; border-bottom: 1px solid #173c3226; font-size: 16px; line-height: 1.75; }
 .featureList li::before { content: '↗'; color: #637453; }
@@ -124,7 +149,7 @@
   .cardCopy h3 { font-size: 46px; max-width: 340px; }
   .cardCopy { padding-top: 26px; padding-bottom: 0; }
   .collectionSection .cardCopy { order: -1; padding-bottom: 24px; }
-  .collectionSection .cardCopy h3 { margin-block: 18px; }
+  .collectionSection .cardCopy h3 { margin: 0 0 14px; }
   .cardVisual { aspect-ratio: 1.12; }
   .cardSummary { max-width: none; }
   .cardFacts { margin-top: 23px; }
@@ -143,8 +168,11 @@
   .investmentSection .collectionIntro { grid-template-columns: 1fr; }
   .fact dd { margin-top: 8px; }
   .gallery figure:nth-child(2) { margin-top: 0; }
+  .lightbox { padding: 18px; }
+  .lightboxImage { height: min(70svh, 680px); }
+  .lightboxBar { align-items: flex-start; flex-direction: column; gap: 10px; }
 }
-@media (prefers-reduced-motion: reduce) { .cardImage img, .viewCircle, .textLink svg { transition: none; } .cardVisual:hover .cardImage img, .cardVisual:hover .viewCircle, .textLink:hover svg { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cardImage img, .viewCircle, .textLink svg, .galleryExpand { transition: none; } .cardVisual:hover .cardImage img, .cardVisual:hover .viewCircle, .textLink:hover svg, .galleryButton:hover .galleryExpand, .galleryButton:focus-visible .galleryExpand { transform: none; } }
 
 @media (max-width: 1000px) {
   .heroPrice { margin-inline: auto; justify-content: center; text-align: center; }

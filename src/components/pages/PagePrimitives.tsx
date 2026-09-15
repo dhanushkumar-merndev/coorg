@@ -9,7 +9,7 @@ type HeroProps = { chapter: string; label: string; lines: string[]; italicLast?:
 
 export function ChapterHero({ chapter, label, lines, italicLast = true, description, image, alt, variant = "left", anchor, disclosure, children, className = "" }: HeroProps) {
   return <section className={`${styles.hero} ${styles[`hero_${variant}`]} ${className}`} data-chapter-hero aria-labelledby="chapter-title">
-    <div className={styles.heroVisual}><div className={styles.heroImage} data-chapter-image><Image src={image} alt={alt} fill sizes="(max-width: 700px) 220vw, 100vw" preload className={styles.coverImage} /></div></div>
+    <div className={styles.heroVisual}><div className={styles.heroImage} data-chapter-image><Image src={image} alt={alt} fill sizes="100vw" priority quality={88} className={styles.coverImage} /></div></div>
     <div className={styles.heroShade} aria-hidden="true" />
     <div className={styles.heroText} data-chapter-depth>
       <p className={styles.eyebrow} data-chapter-intro>{chapter} <span>/</span> {label}</p>

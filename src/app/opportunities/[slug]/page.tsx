@@ -96,6 +96,7 @@ export async function generateMetadata({ params }: WorldPageProps): Promise<Meta
   return {
     title: `${world.title} | Land in Coorg`,
     description: `Explore ${world.title.toLowerCase()} as an editorial perspective on life in Coorg. ${world.line} Conceptual imagery, with individual opportunities discussed separately.`,
+    alternates: { canonical: `/opportunities/${world.id}` },
   };
 }
 

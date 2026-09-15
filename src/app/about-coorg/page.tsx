@@ -8,6 +8,7 @@ import styles from "@/components/pages/pages.module.css";
 export const metadata: Metadata = {
   title: "About Coorg | Land in Coorg",
   description: "An invitation to slow down and explore Coorg through landscape, light and the idea of belonging. Discover an interactive conceptual terrain study.",
+  alternates: { canonical: "/about-coorg" },
 };
 
 export default function AboutCoorgPage() {

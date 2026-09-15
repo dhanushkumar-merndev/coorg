@@ -25,11 +25,15 @@ export type ProjectImage = {
 
 export type ProjectFact = { label: string; value: string };
 
+// No monetary figures are modelled here. Rates, totals and returns are settled
+// in writing on enquiry so nothing on the public site can be read as an offer.
 export type ProjectInvestment = {
-  coffeeIncomeProjection: string;
-  villaProposal: string;
-  structure: ProjectFact[];
-  roiProjection: string;
+  primaryHeading: string;
+  primary: string;
+  delivered: ProjectFact[];
+  optional: string;
+  secondaryHeading: string;
+  secondary: string[];
   disclaimer: string;
 };
 
@@ -99,6 +103,14 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Agricultural parcels", "Internal access roads", "Nature-focused setting"],
+    highlights: [
+      { label: "Development", value: "Agricultural parcels" },
+      { label: "Location", value: "Madikeri, Coorg" },
+      { label: "Internal roads", value: "Paved motorable access" },
+      { label: "Setting", value: "Misty hill slopes" },
+      { label: "Environment", value: "Lush native trees" },
+      { label: "Status", value: "Completed & handed over" },
+    ],
     images: [
       sourceImage("star-woods-estate-3", "Small buildings beside a winding road on a misty green hillside"),
       sourceImage("star-woods-estate-2", "A stone cottage with a tiled roof and planted surroundings at sunset"),
@@ -127,6 +139,14 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Individual farmland parcels", "Plantation surroundings", "Internal pathways"],
+    highlights: [
+      { label: "Development", value: "Managed farmland" },
+      { label: "Location", value: "Madikeri, Coorg" },
+      { label: "Crops", value: "Working coffee plantation" },
+      { label: "Internal paths", value: "Connecting trail network" },
+      { label: "Terrain", value: "Undulating coffee slopes" },
+      { label: "Status", value: "Completed & handed over" },
+    ],
     images: [
       sourceImage("star-coffee-county-3", "Planted hillsides, winding tracks and scattered buildings"),
       sourceImage("star-coffee-county-1", "An aerial view of green parcels divided by a road network"),
@@ -155,6 +175,14 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Farmland development", "Plantation landscape", "Weekend retreat setting"],
+    highlights: [
+      { label: "Development", value: "Farmland & retreats" },
+      { label: "Location", value: "Madikeri, Coorg" },
+      { label: "Water feature", value: "Natural stream & pond" },
+      { label: "Architecture", value: "Stone & timber villas" },
+      { label: "Setting", value: "Panoramic valley vistas" },
+      { label: "Status", value: "Completed & handed over" },
+    ],
     images: [
       sourceImage("star-misty-acres-1", "A stone and timber villa beside a landscaped stream and misty hills"),
       sourceImage("star-misty-acres-2", "A two-storey villa, lawn and stream with wooded hills behind"),
@@ -180,9 +208,10 @@ export const ongoingProjects: EstateProject[] = [
     name: "Star Garden",
     location: "Madikeri, Coorg",
     category: "Premium Coffee Estate Plots",
-    summary: "Premium Coffee Estate Plots at Madikeri",
+    summary: "Thirty plots cut into ten acres of working coffee.",
     description: [
-      "Star Garden is a 10-acre premium coffee estate development comprising 30 exclusive plots, thoughtfully planned for peaceful living, nature-based investment, and long-term value appreciation.",
+      "Ten acres of coffee at Madikeri, divided into thirty plots. Nine of them meet the stream that runs down through the property.",
+      "The plantation stays. Plots are cut into a working estate rather than a cleared site, so the ground already carries shade trees, coffee and a season of its own before anything is built on it.",
     ],
     status: "ongoing",
     availability: null,
@@ -190,12 +219,13 @@ export const ongoingProjects: EstateProject[] = [
     highlights: [
       { label: "Total area", value: "10 acres" },
       { label: "Total plots", value: "30 exclusive plots" },
-      { label: "Premium stream-attached plots", value: "9 plots" },
+      { label: "Stream-attached plots", value: "9 premium plots" },
       { label: "Plots sold", value: "12 plots" },
+      { label: "Internal roads", value: "Developed with CC roads" },
+      { label: "Financing / LAP", value: "LAP loan facility available" },
     ],
     facilities: [
       "All internal roads developed with CC roads",
-      "Partition registration facility available",
       "LAP loan facility available, subject to lender eligibility and approval",
     ],
     featuresHeading: "Premium Amenities",
@@ -214,14 +244,20 @@ export const ongoingProjects: EstateProject[] = [
       { label: "Bengaluru", value: "220 km" },
     ],
     investment: {
-      coffeeIncomeProjection: "The coffee estate is expected to generate approximately ₹50,000 per annum through coffee cultivation, subject to production and market conditions.",
-      villaProposal: "Additional income potential can be created by constructing a 4BHK villa through a reputed construction partner. The proposed investment structure is:",
-      structure: [
-        { label: "Land investment", value: "₹1 crore" },
-        { label: "Villa construction investment", value: "₹1 crore" },
+      primaryHeading: "Build a villa, and let it host",
+      primary: "The principal income route at Star Garden is to build a 4BHK villa on your plot and place it on a vacation rental platform such as Airbnb. The estate setting, the clubhouse and the plantation around it are what a guest comes for.",
+      delivered: [
+        { label: "Design", value: "Architecture and layout for the villa, worked through with you." },
+        { label: "Construction", value: "The build managed end to end, through to handover." },
+        { label: "Documentation", value: "Paperwork handled alongside the build." },
       ],
-      roiProjection: "Expected ROI timeline: Approximately 18 months, subject to occupancy, rental income, market conditions, and project performance.",
-      disclaimer: "All income and ROI figures are projections and are not guaranteed. Final returns may vary based on market conditions, operating costs, approvals, construction expenses, and actual revenue.",
+      optional: "The villa is optional. A plot can be held as land alone, with coffee cultivation continuing on it.",
+      secondaryHeading: "Alongside the villa",
+      secondary: [
+        "Coffee grown on the plot, following the estate’s own harvest cycle.",
+        "A plot held for the long term inside a managed, maintained estate.",
+      ],
+      disclaimer: "Income and returns described here are possible outcomes, not guarantees. Actual results depend on market conditions, operating costs, approvals, construction expenses, occupancy and revenue. No rates or figures are published on this site; anything discussed individually is indicative and confirmed only in writing.",
     },
     images: [
       {
@@ -247,8 +283,8 @@ export const ongoingProjects: EstateProject[] = [
       "Project copy, counts, facilities, amenities and distances were supplied by the user; no independent site or approval documents are supplied.",
       "Project visual representation; not an approved layout.",
       "The 12 sold plots are a user-supplied snapshot; current availability is on enquiry.",
-      "The ₹1 crore land and ₹1 crore villa figures belong to the proposed investment structure, not a confirmed per-plot price or price basis.",
-      "The annual coffee-income figure has no supplied per-plot or net/gross basis. Do not infer one. All income and ROI projections remain conditional and are not guaranteed.",
+      "Monetary figures were deliberately removed from the public site so nothing published can be treated as a quotation or as legal proof. Land, villa-construction and coffee-income figures exist in the original client notes only.",
+      "The villa is presented as an optional addition, not a condition of purchase. Income and ROI remain conditional and are not guaranteed.",
     ],
   },
 ];
@@ -262,13 +298,13 @@ export type ManagedFarmlandsPreview = {
   availability: ProjectAvailability;
   location: string | null;
   areaLabel: string | null;
-  price: ProjectPrice;
+  pricingNote: string;
   publicReady: false;
   sourceProject: string | null;
 };
 
-// This programme preview keeps the temporary user-supplied display rate separate
-// from the Star Garden investment proposal and individual project sale terms.
+// The programme preview carries no rate. Pricing is deliberately absent from the
+// public site so no published figure can be treated as a quotation.
 export const managedFarmlandsPreview: ManagedFarmlandsPreview = {
   id: "managed-farmlands-preview",
   contentRole: "programme-preview",
@@ -278,11 +314,12 @@ export const managedFarmlandsPreview: ManagedFarmlandsPreview = {
   availability: null,
   location: null,
   areaLabel: null,
-  price: { amount: 999, basis: "sq-ft", status: "user-placeholder" },
+  pricingNote: "Plot rates are shared privately and confirmed in writing, project by project.",
   publicReady: false,
   sourceProject: null,
 };
 
 export const estateProjects = completedProjects;
 export const farmProjects = ongoingProjects;
-export const managedFarmlandProjects = [...ongoingProjects, ...completedProjects];
+export const managedFarmlandProjects = ongoingProjects;
+export const indexedManagedFarmlandProjects = ongoingProjects;

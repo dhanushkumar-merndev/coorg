@@ -15,11 +15,11 @@ test("estate profiles show source acreage and matched photos without prices", as
   await expect(page.locator("main")).toContainText("has not yet been confirmed against this exact villa");
   await page.goto("/estates/12-acre-villa", { waitUntil: "networkidle" });
   await expect(page.locator("main")).toContainText("12 acres");
-  await expect(page.locator("main img")).toHaveCount(0);
+  await expect(page.locator("main img")).toHaveCount(3);
 });
 
 test("legacy collection URLs reach the new pages and Home is only active at root", async ({ page }) => {
-  for (const [before, after] of [["/farm-management", "/managed-farmlands"], ["/farm-management/star-garden", "/managed-farmlands/star-garden"], ["/estates/star-woods-estate", "/managed-farmlands/star-woods-estate"], ["/land-and-living", "/gallery"]]) {
+  for (const [before, after] of [["/farm-management", "/managed-farmlands"], ["/farm-management/star-garden", "/managed-farmlands/star-garden"], ["/farm-management/star-woods-estate", "/estates/star-woods-estate"], ["/land-and-living", "/gallery"]]) {
     await page.goto(before, { waitUntil: "networkidle" });
     expect(new URL(page.url()).pathname).toBe(after);
     await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Home", exact: true })).not.toHaveAttribute("aria-current", "page");
@@ -42,18 +42,18 @@ test("gallery opens supplied photographs and has twelve captioned images", async
   await expect(page.locator("main")).not.toContainText(/PDF|brochure|supplied|AI-generated/i);
 });
 
-test("mobile status badges stay inside the card frame throughout its scroll reveal", async ({ page }) => {
+test("the ongoing status badge stays inside the card frame throughout its scroll reveal", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/managed-farmlands", { waitUntil: "networkidle" });
-  const card = page.locator("#completed-projects article").first();
-  const link = card.getByRole("link", { name: "Explore Star Woods Estate", exact: true });
-  const badge = link.getByText("Completed", { exact: true });
+  const card = page.locator("#ongoing-projects article").first();
+  const link = card.getByRole("link", { name: "Explore Star Garden", exact: true });
+  const badge = link.getByText("Ongoing", { exact: true });
   const top = await link.evaluate((node) => node.getBoundingClientRect().top + scrollY);
   for (const offset of [650, 450, 120]) {
     await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), top - offset);
     await page.waitForTimeout(900);
     const frame = (await link.boundingBox())!;
-    for (const tag of [badge, link.getByText("Sold out", { exact: true })]) {
+    for (const tag of [badge]) {
       const bounds = (await tag.boundingBox())!;
       expect(bounds.y - frame.y).toBeGreaterThanOrEqual(13);
       expect(bounds.y - frame.y).toBeLessThanOrEqual(24);

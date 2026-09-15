@@ -15,11 +15,31 @@ export default function EstateDetailPage({ estate }: { estate: EstateListing }) 
     <section id="estate-story" className={styles.section} aria-labelledby="estate-story-heading">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>{estate.category}</p><p className={estates.acreage}>{estate.areaLabel ?? "Acreage on enquiry"}</p>{estate.areaNote && <p className={estates.areaNote}>{estate.areaNote}</p>}</div>
-        <div><WordHeading id="estate-story-heading">{estate.id === "madikeri-estate" ? "Rooted in a growing landscape." : "A place to look closer."}</WordHeading><div className={projects.introCopy}>{estate.description.map((text) => <p data-chapter-rise key={text}>{text}</p>)}</div></div>
+        <div>
+          <WordHeading id="estate-story-heading">{estate.id === "madikeri-estate" ? "Rooted in a growing landscape." : "A place to look closer."}</WordHeading>
+          {estate.highlights && (
+            <div className={estates.badgeRow} style={{ marginTop: 20, marginBottom: 16 }}>
+              {estate.highlights.map((tag) => (
+                <span key={tag} className={estates.tagBadge}>{tag}</span>
+              ))}
+            </div>
+          )}
+          <div className={projects.introCopy}>{estate.description.map((text) => <p data-chapter-rise key={text}>{text}</p>)}</div>
+          {estate.features && (
+            <ul className={estates.featureBullets} style={{ marginTop: 24, maxWidth: 740 }}>
+              {estate.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
       <dl className={projects.factList}>
-        <div className={projects.fact} data-chapter-rise><dt>Land area</dt><dd>{estate.areaLabel ?? "On enquiry"}</dd></div>
-        <div className={projects.fact} data-chapter-rise><dt>Location</dt><dd>{estate.location ?? "Details on enquiry"}</dd></div>
+        <div className={projects.fact} data-chapter-rise><dt>Property</dt><dd>{estate.name}</dd></div>
+        <div className={projects.fact} data-chapter-rise><dt>Location</dt><dd>{estate.location ?? "On enquiry"}</dd></div>
+        <div className={projects.fact} data-chapter-rise><dt>Total acreage</dt><dd>{estate.areaLabel ?? "On enquiry"}</dd></div>
+        <div className={projects.fact} data-chapter-rise><dt>Holding category</dt><dd>{estate.category}</dd></div>
+        <div className={projects.fact} data-chapter-rise><dt>Setting &amp; Terrain</dt><dd>{estate.facts[0]?.value ? (estate.facts[0].value.length > 32 ? estate.facts[0].value.slice(0, 32) + "…" : estate.facts[0].value) : "Misty slopes & canopy"}</dd></div>
         <div className={projects.fact} data-chapter-rise><dt>Availability</dt><dd>Enquire privately</dd></div>
       </dl>
     </section>

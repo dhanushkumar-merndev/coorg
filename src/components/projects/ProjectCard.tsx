@@ -11,7 +11,7 @@ export function ProjectStatus({ project }: { project: Pick<EstateProject, "statu
   </div>;
 }
 
-export default function ProjectCard({ project, index, compact = false }: { project: EstateProject; index: number; compact?: boolean }) {
+export default function ProjectCard({ project, compact = false }: { project: EstateProject; index?: number; compact?: boolean }) {
   const cover = project.images[0];
   const href = `/managed-farmlands/${project.id}`;
   return <article className={`${styles.projectCard} ${compact ? styles.compactCard : ""}`} aria-labelledby={`project-${project.id}`}>
@@ -24,12 +24,31 @@ export default function ProjectCard({ project, index, compact = false }: { proje
       <span className={styles.viewCircle} aria-hidden="true"><LuArrowUpRight size={25} /></span>
     </TransitionLink>
     <div className={styles.cardCopy} data-project-copy>
-      <div className={styles.cardMeta}><span>{project.location}</span><span>{String(index + 1).padStart(2, "0")}</span></div>
+      <div className={styles.cardMeta}><span>{project.location ?? "Location on enquiry"}</span></div>
       <h3 id={`project-${project.id}`}><TransitionLink href={href}>{project.name}</TransitionLink></h3>
       <p className={styles.cardSummary}>{project.summary}</p>
-      <div className={styles.cardFacts}><span>{project.areaLabel ?? project.category}</span><span>{project.availability === "sold-out" ? "Sold out" : project.availability === "available" ? "Available" : "Enquire for availability"}</span></div>
+      {project.highlights && (
+        <div className={styles.badgeRow}>
+          {project.highlights.map((h, i) => (
+            <span key={i} className={styles.tagBadge}>{h.label}: {h.value}</span>
+          ))}
+        </div>
+      )}
+      {project.description?.slice(0, 2).map((para, i) => (
+        <p key={i} className={styles.cardDetailText}>{para}</p>
+      ))}
+      {project.features && (
+        <ul className={styles.featureBullets}>
+          {project.features.slice(0, 4).map((feature, i) => (
+            <li key={i}>{feature}</li>
+          ))}
+        </ul>
+      )}
+      <div className={styles.cardFacts}>
+        <span>{project.areaLabel ?? "Acreage on enquiry"}</span>
+        <span>{project.availability === "sold-out" ? "Sold out" : project.availability === "available" ? "Available" : "Enquire for availability"}</span>
+      </div>
       <TransitionLink href={href} className={styles.textLink}>{project.status === "ongoing" ? "Explore the project" : "Discover the estate"} <LuArrowUpRight size={19} aria-hidden="true" /></TransitionLink>
     </div>
-    {!compact && <span className={styles.projectNumber} data-project-number aria-hidden="true">0{index + 1}</span>}
   </article>;
 }
