@@ -7,6 +7,13 @@ export type EstatePhoto = {
   association: "confirmed" | "probable" | "conceptual";
 };
 
+export type EstateAmenity = {
+  title: string;
+  description?: string;
+  image: string;
+  alt: string;
+};
+
 // Public editorial profiles requested by the user. Only non-financial source
 // facts are selected here; the original sale/revenue records stay server-only.
 export type EstateListing = {
@@ -19,6 +26,8 @@ export type EstateListing = {
   summary: string;
   highlights?: string[];
   features?: string[];
+  amenitiesHeading?: string;
+  amenities?: EstateAmenity[];
   description: string[];
   facts: { label: string; value: string }[];
   photos: EstatePhoto[];
@@ -49,6 +58,33 @@ export const estateListings: EstateListing[] = [
       "RCC residential quarters providing comfortable on-site housing for twenty workers.",
       "Developed motorable internal roads and tractor pathways reaching every sector of the 79.86 acres.",
       "High-altitude setting above 3,900 ft with rich volcanic soil and natural spring reservoirs.",
+    ],
+    amenitiesHeading: "Estate Amenities & Infrastructure",
+    amenities: [
+      {
+        title: "Avocado & Lychee Orchards",
+        description: "Fifty acres of thriving avocado with 3,800 mature trees, plus ten acres of sweet litchi.",
+        image: "/images/coorg/supplied/sln/avocado-a.webp",
+        alt: "Avocado orchard at Madikeri Estate in Coorg",
+      },
+      {
+        title: "Netafim Drip Irrigation",
+        description: "Automated drip irrigation and fertigation system delivering uniform water across all contours.",
+        image: "/images/coorg/amenities/estate-irrigation.webp",
+        alt: "Automated drip irrigation reservoir and system in Coorg plantation",
+      },
+      {
+        title: "Permanent RCC Quarters",
+        description: "Substantial on-site residential quarters providing comfortable permanent housing for twenty staff.",
+        image: "/images/coorg/amenities/estate-quarters.webp",
+        alt: "Permanent residential staff quarters at Madikeri Estate",
+      },
+      {
+        title: "Motorable Roadway Network",
+        description: "Developed all-weather internal roads and tractor pathways connecting every sector of the parcel.",
+        image: "/images/coorg/amenities/estate-roads.webp",
+        alt: "Motorable internal estate road through Coorg plantation",
+      },
     ],
     description: [
       "Above 3,900 feet at Garwale, Madhapur, this is a working agricultural estate rather than merely a view. The high-altitude microclimate brings heavy morning mist, cool temperatures, and steady rainfall, creating premier growing conditions for exotic horticulture and highland coffee.",
@@ -84,6 +120,33 @@ export const estateListings: EstateListing[] = [
       "Paved private arrival driveway and stone pathways with ample vehicle parking.",
       "Natural spring water connections, dependable power access, and tranquil forest acoustics.",
     ],
+    amenitiesHeading: "Villa Amenities & Features",
+    amenities: [
+      {
+        title: "Private Swimming Pool & Terrace",
+        description: "Generous tiled outdoor swimming pool with wide sun deck reflecting the surrounding forest canopy.",
+        image: "/images/coorg/supplied/villa/pool-cluster.webp",
+        alt: "Private swimming pool beside luxury estate villa in Coorg",
+      },
+      {
+        title: "Two-Storey Estate Residence",
+        description: "Contemporary residence with wide viewing balconies, shaded outdoor seating, and forest vistas.",
+        image: "/images/coorg/supplied/villa/pool-overview.webp",
+        alt: "Two-storey villa residence overlooking pool and grounds in Coorg",
+      },
+      {
+        title: "Paved Arrival Driveway",
+        description: "Stone-lined paved driveway guiding arrival through gated grounds with vehicle turnaround.",
+        image: "/images/coorg/supplied/villa/driveway.webp",
+        alt: "Paved private arrival driveway beside the villa",
+      },
+      {
+        title: "Gated Perimeter & Wooded Canopy",
+        description: "Private gated perimeter surrounded by mature tropical greenery and tall silver oaks.",
+        image: "/images/coorg/supplied/villa/gate.webp",
+        alt: "Entrance gate and trees beside the villa compound",
+      },
+    ],
     description: [
       "Nestled among mature tropical greenery and tall silver oaks in Kodagu, this property presents a private estate villa sanctuary centered around leisure, nature, and architectural elegance.",
       "The compound features a two-storey contemporary estate residence with wide viewing balconies, shaded outdoor seating, and an expansive tiled swimming pool reflecting the surrounding forest canopy.",
@@ -100,6 +163,27 @@ export const estateListings: EstateListing[] = [
     features: [
       "Heritage-styled estate villa with expansive verandah looking across misty slopes.",
       "Twelve acres of productive coffee plantation surrounded by silver oaks and pepper vines.",
+    ],
+    amenitiesHeading: "Property Features & Amenities",
+    amenities: [
+      {
+        title: "Heritage Covered Verandah",
+        description: "Covered stone verandah with terracotta-tiled roof capturing sweeping valley vistas and morning mist.",
+        image: "/images/coorg/estates/12-acre-villa-verandah.webp",
+        alt: "Covered stone verandah overlooking coffee slopes and mist",
+      },
+      {
+        title: "Paved Private Scenic Driveway",
+        description: "All-weather motorable driveway leading through gated entrance flanked by silver oaks.",
+        image: "/images/coorg/estates/12-acre-villa-driveway.webp",
+        alt: "Private paved driveway winding through coffee plantation",
+      },
+      {
+        title: "Contiguous 12-Acre Coffee Holding",
+        description: "Mature Arabica and Robusta bushes thriving under towering silver oaks and black pepper vines.",
+        image: "/images/coorg/estates/12-acre-villa.webp",
+        alt: "Heritage villa nestled in 12-acre coffee plantation in Coorg",
+      },
     ],
     description: [
       "Twelve contiguous acres of fertile coffee plantation in Kodagu, crowned by an established estate villa oriented to capture sweeping panoramic valley views and morning mist rising from the foothills.",
@@ -130,6 +214,27 @@ export const estateListings: EstateListing[] = [
     features: [
       "Twenty contiguous acres of gentle undulating topography in Basavanahalli, Kodagu.",
       "High-yielding coffee plantation intercropped with flourishing pepper vines under silver oak shade.",
+    ],
+    amenitiesHeading: "Land Features & Infrastructure",
+    amenities: [
+      {
+        title: "Commercial Crop Cultivation",
+        description: "Systematically intercropped Arabica & Robusta coffee laden with berries and pepper creepers.",
+        image: "/images/coorg/estates/20-acre-basavanahalli-crops.webp",
+        alt: "Arabica coffee bushes laden with ripe red cherries and pepper vines",
+      },
+      {
+        title: "Panoramic Mountain Ridge",
+        description: "Elevated clearing at ~3,200 ft capturing sweeping vistas across Western Ghats valleys.",
+        image: "/images/coorg/estates/20-acre-basavanahalli-ridge.webp",
+        alt: "Elevated clearing overlooking green valleys and mountain horizons",
+      },
+      {
+        title: "20 Contiguous Acres",
+        description: "Accessible, fertile holding with gentle rolling slopes and nutrient-dense volcanic red loam.",
+        image: "/images/coorg/estates/20-acre-basavanahalli.webp",
+        alt: "Panoramic view of 20-acre agricultural land in Basavanahalli",
+      },
     ],
     description: [
       "Twenty contiguous acres situated at Basavanahalli, Kodagu (571234, CWWG+94Q), offering an accessible, fertile, and well-maintained agricultural holding at approximately 3,200 feet elevation.",

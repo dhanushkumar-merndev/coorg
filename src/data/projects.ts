@@ -37,6 +37,13 @@ export type ProjectInvestment = {
   disclaimer: string;
 };
 
+export type ProjectAmenity = {
+  title: string;
+  description?: string;
+  image: string;
+  alt: string;
+};
+
 export type EstateProject = {
   id: string;
   name: string;
@@ -50,6 +57,7 @@ export type EstateProject = {
   areaLabel: string | null;
   features: string[];
   featuresHeading?: string;
+  amenities?: ProjectAmenity[];
   highlights?: ProjectFact[];
   facilities?: string[];
   nearbyPlaces?: ProjectFact[];
@@ -103,6 +111,26 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Agricultural parcels", "Internal access roads", "Nature-focused setting"],
+    amenities: [
+      {
+        title: "Agricultural Parcels",
+        description: "Demarcated farmland parcels set into existing coffee planting, preserving native shade trees.",
+        image: "/images/coorg/star-infra/star-woods-estate-1.webp",
+        alt: "Landscaped road and houses at Star Woods Estate",
+      },
+      {
+        title: "Internal Access Roads",
+        description: "All-weather motorable access roads built to service each individual agricultural parcel.",
+        image: "/images/coorg/amenities/estate-roads.webp",
+        alt: "Paved motorable access road in Coorg estate",
+      },
+      {
+        title: "Nature-Focused Setting",
+        description: "Misty hill slopes and lush native foliage creating quiet weekends and long-term land value.",
+        image: "/images/coorg/star-infra/star-woods-estate-2.webp",
+        alt: "Stone cottage with tiled roof at sunset at Star Woods Estate",
+      },
+    ],
     highlights: [
       { label: "Development", value: "Agricultural parcels" },
       { label: "Location", value: "Madikeri, Coorg" },
@@ -139,6 +167,26 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Individual farmland parcels", "Plantation surroundings", "Internal pathways"],
+    amenities: [
+      {
+        title: "Individual Farmland Parcels",
+        description: "Carefully divided agricultural plots integrated directly into a functioning coffee landscape.",
+        image: "/images/coorg/star-infra/star-coffee-county-1.webp",
+        alt: "Aerial view of green farmland plots at Star Coffee County",
+      },
+      {
+        title: "Plantation Surroundings",
+        description: "Undulating coffee slopes and multi-tiered tree canopy creating a tranquil rural sanctuary.",
+        image: "/images/coorg/star-infra/star-coffee-county-3.webp",
+        alt: "Planted hillsides and winding tracks at Star Coffee County",
+      },
+      {
+        title: "Internal Trail Network",
+        description: "Connecting pathways and estate roads reaching every sector of the managed farmland.",
+        image: "/images/coorg/amenities/estate-roads.webp",
+        alt: "Internal trail network in Coorg plantation",
+      },
+    ],
     highlights: [
       { label: "Development", value: "Managed farmland" },
       { label: "Location", value: "Madikeri, Coorg" },
@@ -175,6 +223,26 @@ export const completedProjects: EstateProject[] = [
     availabilitySource: "user-confirmed",
     areaLabel: null,
     features: ["Farmland development", "Plantation landscape", "Weekend retreat setting"],
+    amenities: [
+      {
+        title: "Weekend Retreat Architecture",
+        description: "Stone and timber cottages oriented toward mountain streams and morning mist.",
+        image: "/images/coorg/star-infra/star-misty-acres-1.webp",
+        alt: "Stone and timber villa beside landscaped stream at Star Misty Acres",
+      },
+      {
+        title: "Natural Water Features",
+        description: "Living streams and ponds integrated into the landscaped grounds for peaceful leisure.",
+        image: "/images/coorg/star-infra/star-misty-acres-2.webp",
+        alt: "Villa and stream with wooded hills at Star Misty Acres",
+      },
+      {
+        title: "Evergreen Forest Border",
+        description: "Panoramic valley vistas bordered by protected Western Ghats forest greenery.",
+        image: "/images/coorg/star-infra/star-misty-acres-3.webp",
+        alt: "Villa overlooking a pond at dusk at Star Misty Acres",
+      },
+    ],
     highlights: [
       { label: "Development", value: "Farmland & retreats" },
       { label: "Location", value: "Madikeri, Coorg" },
@@ -236,6 +304,44 @@ export const ongoingProjects: EstateProject[] = [
       "Swimming pool",
       "Dense plantation",
       "Natural coffee estate surroundings",
+    ],
+    amenities: [
+      {
+        title: "5,500 sq. ft. Clubhouse",
+        description: "Contemporary estate clubhouse featuring timber rafters, floor-to-ceiling glass, private lounge decks, and panoramic coffee valley vistas.",
+        image: "/images/coorg/amenities/star-garden-clubhouse.webp",
+        alt: "Luxurious 5,500 sq ft contemporary clubhouse at Star Garden with glass walls overlooking misty Coorg coffee hills",
+      },
+      {
+        title: "Community Kitchen",
+        description: "Gourmet rustic culinary space with solid teak island, copper cookware, and garden-to-table dining overlooking the plantation.",
+        image: "/images/coorg/amenities/star-garden-kitchen.webp",
+        alt: "Rustic luxury community kitchen with open views of the coffee estate at Star Garden",
+      },
+      {
+        title: "Pavilion Dining Hall",
+        description: "Open-air teakwood pavilion dining hall beneath woven lanterns, capturing gentle mountain breezes and hillside horizons.",
+        image: "/images/coorg/amenities/star-garden-dining.webp",
+        alt: "Open-air pavilion dining hall at Star Garden overlooking coffee plantation slopes",
+      },
+      {
+        title: "Infinity Swimming Pool",
+        description: "Granite-edged infinity pool with teak sun loungers, reflecting morning mist and rolling emerald coffee canopies.",
+        image: "/images/coorg/amenities/star-garden-pool.webp",
+        alt: "Panoramic infinity swimming pool overlooking misty coffee valleys at Star Garden",
+      },
+      {
+        title: "Dense Working Plantation",
+        description: "Multi-tiered Arabica coffee shrubs bearing ripe cherries, shaded by mature silver oaks wrapped in climbing black pepper vines.",
+        image: "/images/coorg/amenities/star-garden-plantation.webp",
+        alt: "Lush dense coffee plantation at Star Garden with red coffee cherries and morning sun rays",
+      },
+      {
+        title: "Natural Stream Surroundings",
+        description: "Perennial freshwater stream and shaded trails winding through the 10-acre estate, with 9 exclusive plots meeting the water.",
+        image: "/images/coorg/amenities/star-garden-stream.webp",
+        alt: "Pristine freshwater stream and trail winding through Star Garden estate in Coorg",
+      },
     ],
     nearbyPlaces: [
       { label: "NH 274", value: "700 metres" },

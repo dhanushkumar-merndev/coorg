@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageMotion from "@/components/pages/PageMotion";
 import { ChapterHero, WordHeading, NextChapter, RouteButton } from "@/components/pages/PagePrimitives";
 import ProjectGallery from "./ProjectGallery";
@@ -35,7 +36,27 @@ export default function ProjectDetailPage({ project }: { project: EstateProject 
     {project.images.length > 1 && <section className={styles.section} aria-label={`${project.name} gallery`}><ProjectGallery projectName={project.name} images={project.images.slice(1)} /></section>}
     <section className={`${styles.section} ${styles.introGrid}`} aria-labelledby="project-details-heading">
       <div><p className={styles.eyebrow}>A CLOSER LOOK</p><div className={styles.textAction}><WordHeading id="project-details-heading">{project.featuresHeading ?? "Details that shape the place."}</WordHeading></div></div>
-      <div><ul className={projects.featureList}>{project.features.map((feature) => <li key={feature} data-chapter-rise>{feature}</li>)}</ul>{!project.investment && <div className={styles.textAction}><RouteButton href="/enquiry">Enquire about {project.name}</RouteButton></div>}</div>
+      <div>
+        {project.amenities && project.amenities.length > 0 ? (
+          <div className={projects.amenityGrid}>
+            {project.amenities.map((amenity) => (
+              <article key={amenity.title} className={projects.amenityCard} data-chapter-rise>
+                <div className={projects.amenityImageWrap}>
+                  <Image src={amenity.image} alt={amenity.alt} fill sizes="(max-width: 700px) 100vw, 450px" className={projects.amenityImg} />
+                  <span className={projects.amenityBadge} aria-hidden="true">↗</span>
+                </div>
+                <div className={projects.amenityText}>
+                  <h3 className={projects.amenityTitle}>{amenity.title}</h3>
+                  {amenity.description && <p className={projects.amenityDesc}>{amenity.description}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <ul className={projects.featureList}>{project.features.map((feature) => <li key={feature} data-chapter-rise>{feature}</li>)}</ul>
+        )}
+        {!project.investment && <div className={styles.textAction}><RouteButton href="/enquiry">Enquire about {project.name}</RouteButton></div>}
+      </div>
     </section>
     {project.nearbyPlaces && <section className={`${styles.section} ${styles.introGrid} ${projects.detailsSection}`} aria-labelledby="project-location-heading">
       <div><p className={styles.eyebrow}>CONNECTED TO THE EVERYDAY</p><div className={styles.textAction}><WordHeading id="project-location-heading">Strategic Location</WordHeading></div></div>

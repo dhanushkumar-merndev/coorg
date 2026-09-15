@@ -45,8 +45,29 @@ export default function EstateDetailPage({ estate }: { estate: EstateListing }) 
     </section>
     {estate.photos.length > 1 && <section className={styles.section} aria-label={`${estate.name} photographs`}><ProjectMotion className={projects.gallery}>{estate.photos.slice(1).map((photo) => <figure key={photo.src}><div className={projects.galleryImage} data-project-frame><div className={projects.cardImage} data-project-image><Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 700px) 100vw, 50vw" /></div></div><figcaption>{photo.caption}</figcaption></figure>)}</ProjectMotion></section>}
     <section className={`${styles.section} ${styles.introGrid}`} aria-labelledby="estate-details-heading">
-      <div><p className={styles.eyebrow}>A CLOSER LOOK</p><div className={styles.textAction}><WordHeading id="estate-details-heading">Let’s talk about the details.</WordHeading></div></div>
-      <div>{estate.facts.length > 0 && <ul className={projects.featureList}>{estate.facts.map((fact) => <li key={fact.label} data-chapter-rise><span><strong>{fact.label}</strong><br />{fact.value}</span></li>)}</ul>}
+      <div><p className={styles.eyebrow}>A CLOSER LOOK</p><div className={styles.textAction}><WordHeading id="estate-details-heading">{estate.amenitiesHeading ?? "Estate Amenities & Infrastructure"}</WordHeading></div></div>
+      <div>
+        {estate.amenities && estate.amenities.length > 0 ? (
+          <div className={projects.amenityGrid}>
+            {estate.amenities.map((amenity) => (
+              <article key={amenity.title} className={projects.amenityCard} data-chapter-rise>
+                <div className={projects.amenityImageWrap}>
+                  <Image src={amenity.image} alt={amenity.alt} fill sizes="(max-width: 700px) 100vw, 450px" className={projects.amenityImg} />
+                  <span className={projects.amenityBadge} aria-hidden="true">↗</span>
+                </div>
+                <div className={projects.amenityText}>
+                  <h3 className={projects.amenityTitle}>{amenity.title}</h3>
+                  {amenity.description && <p className={projects.amenityDesc}>{amenity.description}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : estate.facts.length > 0 ? (
+          <ul className={projects.featureList}>{estate.facts.map((fact) => <li key={fact.label} data-chapter-rise><span><strong>{fact.label}</strong><br />{fact.value}</span></li>)}</ul>
+        ) : null}
+        {estate.amenities && estate.amenities.length > 0 && estate.facts.length > 0 && (
+          <ul className={projects.featureList}>{estate.facts.map((fact) => <li key={fact.label} data-chapter-rise><span><strong>{fact.label}</strong><br />{fact.value}</span></li>)}</ul>
+        )}
         <p className={projects.sourceNote}>Discuss current site details, documentation and availability with us.</p>
         {!cover && <p className={estates.photoNote}>Enquire to discuss photographs and arrange a closer look.</p>}
         <div className={styles.textAction}><RouteButton href="/enquiry">Enquire about {estate.name}</RouteButton></div>
