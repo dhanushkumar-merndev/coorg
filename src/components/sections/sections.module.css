@@ -847,19 +847,6 @@
   flex-shrink: 0;
 }
 
-.footerBrand > span {
-  font-size: 16px;
-  letter-spacing: 0.12em;
-}
-
-.footerBrand small {
-  display: block;
-  margin-top: 7px;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  color: #6b795f;
-}
-
 .footerLocation {
   font-size: 14px;
   line-height: 1.9;

@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = completedProjects.find((item) => item.id === slug);
   if (project) {
     return {
-      title: `${project.name} · Estates | Land in Coorg`,
+      title: `${project.name} · Estates | Star Managed Farmlands`,
       description: `Explore ${project.name}, an established estate in ${project.location}.`,
       alternates: { canonical: `/estates/${project.id}` },
     };
   }
   const estate = resolveEstate(slug);
-  return { title: `${estate.name} · Estates | Land in Coorg`, description: estate.summary, alternates: { canonical: `/estates/${estate.id}` } };
+  return { title: `${estate.name} · Estates | Star Managed Farmlands`, description: estate.summary, alternates: { canonical: `/estates/${estate.id}` } };
 }
 export default async function EstatePage({ params }: Props) {
   const slug = (await params).slug;

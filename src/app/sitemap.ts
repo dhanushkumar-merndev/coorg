@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/estates", 0.9, "weekly"),
     entry("/opportunities", 0.8, "monthly"),
     entry("/gallery", 0.6, "monthly"),
-    entry("/about-coorg", 0.6, "monthly"),
+    entry("/about", 0.6, "monthly"),
     entry("/enquiry", 0.7, "yearly"),
     ...coorgWorlds.map((world) => entry(`/opportunities/${world.id}`, 0.7, "monthly")),
     ...indexedManagedFarmlandProjects.map((project) =>

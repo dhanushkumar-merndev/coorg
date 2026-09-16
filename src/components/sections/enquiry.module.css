@@ -11,5 +11,11 @@
 .button svg { width: 19px; height: 19px; flex-shrink: 0; }
 .close { border-radius: 8px; }
 .close svg { width: 19px; height: 19px; }
-.landscape { stroke-width: .65; }
+.section > h2 { margin-top: 32px; }
+.conversationDetails { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: 1000px; margin: 44px auto 8px; text-align: left; }
+.conversationDetails > div { padding-top: 22px; border-top: 1px solid #173c3228; }
+.conversationDetails span { font-size: 10px; letter-spacing: .13em; color: var(--moss); }
+.conversationDetails h3 { margin: 15px 0 10px; font: 400 25px/1.2 var(--font-display), Georgia, serif; }
+.conversationDetails p { font-size: 13px; line-height: 1.9; color: #60675e; }
+@media (max-width: 700px) { .conversationDetails { grid-template-columns: 1fr; gap: 24px; margin-top: 32px; } }
 @media (prefers-reduced-motion: reduce) { .panel input:not([type="hidden"]), .panel textarea { transition: none; } }

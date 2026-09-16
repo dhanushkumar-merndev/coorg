@@ -1,8 +1,8 @@
-.logo { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; flex: 0 0 56px; }
+.logo { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: 0 0 40px; }
 .logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .logo .onDark { opacity: 0; }
 .logo .onLight { position: absolute; inset: 0; }
 :global(.site-header:not(.is-scrolled)) .onDark { opacity: 1; }
 :global(.site-header:not(.is-scrolled)) .onLight { opacity: 0; }
-@media (max-width: 1200px) { .logo { width: 46px; height: 46px; flex-basis: 46px; } }
-@media (max-width: 600px) { .logo { width: 42px; height: 42px; flex-basis: 42px; } }
+@media (max-width: 1200px) { .logo { width: 36px; height: 36px; flex-basis: 36px; } }
+@media (max-width: 600px) { .logo { width: 32px; height: 32px; flex-basis: 32px; } }

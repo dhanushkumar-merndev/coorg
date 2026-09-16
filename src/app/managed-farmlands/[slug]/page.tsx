@@ -18,8 +18,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   return {
-    title: `${project.name} · Managed Farmlands | Land in Coorg`,
-    description: `Explore ${project.name}, an ${project.status === "ongoing" ? "ongoing" : "established"} project in ${project.location}. Discover its setting and project details with Land in Coorg.`,
+    title: `${project.name} · Managed Farmlands | Star Managed Farmlands`,
+    description: `Explore ${project.name}, an ${project.status === "ongoing" ? "ongoing" : "established"} project in ${project.location}. Discover its setting and project details with Star Managed Farmlands.`,
     alternates: { canonical: `/managed-farmlands/${project.id}` },
   };
 }

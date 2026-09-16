@@ -9,7 +9,7 @@ import projects from "@/components/projects/projects.module.css";
 import estates from "@/components/estates/estates.module.css";
 
 export const metadata: Metadata = {
-  title: "Estates · Land & Plantation Profiles | Land in Coorg",
+  title: "Estates · Land & Plantation Profiles | Star Managed Farmlands",
   description: "Explore Coorg estate profiles, acreage and property photographs. Discover Madikeri Estate and the wider land collection.",
   alternates: { canonical: "/estates" },
 };
@@ -18,7 +18,7 @@ export default function EstatesPage() {
   const featured = estateListings.slice(0, 2);
   const land = estateListings.slice(2);
   return <PageMotion className={styles.page} tone="estate">
-    <ChapterHero className={projects.farmHero} chapter="02" label="Estates / Land in Coorg" lines={["A closer look", "at the land."]} description="Plantation landscapes, villa settings and room to grow. Explore the acreage and character of the Coorg collection." image="/images/coorg/estates-hero.webp" alt="High-altitude coffee and spice plantation estate hillside in Coorg with mountain ridges and mist" anchor="estate-collection" />
+    <ChapterHero className={projects.farmHero} chapter="02" label="Estates / Star Managed Farmlands" lines={["A closer look", "at the land."]} description="Plantation landscapes, villa settings and room to grow. Explore the acreage and character of the Coorg collection." image="/images/coorg/estates-hero.webp" alt="High-altitude coffee and spice plantation estate hillside in Coorg with mountain ridges and mist" anchor="estate-collection" />
     <section id="estate-collection" className={styles.section} aria-labelledby="estate-heading">
       <div className={projects.collectionIntro}><p className={styles.eyebrow}>THE ESTATE COLLECTION</p><div><WordHeading id="estate-heading">Get to know the ground.</WordHeading><p className={projects.introCopy}>Acreage, landscape and the details that make each place its own. Begin with the photographs and explore each profile.</p></div></div>
       <ProjectMotion className={projects.projectList}>{featured.map((estate, index) => <EstateCard key={estate.id} estate={estate} index={index} />)}</ProjectMotion>

@@ -2,7 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuArrowUpRight, LuMinus, LuMountain, LuX } from "react-icons/lu";
+import { LuArrowUpRight, LuMinus, LuX } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
 import { contactPhone, contactTelephone, whatsappUrl } from "@/data/contact";
 import { AnimatedSelect } from "@/components/ui/AnimatedSelect";
@@ -40,7 +40,7 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
     if (!form.reportValidity()) return;
 
     const message = [
-      "Hello Land in Coorg, I would like to enquire.",
+      "Hello Star Managed Farmlands, I would like to enquire.",
       "",
       `Name: ${name}`,
       `Contact: ${contact}`,
@@ -57,9 +57,13 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
     <section id="enquiry" className={`${styles.enquirySection} ${formStyles.section} ${standalone ? formStyles.standalone : ""}`} aria-labelledby={standalone ? "enquiry-form-heading" : "enquiry-heading"}>
       {!standalone && <>
       <p className={styles.eyebrow}>05 / Begin with a conversation</p>
-      <LuMountain className={`${styles.enquiryLandscape} ${formStyles.landscape}`} aria-hidden="true" />
       <h2 id="enquiry-heading">Your kind of land.<br /><em>Your kind of life.</em></h2>
-      <p className={styles.enquiryCopy}>Looking for a specific kind of land in Coorg?<br />Tell us what you are looking for.</p>
+      <p className={styles.enquiryCopy}>A place to grow. A little more space. A closer connection with nature.<br />Tell Star Managed Farmlands what your next chapter looks like.</p>
+      <div className={formStyles.conversationDetails}>
+        <div><span>01 / YOUR VISION</span><h3>Start with what matters.</h3><p>Share your ideal setting, preferred area and how you would like to spend your time on the land.</p></div>
+        <div><span>02 / THE DETAILS</span><h3>Make room for questions.</h3><p>Ask about the project, farm management, current availability and the details you need to explore further.</p></div>
+        <div><span>03 / YOUR NEXT STEP</span><h3>Take it at your pace.</h3><p>Let us know your timeline and whether you would like to discuss a project or request a site visit.</p></div>
+      </div>
       <button ref={openButton} type="button" className={`${styles.enquiryButton} ${formStyles.button}`} onClick={() => { if (open) closeForm(); else { focusAfterOpen.current = true; setOpen(true); setStatus(""); } }} aria-expanded={open} aria-controls="private-enquiry-form">{open ? "Close Enquiry" : "Start an Enquiry"}{open ? <LuMinus aria-hidden="true" /> : <LuArrowUpRight aria-hidden="true" />}</button>
       <p className={styles.contactNote}>Call <a href={`tel:${contactTelephone}`}>{contactPhone}</a> or enquire on WhatsApp.</p>
       </>}

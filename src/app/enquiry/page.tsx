@@ -6,7 +6,7 @@ import { EnquiryCTA } from "@/components/sections/EnquiryCTA";
 import styles from "@/components/pages/pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Enquire Privately | Land in Coorg",
+  title: "Enquire Privately | Star Managed Farmlands",
   description: "Enquire about land in Coorg. Share your ideal setting and connect with us on WhatsApp.",
   alternates: { canonical: "/enquiry" },
 };

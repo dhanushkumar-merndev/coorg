@@ -1,0 +1,22 @@
+.section { padding: clamp(76px, 8.5vw, 140px) var(--page-gutter); background: #e9ede4; }
+.intro { max-width: 890px; margin: 0 auto 52px; text-align: center; }
+.intro h2 { margin: 22px 0; }
+.description { max-width: 690px; margin-inline: auto; color: #53685e; font-size: 15px; line-height: 1.9; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.card { position: relative; min-height: 590px; aspect-ratio: 2 / 3; overflow: hidden; border-radius: var(--radius-card); isolation: isolate; color: var(--paper); }
+.image { object-fit: cover; transition: transform 1.2s var(--ease-out-expo); }
+.card:hover .image { transform: scale(1.035); }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, #102b23e6 0%, #102b2390 32%, #102b2310 64%, #102b23b8 100%); }
+.copy { position: relative; padding: clamp(24px, 2.5vw, 42px); }
+.number { font-size: 9px; letter-spacing: .15em; opacity: .8; }
+.copy h3 { margin: 19px 0 16px; font: 400 clamp(29px, 2.8vw, 43px)/1.08 var(--font-display), Georgia, serif; letter-spacing: -.02em; }
+.copy p { font-size: 13px; line-height: 1.85; max-width: 350px; }
+.bottom { position: absolute; bottom: 28px; left: clamp(24px, 2.5vw, 42px); right: 20px; }
+.bottom > span { display: block; font-size: 9px; letter-spacing: .14em; }
+.bottom small { display: block; margin-top: 12px; font-size: 10px; opacity: .8; }
+.afterword { display: flex; gap: 32px; justify-content: space-between; align-items: start; margin-top: 28px; }
+.afterword p { max-width: 620px; color: #53685e; font-size: 12px; line-height: 1.8; }
+.afterword a { flex-shrink: 0; display: inline-flex; gap: 22px; border-bottom: 1px solid #173c3250; padding-bottom: 8px; font-size: 13px; }
+@media (max-width: 1000px) { .grid { gap: 14px; } .card { min-height: 560px; } .copy { padding: 24px 18px; } .copy p { font-size: 12px; } .afterword { flex-direction: column; gap: 20px; } }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; gap: 24px; } .card { min-height: 510px; max-height: 650px; } .copy { padding: 30px; } .copy h3 { font-size: 38px; } .copy p { font-size: 14px; } .intro { text-align: left; margin-bottom: 34px; } }
+@media (prefers-reduced-motion: reduce) { .image { transition: none; } .card:hover .image { transform: none; } }

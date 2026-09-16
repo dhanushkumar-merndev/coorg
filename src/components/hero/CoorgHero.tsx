@@ -49,7 +49,7 @@ export default function CoorgHero() {
     return () => context.revert();
   }, []);
 
-  return <div ref={journey} className="hero-journey" id="home"><section ref={root} className="coorg-hero" aria-label="Discover Land in Coorg">
+  return <div ref={journey} className="hero-journey" id="home"><section ref={root} className="coorg-hero" aria-label="Discover Star Managed Farmlands">
     <div className="hero-landscape" aria-hidden="true"><Image src={heroImage} alt="" fill preload sizes="(max-aspect-ratio: 16/9) 178vh, 100vw" className="hero-photograph" /></div>
     <HeroCanvas state={progress} reduced={reduced} coarse={coarse} />
     <div className="hero-vignette" aria-hidden="true" />
@@ -57,10 +57,9 @@ export default function CoorgHero() {
     <BirdFlock />
     <div className="hero-copy-layout">
     <div className="hero-heading-depth">
-      <p className="hero-eyebrow eyebrow">LAND <span>·</span> ESTATES <span>·</span> PLANTATIONS <span>·</span> COORG</p>
-      <h1 className="hero-title"><span className="hero-title-land"><span className="hero-copy-entry">LAND IN</span></span><span className="hero-title-coorg"><span className="hero-copy-entry">COORG</span></span></h1>
+      <h1 className="hero-title"><span className="hero-title-land"><span className="hero-copy-entry">STAR</span></span>{" "}<span className="hero-title-coorg"><span className="hero-copy-entry">MANAGED FARMLANDS</span></span></h1>
     </div>
-    <div className="hero-support"><span className="hero-horizon-line" aria-hidden="true" /><p>Where the mist settles,<br className="mobile-break" /> your land begins.</p><div className="hero-actions"><MagneticButton href="/opportunities">Explore Opportunities</MagneticButton><MagneticButton href="/enquiry" variant="line">Enquire Privately</MagneticButton></div></div>
+    <div className="hero-support"><span className="hero-horizon-line" aria-hidden="true" /><div className="hero-actions"><MagneticButton href="/opportunities">Explore Opportunities</MagneticButton><MagneticButton href="/enquiry" variant="line">Enquire Privately</MagneticButton></div></div>
     </div>
     <div className="hero-type-mist" aria-hidden="true" />
     <div className="hero-bottom"><a href="#opportunities" className="scroll-cue"><span className="scroll-line" /><span>SCROLL TO DISCOVER</span></a><span className="hero-location"><span className="location-dot" />THE WESTERN GHATS, KARNATAKA</span></div>

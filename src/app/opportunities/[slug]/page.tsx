@@ -94,7 +94,7 @@ export async function generateMetadata({ params }: WorldPageProps): Promise<Meta
   const { slug } = await params;
   const world = findWorld(slug);
   return {
-    title: `${world.title} | Land in Coorg`,
+    title: `${world.title} | Star Managed Farmlands`,
     description: `Explore ${world.title.toLowerCase()} as an editorial perspective on life in Coorg. ${world.line} Conceptual imagery, with individual opportunities discussed separately.`,
     alternates: { canonical: `/opportunities/${world.id}` },
   };

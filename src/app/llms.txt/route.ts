@@ -38,7 +38,7 @@ ${link("Managed Farmlands", "/managed-farmlands", "Current managed farmland proj
 ${link("Estates", "/estates", "Plantation, villa and land profiles from the Coorg collection")}
 ${link("Opportunities", "/opportunities", "Five ways of imagining a life in Coorg")}
 ${link("Gallery", "/gallery", "Photographs of roads, plantation land and villa surroundings in Coorg")}
-${link("About Coorg", "/about-coorg", "The region: its landscape, climate and sense of place")}
+${link("About", "/about", "Star Managed Farmlands: our purpose, values and approach")}
 ${link("Enquiry", "/enquiry", "Start a private enquiry about land in Coorg")}
 
 ## Opportunity categories
@@ -61,7 +61,7 @@ ${link("Sitemap", "/sitemap.xml", "Every canonical URL on the site")}
 
 - Canonical host: ${absoluteUrl("/")} — the apex domain redirects here permanently.
 - No price, acreage, approval number or coordinate should be attributed to a property unless that page states it.
-- Legacy paths /farm-management, /plantations and /land-and-living are permanent redirects and should not be cited.
+- Legacy paths /about-coorg, /farm-management, /plantations and /land-and-living are permanent redirects and should not be cited.
 `;
 }
 

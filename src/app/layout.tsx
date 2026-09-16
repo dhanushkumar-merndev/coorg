@@ -54,7 +54,7 @@ const organizationLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: "Land in Coorg",
+  applicationName: siteName,
   // Google Search picks one favicon and wants a square that is a multiple of
   // 48px, so the 48 and 192 variants are declared ahead of the smaller ones and
   // served from stable URLs (a ?v= cache-buster makes the icon crawl flakier).
@@ -71,19 +71,19 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   manifest: "/site.webmanifest",
-  title: "Land in Coorg — A Different Kind of Belonging",
+  title: `${siteName} — ${siteTagline}`,
   description: siteDescription,
   openGraph: {
-    siteName: "Land in Coorg",
-    title: "Land in Coorg — A Different Kind of Belonging",
-    description: "Where the mist settles, your land begins. Discover the possibilities of land in Coorg.",
+    siteName,
+    title: `${siteName} — ${siteTagline}`,
+    description: siteDescription,
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Land in Coorg — A Different Kind of Belonging",
-    description: "Where the mist settles, your land begins. Discover the possibilities of land in Coorg.",
+    title: `${siteName} — ${siteTagline}`,
+    description: siteDescription,
   },
 };
 

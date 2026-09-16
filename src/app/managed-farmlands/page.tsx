@@ -8,7 +8,7 @@ import styles from "@/components/pages/pages.module.css";
 import projects from "@/components/projects/projects.module.css";
 
 export const metadata: Metadata = {
-  title: "Managed Farmlands | Land in Coorg",
+  title: "Managed Farmlands | Star Managed Farmlands",
   description: "Explore current managed farmland opportunities in Coorg, including Star Garden coffee estate plots at Madikeri.",
   alternates: { canonical: "/managed-farmlands" },
 };

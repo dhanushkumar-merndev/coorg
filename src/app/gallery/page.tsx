@@ -8,8 +8,8 @@ import projects from "@/components/projects/projects.module.css";
 import gallery from "./gallery.module.css";
 
 export const metadata: Metadata = {
-  title: "Gallery · A Glimpse of Coorg | Land in Coorg",
-  description: "Explore Coorg’s green roads, plantation life and villa surroundings in the Land in Coorg gallery.",
+  title: "Gallery · A Glimpse of Coorg | Star Managed Farmlands",
+  description: "Explore Coorg’s green roads, plantation life and villa surroundings in the Star Managed Farmlands gallery.",
   alternates: { canonical: "/gallery" },
 };
 const collections = [

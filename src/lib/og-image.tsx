@@ -63,7 +63,7 @@ export function createShareImage() {
             style={{ objectFit: "contain" }}
           />
           <div style={{ display: "flex", fontSize: 15, letterSpacing: 4 }}>
-            LAND · ESTATES · COORG
+            ROOTED IN NATURE
           </div>
         </div>
         <div
@@ -86,20 +86,20 @@ export function createShareImage() {
             flexDirection: "column",
           }}
         >
-          <div style={{ display: "flex", fontSize: 56, lineHeight: 1.1, letterSpacing: 5 }}>
-            LAND IN
+          <div style={{ display: "flex", fontSize: 116, lineHeight: 1.1, letterSpacing: 5 }}>
+            STAR
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 116,
+              fontSize: 32,
               fontWeight: 700,
               lineHeight: 1.08,
-              letterSpacing: -5,
+              letterSpacing: 1,
               marginTop: 6,
             }}
           >
-            COORG
+            MANAGED FARMLANDS
           </div>
           <div
             style={{
@@ -111,7 +111,7 @@ export function createShareImage() {
               width: 395,
             }}
           >
-            Where the mist settles, your land begins.
+            Thoughtful farmland. A life closer to nature.
           </div>
         </div>
         <div

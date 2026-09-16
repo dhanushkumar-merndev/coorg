@@ -46,8 +46,6 @@ section { scroll-margin-top: 86px; }
 .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; min-height: 92px; padding: 16px var(--page-gutter); color: #f6f3e9; transition: background .5s, min-height .5s, padding .5s, color .5s; border-bottom: 1px solid #eeeede26; }
 .site-header.is-scrolled { min-height: 76px; padding-block: 10px; color: var(--forest); background: #f4f0e7f0; backdrop-filter: blur(12px); border-bottom-color: #173c321a; }
 .brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-.brand > span { text-align: center; font-family: var(--font-display), Georgia, serif; font-size: 22px; letter-spacing: .06em; font-weight: 500; }
-.brand small { display: block; font-family: var(--font-sans), sans-serif; font-size: 10px; letter-spacing: .1em; margin-top: 4px; }
 .desktop-nav { display: flex; gap: clamp(18px, 2.1vw, 38px); font-size: 16px; font-weight: 500; }
 .desktop-nav a { padding: 10px 0; position: relative; white-space: nowrap; }
 .desktop-nav a::after { content: ''; position: absolute; height: 1px; bottom: 3px; left: 0; width: 0; background: currentColor; transition: width .35s; }
@@ -108,8 +106,8 @@ section { scroll-margin-top: 86px; }
     animation-play-state: paused;
   }
 }
-.hero-title-land { font-size: clamp(46px, min(6.7vw, 10svh), 112px); letter-spacing: .095em; padding-left: .095em; }
-.hero-title-coorg { font-size: clamp(96px, min(18.8vw, 28svh), 304px); letter-spacing: -.03em; margin-top: 24px; }
+.hero-title-land { font-size: clamp(90px, min(15vw, 23svh), 230px); letter-spacing: .095em; padding-left: .095em; }
+.hero-title-coorg { font-size: clamp(22px, min(4.8vw, 7.5svh), 76px); line-height: 1.2; letter-spacing: .08em; margin-top: 24px; white-space: nowrap; }
 .hero-type-mist { pointer-events: none; position: absolute; z-index: 4; top: 52%; width: 115%; left: -7%; height: 19%; background: radial-gradient(ellipse at 45% 40%, #d0dbc335, transparent 60%); animation: drift 22s ease-in-out infinite alternate; }
 @keyframes drift { to { transform: translate3d(5%, 15px, 0); opacity: .65; } }
 .hero-support { position: relative; z-index: 5; width: 100%; text-align: center; }
@@ -133,14 +131,14 @@ section { scroll-margin-top: 86px; }
 .hero-mist-transition > div + div { background: radial-gradient(ellipse at 80% 85%, #f4f0e730 15%, transparent 55%); }
 .mobile-break { display: none; }
 
-@media (max-width: 1200px) { .desktop-nav, .nav-enquire { display: none; } .menu-toggle { display: block; } .brand > span { font-size: 18px; } .site-header { gap: 18px; grid-template-columns: 1fr auto; min-height: 80px; padding-block: 12px; } }
+@media (max-width: 1200px) { .desktop-nav, .nav-enquire { display: none; } .menu-toggle { display: block; } .site-header { gap: 18px; grid-template-columns: 1fr auto; min-height: 80px; padding-block: 12px; } }
 @media (max-width: 900px) {
   .desktop-nav, .nav-enquire { display: none; }
   .menu-toggle { display: block; }
   .site-header { min-height: 80px; padding-block: 12px; grid-template-columns: 1fr auto; }
   .coorg-hero { min-height: 700px; }
-  .hero-title-land { font-size: 10vw; }
-  .hero-title-coorg { font-size: 22vw; }
+  .hero-title-land { font-size: 22vw; }
+  .hero-title-coorg { font-size: 5.3vw; }
   .hero-eyebrow { font-size: 12px; letter-spacing: .2em; }
   .hero-eyebrow span { margin-inline: 8px; }
 }
@@ -148,16 +146,14 @@ section { scroll-margin-top: 86px; }
 @media (max-width: 600px) {
   html { scroll-padding-top: 82px; }
   .site-header, .site-header.is-scrolled { min-height: 72px; padding-block: 12px; }
-  .brand > span { font-size: 18px; }
   .brand { gap: 9px; }
-  .brand small { font-size: 9px; letter-spacing: .05em; }
   .brand svg { width: 35px; height: 29px; }
   .coorg-hero { min-height: 740px; }
   .hero-copy-layout { padding: 95px 20px 120px; gap: 30px; }
   .hero-eyebrow { font-size: 12px; letter-spacing: .1em; margin-bottom: 28px; }
   .hero-eyebrow span { margin-inline: 6px; }
-  .hero-title-land { font-size: 13vw; letter-spacing: .08em; }
-  .hero-title-coorg { font-size: 25vw; margin-top: 24px; }
+  .hero-title-land { font-size: 27vw; letter-spacing: .08em; }
+  .hero-title-coorg { font-size: 5vw; letter-spacing: .045em; margin-top: 20px; }
   .hero-support { padding-inline: 2px; }
   .hero-support > p { font-size: 24px; }
   .hero-actions { flex-direction: column; align-items: center; gap: 10px; margin-top: 23px; }

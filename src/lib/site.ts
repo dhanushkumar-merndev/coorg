@@ -8,8 +8,8 @@ export const siteUrl = (
   ?? (deploymentHost ? `https://${deploymentHost}` : "http://localhost:3000")
 ).replace(/\/$/, "");
 
-export const siteName = "Land in Coorg";
-export const siteTagline = "Where the mist settles, your land begins.";
+export const siteName = "Star Managed Farmlands";
+export const siteTagline = "Thoughtful farmland. A life closer to nature.";
 export const siteDescription =
   "Explore the landscapes of Coorg, from coffee plantations and private hill retreats to estate plots and forest land. Find your own kind of quiet.";
 

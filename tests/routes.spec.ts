@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const routes = ["/opportunities", "/managed-farmlands", "/gallery", "/estates", "/about-coorg", "/enquiry"];
+const routes = ["/opportunities", "/managed-farmlands", "/gallery", "/estates", "/about", "/enquiry"];
 const worlds = ["plantation-estates", "private-hill-retreats", "curated-estate-plots", "forest-mountain-land", "countryside-homes"];
 
 test("every chapter and world supports direct loading with its own content", async ({ page }) => {
@@ -43,14 +43,14 @@ test("fog covers before navigation, releases focus and supports history", async 
   await expect(page.locator("h1")).toBeFocused();
   await expect(nav.getByRole("link", { name: "Gallery", exact: true })).toHaveAttribute("aria-current", "page");
   expect(await page.evaluate(() => scrollY)).toBe(0);
-  await nav.getByRole("link", { name: "Estates", exact: true }).click();
-  await expect(page).toHaveURL(/\/estates$/);
+  await nav.getByRole("link", { name: "Managed Farmlands", exact: true }).click();
+  await expect(page).toHaveURL(/\/managed-farmlands$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goBack();
   await expect(page).toHaveURL(/\/gallery$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goForward();
-  await expect(page).toHaveURL(/\/estates$/);
+  await expect(page).toHaveURL(/\/managed-farmlands$/);
   await expect(page.locator("html")).not.toHaveClass(/lenis-stopped/);
 });
 
@@ -59,8 +59,8 @@ test("mobile reduced-motion navigation closes the menu and leaves pages usable",
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Open navigation" }).click();
-  await page.getByRole("dialog", { name: "Navigation" }).getByRole("link", { name: /About Coorg/ }).click();
-  await expect(page).toHaveURL(/\/about-coorg$/);
+  await page.getByRole("dialog", { name: "Navigation" }).getByRole("link", { name: /About/ }).click();
+  await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
@@ -96,8 +96,8 @@ test("browser Back restores the previous chapter scroll position with motion ena
   await page.goto("/gallery", { waitUntil: "networkidle" });
   await page.evaluate(() => scrollTo({ top: 900, behavior: "instant" }));
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(900);
-  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Estates", exact: true }).click();
-  await expect(page).toHaveURL(/\/estates$/);
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Managed Farmlands", exact: true }).click();
+  await expect(page).toHaveURL(/\/managed-farmlands$/);
   await expect(page.locator("[data-page-fog]")).toHaveAttribute("data-phase", "idle");
   await page.goBack();
   await expect(page).toHaveURL(/\/gallery$/);

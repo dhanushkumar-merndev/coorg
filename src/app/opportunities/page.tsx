@@ -6,7 +6,7 @@ import { ChapterHero, WordHeading, ContourMark } from "@/components/pages/PagePr
 import styles from "@/components/pages/pages.module.css";
 
 export const metadata: Metadata = {
-  title: "Opportunities | Land in Coorg",
+  title: "Opportunities | Star Managed Farmlands",
   description: "Explore five ways of imagining a life in Coorg, from plantation estates to quiet countryside homes. Begin with the setting that matters to you.",
   alternates: { canonical: "/opportunities" },
 };

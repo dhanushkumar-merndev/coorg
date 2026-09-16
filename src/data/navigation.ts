@@ -1,9 +1,8 @@
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Managed Farmlands", href: "/managed-farmlands" },
-  { label: "Estates", href: "/estates" },
   { label: "Gallery", href: "/gallery" },
-  { label: "About Coorg", href: "/about-coorg" },
+  { label: "About", href: "/about" },
 ] as const;
 
 export function isNavigationActive(pathname: string, href: string) {
