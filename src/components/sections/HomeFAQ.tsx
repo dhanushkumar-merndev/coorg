@@ -8,7 +8,7 @@ import styles from "./faq.module.css";
 const questions = [
   {
     question: "What can I explore with Star Managed Farmlands?",
-    answer: "Explore managed farmland projects and different ways to connect with the land. Share the setting, space and experience you have in mind to start a more personal conversation.",
+    answer: "Explore our projects and different ways to connect with the land. Share the setting, space and experience you have in mind to start a more personal conversation.",
   },
   {
     question: "What does managed farmland include?",

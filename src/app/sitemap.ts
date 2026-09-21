@@ -16,7 +16,7 @@ function entry(path: string, priority: number, changeFrequency: Entry["changeFre
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("/", 1, "weekly"),
-    entry("/managed-farmlands", 0.9, "weekly"),
+    entry("/projects", 0.9, "weekly"),
     entry("/estates", 0.9, "weekly"),
     entry("/opportunities", 0.8, "monthly"),
     entry("/gallery", 0.6, "monthly"),
@@ -24,10 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/enquiry", 0.7, "yearly"),
     ...coorgWorlds.map((world) => entry(`/opportunities/${world.id}`, 0.7, "monthly")),
     ...indexedManagedFarmlandProjects.map((project) =>
-      entry(`/managed-farmlands/${project.id}`, 0.9, "weekly"),
+      entry(`/projects/${project.id}`, 0.9, "weekly"),
     ),
     ...estateListings.map((estate) => entry(`/estates/${estate.id}`, 0.6, "monthly")),
-    // Completed developments render under /estates/<id>, not /managed-farmlands.
+    // Completed developments render under /estates/<id>, not /projects.
     ...completedProjects.map((project) => entry(`/estates/${project.id}`, 0.5, "monthly")),
   ];
 }

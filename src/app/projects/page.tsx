@@ -8,20 +8,20 @@ import styles from "@/components/pages/pages.module.css";
 import projects from "@/components/projects/projects.module.css";
 
 export const metadata: Metadata = {
-  title: "Managed Farmlands | Star Managed Farmlands",
-  description: "Explore current managed farmland opportunities in Coorg, including Star Garden coffee estate plots at Madikeri.",
-  alternates: { canonical: "/managed-farmlands" },
+  title: "Projects | Star Managed Farmlands",
+  description: "Explore current projects in Coorg, including Star Garden coffee estate plots at Madikeri.",
+  alternates: { canonical: "/projects" },
 };
 
-export default function ManagedFarmlandsPage() {
+export default function ProjectsPage() {
   return <PageMotion className={styles.page} tone="plantation">
-    <ChapterHero className={projects.farmHero} chapter="01" label="Managed Farmlands" lines={["Rooted in the land.", "Growing with care."]} description="Explore the current collection. A longer view of land, and a place for every chapter." image="/images/coorg/managed-farmlands-hero.webp" alt="Lush managed coffee and spice farmland with winding red earth trail and soft morning sunlight over misty Coorg hills" anchor="ongoing-projects">
+    <ChapterHero className={projects.farmHero} chapter="01" label="Projects" lines={["Rooted in the land.", "Growing with care."]} description="Explore the current collection. A longer view of land, and a place for every chapter." image="/images/coorg/managed-farmlands-hero.webp" alt="Lush managed coffee and spice farmland with winding red earth trail and soft morning sunlight over misty Coorg hills" anchor="ongoing-projects">
       <div className={projects.heroPrice} data-chapter-intro><span>Pricing</span><strong>On enquiry</strong><p>{managedFarmlandsPreview.pricingNote}</p></div>
       <nav className={projects.heroCollectionNav} aria-label="Project collections" data-chapter-intro><a href="#ongoing-projects">Ongoing <span>{String(ongoingProjects.length).padStart(2, "0")}</span> ↘</a></nav>
     </ChapterHero>
     <section id="ongoing-projects" className={`${styles.section} ${projects.collectionSection}`} aria-labelledby="ongoing-heading">
       <div className={projects.statusIntro}>
-        <div><p className={styles.eyebrow}>MANAGED FARMLANDS / IN THE MAKING</p><WordHeading id="ongoing-heading" treatment="ink">Ongoing Projects</WordHeading></div>
+        <div><p className={styles.eyebrow}>PROJECTS / IN THE MAKING</p><WordHeading id="ongoing-heading" treatment="ink">Ongoing Projects</WordHeading></div>
         <p className={projects.introCopy}>Meet Star Garden. A 10-acre coffee estate development at Madikeri, with 33 exclusive plots surrounded by nature.</p>
       </div>
       <ProjectMotion className={projects.projectList}>{ongoingProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</ProjectMotion>

@@ -5,5 +5,5 @@ export default async function FormerProjectPage({ params }: { params: Promise<{ 
   const { slug } = await params;
   if (completedProjects.some((project) => project.id === slug)) permanentRedirect(`/estates/${slug}`);
   if (!managedFarmlandProjects.some((project) => project.id === slug)) notFound();
-  permanentRedirect(`/managed-farmlands/${slug}`);
+  permanentRedirect(`/projects/${slug}`);
 }

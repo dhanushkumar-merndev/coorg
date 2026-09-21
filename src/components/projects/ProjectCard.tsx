@@ -13,11 +13,11 @@ export function ProjectStatus({ project }: { project: Pick<EstateProject, "statu
 
 export default function ProjectCard({ project, compact = false }: { project: EstateProject; index?: number; compact?: boolean }) {
   const cover = project.images[0];
-  const href = `/managed-farmlands/${project.id}`;
+  const href = `/projects/${project.id}`;
   return <article className={`${styles.projectCard} ${compact ? styles.compactCard : ""}`} aria-labelledby={`project-${project.id}`}>
     <TransitionLink href={href} className={styles.cardVisual} aria-label={`Explore ${project.name}`}>
       <div className={styles.imageViewport} data-project-frame>
-      <div className={styles.cardImage} data-project-image><Image src={cover.src} alt={cover.alt} fill sizes={compact ? "(max-width: 700px) 100vw, 33vw" : "(max-width: 700px) 100vw, 58vw"} /></div>
+      <div className={styles.cardImage} data-project-image><Image src={cover.src} alt={cover.alt} fill quality={88} sizes={compact ? "(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw" : "(max-width: 700px) 100vw, (max-width: 1200px) 100vw, 1920px"} /></div>
       <div className={styles.cardShade} aria-hidden="true" />
       </div>
       <ProjectStatus project={project} />

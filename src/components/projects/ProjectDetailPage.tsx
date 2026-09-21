@@ -12,7 +12,7 @@ export default function ProjectDetailPage({ project }: { project: EstateProject 
   const cover = project.images[0];
   const lines = [project.name];
   return <PageMotion className={styles.page} tone={ongoing ? "plantation" : "estate"}>
-    <ChapterHero chapter={ongoing ? "01" : "02"} label={`${ongoing ? "Managed Farmlands" : "Estates"} / ${ongoing ? "Ongoing" : "Completed"}`} lines={lines} description={project.summary} image={cover.src} alt={cover.alt} anchor="project-story" />
+    <ChapterHero chapter={ongoing ? "01" : "02"} label={`${ongoing ? "Projects" : "Estates"} / ${ongoing ? "Ongoing" : "Completed"}`} lines={lines} description={project.summary} image={cover.src} alt={cover.alt} anchor="project-story" />
     <section id="project-story" className={styles.section} aria-labelledby="project-heading">
       <div className={projects.collectionIntro}>
         <div><p className={styles.eyebrow}>{project.category}</p><div className={styles.textAction}><ProjectStatus project={project} /></div></div>
@@ -77,6 +77,6 @@ export default function ProjectDetailPage({ project }: { project: EstateProject 
         </div>
       </div>
     </section>}
-    <NextChapter href={ongoing ? "/managed-farmlands#ongoing-projects" : "/estates"} eyebrow={ongoing ? "RETURN TO MANAGED FARMLANDS" : "EXPLORE ESTATES"} title={ongoing ? "Keep growing." : "More places. More stories."} line={ongoing ? "Explore the ongoing collection." : "Explore the Coorg estate collection."} />
+    <NextChapter href={ongoing ? "/projects#ongoing-projects" : "/estates"} eyebrow={ongoing ? "RETURN TO PROJECTS" : "EXPLORE ESTATES"} title={ongoing ? "Keep growing." : "More places. More stories."} line={ongoing ? "Explore the ongoing collection." : "Explore the Coorg estate collection."} />
   </PageMotion>;
 }

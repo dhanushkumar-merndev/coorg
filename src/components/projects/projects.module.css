@@ -29,10 +29,10 @@
 .projectCard:nth-child(even) .cardVisual { order: 2; }
 .cardVisual { display: block; position: relative; overflow: hidden; aspect-ratio: 1.18; border-radius: 8px; background: #6f7e66; }
 .imageViewport { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
-.cardImage { position: absolute; inset: -12% 0; }
-.cardImage img { object-fit: cover; transition: transform 1.2s var(--ease-out-expo); }
-.cardVisual:hover .cardImage img { transform: scale(1.05); }
-.cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, #0d281b40, transparent 35%, transparent 65%, #0d281ba6); pointer-events: none; }
+.cardImage { position: absolute; inset: -5% 0; transform: translateZ(0); backface-visibility: hidden; }
+.cardImage img { object-fit: cover; image-rendering: -webkit-optimize-contrast; transition: transform 1.2s var(--ease-out-expo); }
+.cardVisual:hover .cardImage img { transform: scale(1.04); }
+.cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13, 40, 27, 0.1), transparent 22%, transparent 78%, rgba(13, 40, 27, 0.22)); pointer-events: none; }
 .badges { position: relative; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; z-index: 2; }
 .cardVisual > .badges { position: absolute; top: 20px; left: 0; right: auto; }
 .status { display: inline-flex; gap: 8px; align-items: center; padding: 7px 15px 7px 12px; font-size: 11.5px; font-weight: 550; letter-spacing: .03em; text-transform: uppercase; background: var(--paper); border: 1px solid #173c3220; border-left: none; color: var(--forest); border-radius: 0 9999px 9999px 0; box-shadow: 0 4px 14px rgba(16, 43, 35, 0.14); }

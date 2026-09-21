@@ -21,7 +21,7 @@ function body() {
 > ${siteTagline} ${siteDescription}
 
 ${siteName} is a Coorg (Kodagu, Karnataka, India) land and estate practice. The site
-presents managed farmland projects, plantation and villa estate profiles, and five
+presents projects, plantation and villa estate profiles, and five
 editorial categories for thinking about land in Coorg. Enquiries are handled directly
 rather than through an online listing marketplace.
 
@@ -34,7 +34,7 @@ rather than through an online listing marketplace.
 ## Main pages
 
 ${link("Home", "/", "The Coorg landscape, the five categories and a short introduction to the practice")}
-${link("Managed Farmlands", "/managed-farmlands", "Current managed farmland projects in Madikeri, Coorg")}
+${link("Projects", "/projects", "Current projects in Madikeri, Coorg")}
 ${link("Estates", "/estates", "Plantation, villa and land profiles from the Coorg collection")}
 ${link("Opportunities", "/opportunities", "Five ways of imagining a life in Coorg")}
 ${link("Gallery", "/gallery", "Photographs of roads, plantation land and villa surroundings in Coorg")}
@@ -45,9 +45,9 @@ ${link("Enquiry", "/enquiry", "Start a private enquiry about land in Coorg")}
 
 ${coorgWorlds.map((world) => link(world.title, `/opportunities/${world.id}`, `${world.line} ${world.introduction}`)).join("\n")}
 
-## Managed farmland projects
+## Projects
 
-${ongoingProjects.map((project) => link(project.name, `/managed-farmlands/${project.id}`, `Ongoing · ${project.category} at ${project.location}. ${project.summary}`)).join("\n")}
+${ongoingProjects.map((project) => link(project.name, `/projects/${project.id}`, `Ongoing · ${project.category} at ${project.location}. ${project.summary}`)).join("\n")}
 
 ## Estate and land profiles
 
@@ -61,7 +61,7 @@ ${link("Sitemap", "/sitemap.xml", "Every canonical URL on the site")}
 
 - Canonical host: ${absoluteUrl("/")} — the apex domain redirects here permanently.
 - No price, acreage, approval number or coordinate should be attributed to a property unless that page states it.
-- Legacy paths /about-coorg, /farm-management, /plantations and /land-and-living are permanent redirects and should not be cited.
+- Legacy paths /about-coorg, /farm-management, /managed-farmlands, /plantations and /land-and-living are permanent redirects and should not be cited.
 `;
 }
 

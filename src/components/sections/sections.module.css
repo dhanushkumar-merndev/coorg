@@ -1056,9 +1056,9 @@
     grid-template-columns: 88px minmax(0, 1fr);
   }
 
+  /* Size to the copy on phones; a near-full-screen minimum left a large empty band under the last line. */
   .landStory {
-    min-height: 720px;
-    min-height: 92svh;
+    min-height: 0;
   }
 
   .storyImage img {
@@ -1070,7 +1070,7 @@
   }
 
   .storyContent {
-    padding: 66px 7.2vw 100px;
+    padding: 66px 7.2vw 128px;
   }
 
   .storyContent h2 {

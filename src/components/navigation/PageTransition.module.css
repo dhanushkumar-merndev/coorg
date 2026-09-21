@@ -33,6 +33,9 @@
   height: 160%;
   opacity: 0;
   will-change: transform, opacity;
+  /* Keep the 2:1 cloud texture's proportions; stretching it into a tall
+     phone viewport squeezed the clouds into vertical streaks. */
+  object-fit: cover;
   mask-image: radial-gradient(ellipse at center, #000 30%, transparent 70%);
 }
 .bankNear { left: -45%; top: -8%; width: 185%; height: 135%; }

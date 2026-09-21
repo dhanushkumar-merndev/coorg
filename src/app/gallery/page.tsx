@@ -40,7 +40,7 @@ export default function GalleryPage() {
     {collections.map((collection) => <section id={collection.id} className={`${styles.section} ${gallery.collection}`} key={collection.id} aria-labelledby={`${collection.id}-heading`}>
       <div className={projects.collectionIntro}><p className={styles.eyebrow}>{collection.label}</p><div><WordHeading id={`${collection.id}-heading`}>{collection.title}</WordHeading><p className={projects.introCopy}>{collection.note}</p></div></div>
       <ProjectMotion className={gallery.grid}>{collection.photos.map(([file, caption, alt], index) => <figure className={gallery.figure} key={file}>
-        <a className={gallery.photo} href={`/images/coorg/supplied/${file}.webp`} target="_blank" rel="noreferrer" aria-label={`View photograph: ${caption} (opens in a new tab)`} data-project-frame><div className={projects.cardImage} data-project-image><Image src={`/images/coorg/supplied/${file}.webp`} alt={alt} fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 65vw" /></div><span className={gallery.open} aria-hidden="true">↗</span></a>
+        <a className={gallery.photo} href={`/images/coorg/supplied/${file}.webp`} target="_blank" rel="noreferrer" aria-label={`View photograph: ${caption} (opens in a new tab)`} data-project-frame><div className={projects.cardImage} data-project-image><Image src={`/images/coorg/supplied/${file}.webp`} alt={alt} fill quality={88} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 65vw" /></div><span className={gallery.open} aria-hidden="true">↗</span></a>
         <figcaption><span>{String(index + 1).padStart(2, "0")}</span>{caption}</figcaption>
       </figure>)}</ProjectMotion>
     </section>)}

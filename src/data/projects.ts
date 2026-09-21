@@ -367,11 +367,11 @@ export const ongoingProjects: EstateProject[] = [
     },
     images: [
       {
-        src: "/images/coorg/conceptual/star-garden-vision.webp",
+        src: "/images/coorg/conceptual/star-garden-vision-hd.webp",
         alt: "Concept visualization of Star Garden coffee estate, a stream, clubhouse and misty Coorg hills",
         sourceUrl: null,
-        width: 1536,
-        height: 1024,
+        width: 2048,
+        height: 1365,
         association: "conceptual",
         mediaKind: "ai-concept",
         factualCaptureConfirmed: false,
