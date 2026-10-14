@@ -1,0 +1,2734 @@
+{
+  "viewBox": [
+    157.04879,
+    171.08776,
+    588.66162,
+    1433.7223
+  ],
+  "plots": [
+    {
+      "id": "P01",
+      "label": "P01",
+      "spanFt": 179.94,
+      "averageWidthFt": 48.361,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 159.4,
+      "points": [
+        [
+          183.80614,
+          284.34802
+        ],
+        [
+          196.62955,
+          378.78748
+        ],
+        [
+          266.40594,
+          378.78748
+        ],
+        [
+          224.44795,
+          317.17346
+        ],
+        [
+          224.44795,
+          280.18213
+        ],
+        [
+          231.91919,
+          259.63635
+        ],
+        [
+          227.38457,
+          258.7489
+        ],
+        [
+          213.14664,
+          239.80615
+        ],
+        [
+          197.20412,
+          236.25696
+        ]
+      ],
+      "centroid": [
+        213.82098,
+        318.30987
+      ],
+      "sideLengthsFt": [
+        59.67,
+        19.52,
+        28.32,
+        5.52,
+        26.13,
+        44.21,
+        89.1,
+        83.4,
+        113.91
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P02",
+      "label": "P02",
+      "spanFt": 227.72,
+      "averageWidthFt": 39.263,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 202.8,
+      "points": [
+        [
+          241.18102,
+          312.01709
+        ],
+        [
+          308.3183,
+          410.60596
+        ],
+        [
+          369.39606,
+          410.60596
+        ],
+        [
+          310.30435,
+          338.0127
+        ],
+        [
+          286.44458,
+          322.81616
+        ],
+        [
+          266.24997,
+          306.19495
+        ],
+        [
+          264.79242,
+          266.06958
+        ],
+        [
+          248.54134,
+          262.88928
+        ],
+        [
+          241.18102,
+          283.13013
+        ]
+      ],
+      "centroid": [
+        295.15202,
+        351.76038
+      ],
+      "sideLengthsFt": [
+        34.53,
+        25.74,
+        19.79,
+        47.99,
+        31.26,
+        33.81,
+        111.88,
+        73.0,
+        142.57
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P03",
+      "label": "P03",
+      "spanFt": 141.19,
+      "averageWidthFt": 61.633,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 102.7,
+      "points": [
+        [
+          200.74507,
+          409.09668
+        ],
+        [
+          217.9493,
+          449.79395
+        ],
+        [
+          314.76004,
+          449.79395
+        ],
+        [
+          266.40594,
+          378.78748
+        ],
+        [
+          196.62955,
+          378.78748
+        ]
+      ],
+      "centroid": [
+        248.57769,
+        416.10514
+      ],
+      "sideLengthsFt": [
+        36.56,
+        83.4,
+        102.68,
+        115.71,
+        52.81
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P04",
+      "label": "P04",
+      "spanFt": 198.77,
+      "averageWidthFt": 44.982,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 127.7,
+      "points": [
+        [
+          308.3183,
+          410.60596
+        ],
+        [
+          368.44989,
+          498.90735
+        ],
+        [
+          453.32486,
+          498.90735
+        ],
+        [
+          453.50467,
+          488.88672
+        ],
+        [
+          418.43201,
+          470.84595
+        ],
+        [
+          369.39606,
+          410.60596
+        ]
+      ],
+      "centroid": [
+        376.53008,
+        457.80775
+      ],
+      "sideLengthsFt": [
+        73.0,
+        92.84,
+        47.14,
+        11.98,
+        101.45,
+        127.69
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P05",
+      "label": "P05",
+      "spanFt": 164.52,
+      "averageWidthFt": 52.893,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 86.7,
+      "points": [
+        [
+          252.30849,
+          505.63025
+        ],
+        [
+          255.01514,
+          509.75598
+        ],
+        [
+          355.59308,
+          509.75598
+        ],
+        [
+          314.76004,
+          449.79395
+        ],
+        [
+          217.9493,
+          449.79395
+        ],
+        [
+          226.99753,
+          471.19788
+        ],
+        [
+          229.4762,
+          475.70227
+        ],
+        [
+          238.61681,
+          491.12878
+        ]
+      ],
+      "centroid": [
+        284.49493,
+        479.96856
+      ],
+      "sideLengthsFt": [
+        23.84,
+        21.43,
+        6.15,
+        27.77,
+        115.71,
+        86.71,
+        120.21,
+        5.9
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P06",
+      "label": "P06",
+      "spanFt": 169.14,
+      "averageWidthFt": 51.449,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 86.9,
+      "points": [
+        [
+          255.01514,
+          509.75598
+        ],
+        [
+          294.45355,
+          569.87146
+        ],
+        [
+          396.53067,
+          569.87146
+        ],
+        [
+          355.59308,
+          509.75598
+        ]
+      ],
+      "centroid": [
+        325.44766,
+        539.88784
+      ],
+      "sideLengthsFt": [
+        120.21,
+        86.93,
+        122.01,
+        85.93
+      ],
+      "detailSourcePage": 4,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P07",
+      "label": "P07",
+      "spanFt": 181.39,
+      "averageWidthFt": 49.292,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 128.1,
+      "points": [
+        [
+          472.54016,
+          555.64819
+        ],
+        [
+          452.80978,
+          527.60718
+        ],
+        [
+          453.32486,
+          498.90735
+        ],
+        [
+          368.44989,
+          498.90735
+        ],
+        [
+          428.77847,
+          587.49805
+        ],
+        [
+          507.97879,
+          587.49805
+        ],
+        [
+          506.60513,
+          584.99487
+        ],
+        [
+          497.42712,
+          579.56543
+        ]
+      ],
+      "centroid": [
+        433.88884,
+        542.79413
+      ],
+      "sideLengthsFt": [
+        41.26,
+        12.75,
+        3.41,
+        94.66,
+        128.11,
+        101.45,
+        34.31,
+        40.98
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P08",
+      "label": "P08",
+      "spanFt": 169.67,
+      "averageWidthFt": 51.288,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 84.7,
+      "points": [
+        [
+          318.1922,
+          606.05603
+        ],
+        [
+          326.45996,
+          628.4248
+        ],
+        [
+          436.40439,
+          628.4248
+        ],
+        [
+          396.53067,
+          569.87146
+        ],
+        [
+          294.45355,
+          569.87146
+        ]
+      ],
+      "centroid": [
+        364.64827,
+        599.47332
+      ],
+      "sideLengthsFt": [
+        51.73,
+        122.01,
+        84.67,
+        131.41,
+        28.5
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P09",
+      "label": "P09",
+      "spanFt": 175.1,
+      "averageWidthFt": 51.062,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 105.2,
+      "points": [
+        [
+          510.79608,
+          592.63171
+        ],
+        [
+          507.97879,
+          587.49805
+        ],
+        [
+          428.77847,
+          587.49805
+        ],
+        [
+          478.32632,
+          660.25745
+        ],
+        [
+          575.27631,
+          660.25745
+        ],
+        [
+          573.66028,
+          655.69775
+        ],
+        [
+          566.51099,
+          646.8291
+        ],
+        [
+          546.54236,
+          635.49695
+        ]
+      ],
+      "centroid": [
+        497.91241,
+        625.45456
+      ],
+      "sideLengthsFt": [
+        66.71,
+        27.44,
+        13.62,
+        5.78,
+        115.88,
+        105.21,
+        94.66,
+        7.0
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P10",
+      "label": "P10",
+      "spanFt": 173.43,
+      "averageWidthFt": 50.176,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 74.7,
+      "points": [
+        [
+          326.45996,
+          628.4248
+        ],
+        [
+          345.54285,
+          680.05426
+        ],
+        [
+          471.56308,
+          680.05426
+        ],
+        [
+          436.40439,
+          628.4248
+        ]
+      ],
+      "centroid": [
+        395.30052,
+        654.82577
+      ],
+      "sideLengthsFt": [
+        131.41,
+        74.66,
+        150.62,
+        65.79
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P11",
+      "label": "P11",
+      "spanFt": 182.3,
+      "averageWidthFt": 49.046,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 94.4,
+      "points": [
+        [
+          584.69934,
+          686.84473
+        ],
+        [
+          575.27631,
+          660.25745
+        ],
+        [
+          478.32632,
+          660.25745
+        ],
+        [
+          522.76202,
+          725.50983
+        ],
+        [
+          630.8512,
+          725.50983
+        ]
+      ],
+      "centroid": [
+        549.17677,
+        693.65393
+      ],
+      "sideLengthsFt": [
+        71.96,
+        129.19,
+        94.36,
+        115.88,
+        33.71
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P12",
+      "label": "P12",
+      "spanFt": 189.78,
+      "averageWidthFt": 45.853,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 69.6,
+      "points": [
+        [
+          346.25082,
+          681.96973
+        ],
+        [
+          377.64529,
+          728.15686
+        ],
+        [
+          504.32007,
+          728.15686
+        ],
+        [
+          471.56308,
+          680.05426
+        ],
+        [
+          345.54285,
+          680.05426
+        ]
+      ],
+      "centroid": [
+        424.62801,
+        704.10966
+      ],
+      "sideLengthsFt": [
+        2.44,
+        150.62,
+        69.56,
+        151.41,
+        66.75
+      ],
+      "detailSourcePage": 5,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P13",
+      "label": "P13",
+      "spanFt": 181.97,
+      "averageWidthFt": 47.821,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 66.0,
+      "points": [
+        [
+          390.21628,
+          746.65112
+        ],
+        [
+          402.48273,
+          775.66888
+        ],
+        [
+          529.89142,
+          775.66888
+        ],
+        [
+          529.27875,
+          764.80792
+        ],
+        [
+          504.32007,
+          728.15686
+        ],
+        [
+          377.64529,
+          728.15686
+        ]
+      ],
+      "centroid": [
+        455.69457,
+        752.04311
+      ],
+      "sideLengthsFt": [
+        26.73,
+        151.41,
+        53.0,
+        13.0,
+        152.28,
+        37.65
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P14",
+      "label": "P14",
+      "spanFt": 148.42,
+      "averageWidthFt": 60.241,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 80.1,
+      "points": [
+        [
+          640.96082,
+          733.97949
+        ],
+        [
+          630.8512,
+          725.50983
+        ],
+        [
+          522.76202,
+          725.50983
+        ],
+        [
+          545.72369,
+          759.22839
+        ],
+        [
+          547.19867,
+          785.37512
+        ],
+        [
+          646.93744,
+          785.37512
+        ],
+        [
+          646.7608,
+          784.62524
+        ],
+        [
+          645.31702,
+          744.22876
+        ]
+      ],
+      "centroid": [
+        591.62115,
+        754.7008
+      ],
+      "sideLengthsFt": [
+        13.31,
+        48.31,
+        0.92,
+        119.21,
+        31.3,
+        48.76,
+        129.19,
+        15.76
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P15",
+      "label": "P15",
+      "spanFt": 155.71,
+      "averageWidthFt": 55.886,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 60.9,
+      "points": [
+        [
+          414.21793,
+          803.42993
+        ],
+        [
+          416.45172,
+          826.51318
+        ],
+        [
+          532.75958,
+          826.51318
+        ],
+        [
+          529.89142,
+          775.66888
+        ],
+        [
+          402.48273,
+          775.66888
+        ]
+      ],
+      "centroid": [
+        471.34884,
+        800.68507
+      ],
+      "sideLengthsFt": [
+        36.02,
+        152.28,
+        60.87,
+        139.02,
+        27.72
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P16",
+      "label": "P16",
+      "spanFt": 135.98,
+      "averageWidthFt": 65.752,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 71.3,
+      "points": [
+        [
+          660.96844,
+          844.93573
+        ],
+        [
+          646.93744,
+          785.37512
+        ],
+        [
+          547.19867,
+          785.37512
+        ],
+        [
+          550.55847,
+          844.93573
+        ]
+      ],
+      "centroid": [
+        601.48935,
+        815.6595
+      ],
+      "sideLengthsFt": [
+        131.97,
+        71.3,
+        119.21,
+        73.14
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P17",
+      "label": "P17",
+      "spanFt": 151.86,
+      "averageWidthFt": 57.303,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 61.1,
+      "points": [
+        [
+          418.26669,
+          845.26807
+        ],
+        [
+          408.5842,
+          877.56012
+        ],
+        [
+          535.63916,
+          877.56012
+        ],
+        [
+          532.75958,
+          826.51318
+        ],
+        [
+          416.45172,
+          826.51318
+        ]
+      ],
+      "centroid": [
+        474.50174,
+        852.46426
+      ],
+      "sideLengthsFt": [
+        22.52,
+        139.02,
+        61.11,
+        151.86,
+        40.29
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P18",
+      "label": "P18",
+      "spanFt": 147.25,
+      "averageWidthFt": 60.72,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 65.0,
+      "points": [
+        [
+          673.75806,
+          899.22656
+        ],
+        [
+          660.96844,
+          844.93573
+        ],
+        [
+          550.55847,
+          844.93573
+        ],
+        [
+          553.62103,
+          899.22656
+        ]
+      ],
+      "centroid": [
+        609.78224,
+        872.46291
+      ],
+      "sideLengthsFt": [
+        143.59,
+        64.99,
+        131.97,
+        66.67
+      ],
+      "detailSourcePage": 6,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P19",
+      "label": "P19",
+      "spanFt": 170.66,
+      "averageWidthFt": 50.99,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 54.0,
+      "points": [
+        [
+          395.40421,
+          921.5166
+        ],
+        [
+          398.24127,
+          922.66498
+        ],
+        [
+          538.18353,
+          922.66498
+        ],
+        [
+          535.63916,
+          877.56012
+        ],
+        [
+          408.5842,
+          877.56012
+        ]
+      ],
+      "centroid": [
+        469.33419,
+        900.55313
+      ],
+      "sideLengthsFt": [
+        54.85,
+        151.86,
+        54.0,
+        167.26,
+        3.66
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P20",
+      "label": "P20",
+      "spanFt": 156.34,
+      "averageWidthFt": 57.189,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 60.3,
+      "points": [
+        [
+          678.47943,
+          919.26831
+        ],
+        [
+          673.75806,
+          899.22656
+        ],
+        [
+          553.62103,
+          899.22656
+        ],
+        [
+          556.46149,
+          949.5802
+        ],
+        [
+          684.42059,
+          949.5802
+        ]
+      ],
+      "centroid": [
+        617.21945,
+        924.66418
+      ],
+      "sideLengthsFt": [
+        36.92,
+        152.94,
+        60.28,
+        143.59,
+        24.61
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P21",
+      "label": "P21",
+      "spanFt": 170.82,
+      "averageWidthFt": 50.943,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 63.1,
+      "points": [
+        [
+          400.23251,
+          923.47101
+        ],
+        [
+          448.63553,
+          975.34888
+        ],
+        [
+          541.15546,
+          975.34888
+        ],
+        [
+          538.18353,
+          922.66498
+        ],
+        [
+          398.24127,
+          922.66498
+        ]
+      ],
+      "centroid": [
+        480.98942,
+        947.25114
+      ],
+      "sideLengthsFt": [
+        2.57,
+        167.26,
+        63.07,
+        110.58,
+        84.8
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P22",
+      "label": "P22",
+      "spanFt": 167.25,
+      "averageWidthFt": 53.459,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 56.8,
+      "points": [
+        [
+          688.74677,
+          971.65234
+        ],
+        [
+          684.42059,
+          949.5802
+        ],
+        [
+          556.46149,
+          949.5802
+        ],
+        [
+          559.13629,
+          996.9975
+        ],
+        [
+          696.38885,
+          996.9975
+        ]
+      ],
+      "centroid": [
+        623.83468,
+        973.56966
+      ],
+      "sideLengthsFt": [
+        31.64,
+        164.05,
+        56.77,
+        152.94,
+        26.88
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P23",
+      "label": "P23",
+      "spanFt": 127.36,
+      "averageWidthFt": 68.326,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 90.6,
+      "points": [
+        [
+          448.63553,
+          975.34888
+        ],
+        [
+          482.05356,
+          1011.16602
+        ],
+        [
+          438.87097,
+          1051.0033
+        ],
+        [
+          545.42316,
+          1051.0033
+        ],
+        [
+          541.15546,
+          975.34888
+        ]
+      ],
+      "centroid": [
+        502.22228,
+        1014.43312
+      ],
+      "sideLengthsFt": [
+        110.58,
+        90.57,
+        127.36,
+        70.22,
+        58.55
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P24",
+      "label": "P24",
+      "spanFt": 179.86,
+      "averageWidthFt": 49.711,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 52.5,
+      "points": [
+        [
+          709.61896,
+          1040.87537
+        ],
+        [
+          696.38885,
+          996.9975
+        ],
+        [
+          559.13629,
+          996.9975
+        ],
+        [
+          561.61151,
+          1040.87537
+        ]
+      ],
+      "centroid": [
+        631.73825,
+        1019.21215
+      ],
+      "sideLengthsFt": [
+        176.9,
+        52.53,
+        164.05,
+        54.78
+      ],
+      "detailSourcePage": 7,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P25",
+      "label": "P25",
+      "spanFt": 185.72,
+      "averageWidthFt": 48.142,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 49.5,
+      "points": [
+        [
+          713.38959,
+          1053.38074
+        ],
+        [
+          709.61896,
+          1040.87537
+        ],
+        [
+          561.61151,
+          1040.87537
+        ],
+        [
+          563.94214,
+          1082.19141
+        ],
+        [
+          716.99548,
+          1082.19141
+        ],
+        [
+          716.81689,
+          1076.76978
+        ]
+      ],
+      "centroid": [
+        638.52714,
+        1061.64493
+      ],
+      "sideLengthsFt": [
+        28.25,
+        6.48,
+        182.94,
+        49.46,
+        176.9,
+        15.61
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P26",
+      "label": "P26",
+      "spanFt": 189.91,
+      "averageWidthFt": 45.822,
+      "areaSqFt": 8702,
+      "roadFrontageFt": 54.9,
+      "points": [
+        [
+          548.01215,
+          1096.89917
+        ],
+        [
+          545.42316,
+          1051.0033
+        ],
+        [
+          438.87097,
+          1051.0033
+        ],
+        [
+          389.12112,
+          1096.89917
+        ]
+      ],
+      "centroid": [
+        479.58194,
+        1075.45949
+      ],
+      "sideLengthsFt": [
+        189.91,
+        80.9,
+        127.36,
+        54.94
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P27",
+      "label": "P27",
+      "spanFt": 184.55,
+      "averageWidthFt": 48.448,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 49.1,
+      "points": [
+        [
+          718.3468,
+          1123.20996
+        ],
+        [
+          716.99548,
+          1082.19141
+        ],
+        [
+          563.94214,
+          1082.19141
+        ],
+        [
+          566.25598,
+          1123.20996
+        ]
+      ],
+      "centroid": [
+        641.38414,
+        1102.67912
+      ],
+      "sideLengthsFt": [
+        181.78,
+        49.1,
+        182.94,
+        49.05
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P28",
+      "label": "P28",
+      "spanFt": 123.27,
+      "averageWidthFt": 80.336,
+      "areaSqFt": 9903,
+      "roadFrontageFt": 205.3,
+      "points": [
+        [
+          548.01215,
+          1096.89917
+        ],
+        [
+          448.73849,
+          1096.89917
+        ],
+        [
+          448.73849,
+          1165.39038
+        ],
+        [
+          551.87573,
+          1165.39038
+        ]
+      ],
+      "centroid": [
+        499.34736,
+        1131.36267
+      ],
+      "sideLengthsFt": [
+        81.99,
+        123.27,
+        81.86,
+        118.66
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P29",
+      "label": "P29",
+      "spanFt": 126.32,
+      "averageWidthFt": 78.396,
+      "areaSqFt": 9903,
+      "roadFrontageFt": 126.3,
+      "points": [
+        [
+          378.39856,
+          1106.79102
+        ],
+        [
+          343.05374,
+          1101.36646
+        ],
+        [
+          343.05374,
+          1165.39038
+        ],
+        [
+          448.73849,
+          1165.39038
+        ],
+        [
+          448.73849,
+          1096.89917
+        ],
+        [
+          389.12112,
+          1096.89917
+        ]
+      ],
+      "centroid": [
+        397.2087,
+        1132.49758
+      ],
+      "sideLengthsFt": [
+        17.44,
+        71.26,
+        81.86,
+        126.32,
+        76.52,
+        42.74
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P30",
+      "label": "P30",
+      "spanFt": 164.64,
+      "averageWidthFt": 60.149,
+      "areaSqFt": 9903,
+      "roadFrontageFt": 115.1,
+      "points": [
+        [
+          205.30713,
+          1111.85522
+        ],
+        [
+          208.22499,
+          1126.62842
+        ],
+        [
+          246.14888,
+          1164.57422
+        ],
+        [
+          246.78574,
+          1165.39038
+        ],
+        [
+          343.05374,
+          1165.39038
+        ],
+        [
+          343.05374,
+          1101.36646
+        ],
+        [
+          334.79352,
+          1100.09863
+        ],
+        [
+          300.27881,
+          1109.56873
+        ]
+      ],
+      "centroid": [
+        283.65802,
+        1135.11832
+      ],
+      "sideLengthsFt": [
+        113.55,
+        42.78,
+        9.99,
+        76.52,
+        115.06,
+        1.24,
+        64.12,
+        18.0
+      ],
+      "detailSourcePage": 8,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P31",
+      "label": "P31",
+      "spanFt": 182.51,
+      "averageWidthFt": 48.989,
+      "areaSqFt": 8941,
+      "roadFrontageFt": 217.4,
+      "points": [
+        [
+          718.95306,
+          1141.61389
+        ],
+        [
+          718.3468,
+          1123.20996
+        ],
+        [
+          566.25598,
+          1123.20996
+        ],
+        [
+          568.63544,
+          1165.39038
+        ],
+        [
+          708.28888,
+          1165.39038
+        ]
+      ],
+      "centroid": [
+        641.66786,
+        1143.99044
+      ],
+      "sideLengthsFt": [
+        31.15,
+        166.92,
+        50.5,
+        181.78,
+        22.01
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P32",
+      "label": "P32",
+      "spanFt": 127.64,
+      "averageWidthFt": 70.989,
+      "areaSqFt": 9061,
+      "roadFrontageFt": 136.5,
+      "points": [
+        [
+          690.93988,
+          1213.15479
+        ],
+        [
+          699.83502,
+          1194.62573
+        ],
+        [
+          702.96277,
+          1182.12354
+        ],
+        [
+          631.98785,
+          1182.12354
+        ],
+        [
+          631.98785,
+          1288.91211
+        ],
+        [
+          675.1991,
+          1288.91211
+        ],
+        [
+          691.70673,
+          1264.16821
+        ]
+      ],
+      "centroid": [
+        661.98603,
+        1232.79347
+      ],
+      "sideLengthsFt": [
+        60.98,
+        35.55,
+        51.65,
+        127.64,
+        84.83,
+        15.4,
+        24.57
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P33",
+      "label": "P33",
+      "spanFt": 137.9,
+      "averageWidthFt": 62.603,
+      "areaSqFt": 8633,
+      "roadFrontageFt": 145.0,
+      "points": [
+        [
+          255.14125,
+          1242.74976
+        ],
+        [
+          286.20282,
+          1276.88293
+        ],
+        [
+          299.58005,
+          1288.91211
+        ],
+        [
+          329.47678,
+          1288.91211
+        ],
+        [
+          329.47678,
+          1182.12354
+        ],
+        [
+          259.84241,
+          1182.12354
+        ],
+        [
+          253.14038,
+          1173.53442
+        ],
+        [
+          282.9007,
+          1211.67444
+        ]
+      ],
+      "centroid": [
+        300.21086,
+        1233.05007
+      ],
+      "sideLengthsFt": [
+        49.8,
+        57.82,
+        13.02,
+        83.23,
+        127.64,
+        35.73,
+        21.5,
+        55.16
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P34",
+      "label": "P34",
+      "spanFt": 127.64,
+      "averageWidthFt": 70.989,
+      "areaSqFt": 9061,
+      "roadFrontageFt": 269.8,
+      "points": [
+        [
+          575.60327,
+          1288.91211
+        ],
+        [
+          631.98785,
+          1288.91211
+        ],
+        [
+          631.98785,
+          1182.12354
+        ],
+        [
+          569.57935,
+          1182.12354
+        ]
+      ],
+      "centroid": [
+        602.26413,
+        1234.61529
+      ],
+      "sideLengthsFt": [
+        127.84,
+        74.59,
+        127.64,
+        67.39
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P35",
+      "label": "P35",
+      "spanFt": 127.64,
+      "averageWidthFt": 67.636,
+      "areaSqFt": 8633,
+      "roadFrontageFt": 135.3,
+      "points": [
+        [
+          329.47678,
+          1182.12354
+        ],
+        [
+          386.06549,
+          1182.12354
+        ],
+        [
+          386.06549,
+          1288.91211
+        ],
+        [
+          329.47678,
+          1288.91211
+        ]
+      ],
+      "centroid": [
+        357.77113,
+        1235.51782
+      ],
+      "sideLengthsFt": [
+        127.64,
+        67.64,
+        127.64,
+        67.64
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P36",
+      "label": "P36",
+      "spanFt": 127.64,
+      "averageWidthFt": 67.636,
+      "areaSqFt": 8633,
+      "roadFrontageFt": 135.3,
+      "points": [
+        [
+          386.06549,
+          1182.12354
+        ],
+        [
+          442.65421,
+          1182.12354
+        ],
+        [
+          442.65421,
+          1288.91211
+        ],
+        [
+          386.06549,
+          1288.91211
+        ]
+      ],
+      "centroid": [
+        414.35985,
+        1235.51782
+      ],
+      "sideLengthsFt": [
+        127.64,
+        67.64,
+        127.64,
+        67.64
+      ],
+      "detailSourcePage": 9,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P37",
+      "label": "P37",
+      "spanFt": 127.64,
+      "averageWidthFt": 67.636,
+      "areaSqFt": 8633,
+      "roadFrontageFt": 135.3,
+      "points": [
+        [
+          442.65421,
+          1182.12354
+        ],
+        [
+          499.24292,
+          1182.12354
+        ],
+        [
+          499.24292,
+          1288.91211
+        ],
+        [
+          442.65421,
+          1288.91211
+        ]
+      ],
+      "centroid": [
+        470.94856,
+        1235.51782
+      ],
+      "sideLengthsFt": [
+        127.64,
+        67.64,
+        127.64,
+        67.64
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P38",
+      "label": "P38",
+      "spanFt": 127.64,
+      "averageWidthFt": 67.636,
+      "areaSqFt": 8633,
+      "roadFrontageFt": 263.1,
+      "points": [
+        [
+          552.81964,
+          1182.12354
+        ],
+        [
+          499.24292,
+          1182.12354
+        ],
+        [
+          499.24292,
+          1288.91211
+        ],
+        [
+          558.84363,
+          1288.91211
+        ]
+      ],
+      "centroid": [
+        527.564,
+        1236.46514
+      ],
+      "sideLengthsFt": [
+        127.84,
+        71.24,
+        127.64,
+        64.04
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P39",
+      "label": "P39",
+      "spanFt": 142.15,
+      "averageWidthFt": 61.484,
+      "areaSqFt": 8740,
+      "roadFrontageFt": 203.4,
+      "points": [
+        [
+          557.2688,
+          1305.64526
+        ],
+        [
+          557.2688,
+          1387.72949
+        ],
+        [
+          599.26432,
+          1387.72949
+        ],
+        [
+          611.28656,
+          1365.4856
+        ],
+        [
+          633.12988,
+          1348.25928
+        ],
+        [
+          642.31757,
+          1338.19946
+        ],
+        [
+          664.03569,
+          1305.64526
+        ]
+      ],
+      "centroid": [
+        597.37723,
+        1340.18085
+      ],
+      "sideLengthsFt": [
+        16.28,
+        33.25,
+        30.8,
+        0.58,
+        50.19,
+        98.11,
+        127.61,
+        12.2,
+        58.97
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": [
+        "Zero-area out-and-back source boundary segments removed for rendering. Printed side lengths are retained in source sketch order, not polygon-edge order."
+      ]
+    },
+    {
+      "id": "P40",
+      "label": "P40",
+      "spanFt": 98.11,
+      "averageWidthFt": 89.043,
+      "areaSqFt": 8736,
+      "roadFrontageFt": 276.2,
+      "points": [
+        [
+          391.49969,
+          1305.64526
+        ],
+        [
+          466.0014,
+          1305.64526
+        ],
+        [
+          466.0014,
+          1387.72949
+        ],
+        [
+          391.49969,
+          1387.72949
+        ]
+      ],
+      "centroid": [
+        428.75055,
+        1346.68738
+      ],
+      "sideLengthsFt": [
+        98.11,
+        89.05,
+        98.11,
+        89.05
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P41",
+      "label": "P41",
+      "spanFt": 98.11,
+      "averageWidthFt": 89.084,
+      "areaSqFt": 8740,
+      "roadFrontageFt": 276.3,
+      "points": [
+        [
+          482.7345,
+          1305.64526
+        ],
+        [
+          557.2688,
+          1305.64526
+        ],
+        [
+          557.2688,
+          1387.72949
+        ],
+        [
+          482.7345,
+          1387.72949
+        ]
+      ],
+      "centroid": [
+        520.00165,
+        1346.68738
+      ],
+      "sideLengthsFt": [
+        98.11,
+        89.09,
+        98.11,
+        89.09
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P42",
+      "label": "P42",
+      "spanFt": 111.85,
+      "averageWidthFt": 78.105,
+      "areaSqFt": 8736,
+      "roadFrontageFt": 234.6,
+      "points": [
+        [
+          302.93127,
+          1387.72949
+        ],
+        [
+          391.49969,
+          1387.72949
+        ],
+        [
+          391.49969,
+          1305.64526
+        ],
+        [
+          318.1884,
+          1305.64526
+        ],
+        [
+          325.83682,
+          1312.52295
+        ],
+        [
+          310.79028,
+          1376.0791
+        ]
+      ],
+      "centroid": [
+        354.02213,
+        1348.45002
+      ],
+      "sideLengthsFt": [
+        32.85,
+        20.55,
+        87.62,
+        98.11,
+        105.86,
+        16.8,
+        78.06
+      ],
+      "detailSourcePage": 10,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": [
+        "Zero-area out-and-back source boundary segments removed for rendering. Printed side lengths are retained in source sketch order, not polygon-edge order."
+      ]
+    },
+    {
+      "id": "P43",
+      "label": "P43",
+      "spanFt": 176.16,
+      "averageWidthFt": 53.383,
+      "areaSqFt": 9404,
+      "roadFrontageFt": 165.2,
+      "points": [
+        [
+          372.94247,
+          1491.7063
+        ],
+        [
+          396.34698,
+          1509.88989
+        ],
+        [
+          396.34698,
+          1404.46252
+        ],
+        [
+          291.64365,
+          1404.46252
+        ],
+        [
+          301.01672,
+          1390.56763
+        ],
+        [
+          263.30603,
+          1446.47095
+        ],
+        [
+          353.50293,
+          1444.24927
+        ]
+      ],
+      "centroid": [
+        348.14633,
+        1437.43789
+      ],
+      "sideLengthsFt": [
+        61.3,
+        107.84,
+        80.6,
+        20.03,
+        125.15,
+        126.01,
+        35.42
+      ],
+      "detailSourcePage": 11,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P44",
+      "label": "P44",
+      "spanFt": 159.77,
+      "averageWidthFt": 58.86,
+      "areaSqFt": 9404,
+      "roadFrontageFt": 127.4,
+      "points": [
+        [
+          590.22057,
+          1404.46252
+        ],
+        [
+          502.19519,
+          1404.46252
+        ],
+        [
+          502.19519,
+          1521.82654
+        ],
+        [
+          524.82245,
+          1512.427
+        ],
+        [
+          558.32391,
+          1480.92529
+        ],
+        [
+          558.2132,
+          1464.28784
+        ],
+        [
+          572.2135,
+          1437.77979
+        ]
+      ],
+      "centroid": [
+        534.12297,
+        1450.97281
+      ],
+      "sideLengthsFt": [
+        19.89,
+        54.96,
+        29.29,
+        140.28,
+        105.21,
+        22.16,
+        67.42,
+        35.83
+      ],
+      "detailSourcePage": 11,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": [
+        "Zero-area out-and-back source boundary segments removed for rendering. Printed side lengths are retained in source sketch order, not polygon-edge order."
+      ]
+    },
+    {
+      "id": "P45",
+      "label": "P45",
+      "spanFt": 161.57,
+      "averageWidthFt": 58.204,
+      "areaSqFt": 9404,
+      "roadFrontageFt": 63.5,
+      "points": [
+        [
+          434.64017,
+          1539.64087
+        ],
+        [
+          449.46268,
+          1535.93774
+        ],
+        [
+          449.46268,
+          1404.46252
+        ],
+        [
+          396.34698,
+          1404.46252
+        ],
+        [
+          396.34698,
+          1509.88989
+        ]
+      ],
+      "centroid": [
+        424.00826,
+        1466.78468
+      ],
+      "sideLengthsFt": [
+        57.96,
+        126.01,
+        63.49,
+        157.14,
+        18.26
+      ],
+      "detailSourcePage": 11,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    },
+    {
+      "id": "P46",
+      "label": "P46",
+      "spanFt": 157.14,
+      "averageWidthFt": 59.845,
+      "areaSqFt": 9404,
+      "roadFrontageFt": 63.0,
+      "points": [
+        [
+          496.53537,
+          1524.17761
+        ],
+        [
+          502.19519,
+          1521.82654
+        ],
+        [
+          502.19519,
+          1404.46252
+        ],
+        [
+          449.46268,
+          1404.46252
+        ],
+        [
+          449.46268,
+          1535.93774
+        ]
+      ],
+      "centroid": [
+        475.35533,
+        1466.94197
+      ],
+      "sideLengthsFt": [
+        57.99,
+        157.14,
+        63.03,
+        140.28,
+        7.33
+      ],
+      "detailSourcePage": 11,
+      "salesStatus": null,
+      "price": null,
+      "geometryNotes": []
+    }
+  ],
+  "boundary": [
+    [
+      452.80978,
+      527.60718
+    ],
+    [
+      453.50467,
+      488.88672
+    ],
+    [
+      418.43201,
+      470.84595
+    ],
+    [
+      380.16968,
+      423.84131
+    ],
+    [
+      346.1748,
+      382.07898
+    ],
+    [
+      329.76593,
+      361.9209
+    ],
+    [
+      310.30435,
+      338.0127
+    ],
+    [
+      286.44458,
+      322.81616
+    ],
+    [
+      266.24997,
+      306.19495
+    ],
+    [
+      264.79242,
+      266.06958
+    ],
+    [
+      227.38457,
+      258.7489
+    ],
+    [
+      213.14664,
+      239.80615
+    ],
+    [
+      197.20412,
+      236.25696
+    ],
+    [
+      183.80614,
+      284.34802
+    ],
+    [
+      200.74507,
+      409.09668
+    ],
+    [
+      226.99753,
+      471.19788
+    ],
+    [
+      229.4762,
+      475.70227
+    ],
+    [
+      238.61681,
+      491.12878
+    ],
+    [
+      252.30849,
+      505.63025
+    ],
+    [
+      318.1922,
+      606.05603
+    ],
+    [
+      346.25082,
+      681.96973
+    ],
+    [
+      390.21628,
+      746.65112
+    ],
+    [
+      414.21793,
+      803.42993
+    ],
+    [
+      418.26669,
+      845.26807
+    ],
+    [
+      395.40421,
+      921.5166
+    ],
+    [
+      400.23251,
+      923.47101
+    ],
+    [
+      482.05356,
+      1011.16602
+    ],
+    [
+      378.39856,
+      1106.79102
+    ],
+    [
+      334.79352,
+      1100.09863
+    ],
+    [
+      300.27881,
+      1109.56873
+    ],
+    [
+      205.30713,
+      1111.85522
+    ],
+    [
+      208.22499,
+      1126.62842
+    ],
+    [
+      246.14888,
+      1164.57422
+    ],
+    [
+      282.9007,
+      1211.67444
+    ],
+    [
+      255.14125,
+      1242.74976
+    ],
+    [
+      286.20282,
+      1276.88293
+    ],
+    [
+      325.83682,
+      1312.52295
+    ],
+    [
+      310.79028,
+      1376.0791
+    ],
+    [
+      263.30603,
+      1446.47095
+    ],
+    [
+      353.50293,
+      1444.24927
+    ],
+    [
+      372.94247,
+      1491.7063
+    ],
+    [
+      434.64017,
+      1539.64087
+    ],
+    [
+      496.53537,
+      1524.17761
+    ],
+    [
+      524.82245,
+      1512.427
+    ],
+    [
+      558.32391,
+      1480.92529
+    ],
+    [
+      558.2132,
+      1464.28784
+    ],
+    [
+      572.2135,
+      1437.77979
+    ],
+    [
+      599.03479,
+      1388.15417
+    ],
+    [
+      611.28656,
+      1365.4856
+    ],
+    [
+      633.12988,
+      1348.25928
+    ],
+    [
+      642.31757,
+      1338.19946
+    ],
+    [
+      662.78333,
+      1307.52246
+    ],
+    [
+      685.85779,
+      1272.9353
+    ],
+    [
+      691.70673,
+      1264.16821
+    ],
+    [
+      691.31451,
+      1238.07874
+    ],
+    [
+      690.93988,
+      1213.15479
+    ],
+    [
+      699.83502,
+      1194.62573
+    ],
+    [
+      705.71118,
+      1171.13757
+    ],
+    [
+      718.95306,
+      1141.61389
+    ],
+    [
+      716.81689,
+      1076.76978
+    ],
+    [
+      713.38959,
+      1053.38074
+    ],
+    [
+      707.69543,
+      1034.49585
+    ],
+    [
+      688.74677,
+      971.65234
+    ],
+    [
+      678.47943,
+      919.26831
+    ],
+    [
+      646.7608,
+      784.62524
+    ],
+    [
+      646.11096,
+      766.44336
+    ],
+    [
+      645.31702,
+      744.22876
+    ],
+    [
+      640.96082,
+      733.97949
+    ],
+    [
+      633.08997,
+      727.38544
+    ],
+    [
+      616.73517,
+      713.68372
+    ],
+    [
+      584.69934,
+      686.84473
+    ],
+    [
+      581.56189,
+      677.99231
+    ],
+    [
+      577.85126,
+      667.52258
+    ],
+    [
+      573.66028,
+      655.69775
+    ],
+    [
+      566.51099,
+      646.8291
+    ],
+    [
+      546.54236,
+      635.49695
+    ],
+    [
+      510.79608,
+      592.63171
+    ],
+    [
+      506.60513,
+      584.99487
+    ],
+    [
+      497.42712,
+      579.56543
+    ],
+    [
+      484.75327,
+      567.38538
+    ],
+    [
+      472.54016,
+      555.64819
+    ],
+    [
+      463.86713,
+      543.32202
+    ]
+  ],
+  "roads": [
+    {
+      "points": [
+        [
+          466.0014,
+          1387.72949
+        ],
+        [
+          302.93127,
+          1387.72949
+        ],
+        [
+          291.64365,
+          1404.46252
+        ],
+        [
+          590.22058,
+          1404.46252
+        ],
+        [
+          599.03479,
+          1388.15417
+        ],
+        [
+          599.26434,
+          1387.72949
+        ],
+        [
+          482.7345,
+          1387.72949
+        ],
+        [
+          482.7345,
+          1305.64526
+        ],
+        [
+          664.03577,
+          1305.64526
+        ],
+        [
+          675.1991,
+          1288.91211
+        ],
+        [
+          575.60327,
+          1288.91211
+        ],
+        [
+          569.57935,
+          1182.12354
+        ],
+        [
+          702.96277,
+          1182.12354
+        ],
+        [
+          705.71118,
+          1171.13757
+        ],
+        [
+          708.28888,
+          1165.39038
+        ],
+        [
+          568.63544,
+          1165.39038
+        ],
+        [
+          545.72369,
+          759.22839
+        ],
+        [
+          241.18102,
+          312.01709
+        ],
+        [
+          241.18102,
+          283.13013
+        ],
+        [
+          248.54134,
+          262.88928
+        ],
+        [
+          231.91919,
+          259.63635
+        ],
+        [
+          224.44795,
+          280.18213
+        ],
+        [
+          224.44795,
+          317.17346
+        ],
+        [
+          529.27875,
+          764.80792
+        ],
+        [
+          551.87573,
+          1165.39038
+        ],
+        [
+          246.78574,
+          1165.39038
+        ],
+        [
+          259.84241,
+          1182.12354
+        ],
+        [
+          552.81964,
+          1182.12354
+        ],
+        [
+          558.84363,
+          1288.91211
+        ],
+        [
+          299.58005,
+          1288.91211
+        ],
+        [
+          318.18826,
+          1305.64526
+        ],
+        [
+          466.0014,
+          1305.64526
+        ]
+      ]
+    }
+  ],
+  "metadata": {
+    "project": "Star Gardens",
+    "locationLabel": "Kedakal",
+    "sourceTitle": "Star Gardens - Plots Only Master Plan - Revision 04 - Checked Measurements",
+    "sourceFile": "/documents/star-gardens-master-plan.pdf",
+    "sourceSha256": "bc17b935066a14e7181c8916efed9f1c8a275c38d5a5c00401a2ead1022c273f",
+    "sourceRevision": "04",
+    "sourceDate": "2026-10-10",
+    "sourcePageCount": 11,
+    "geometrySourcePage": 1,
+    "scheduleSourcePages": [
+      2,
+      3
+    ],
+    "detailSourcePages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "sourceStatus": "concept-proposal",
+    "coordinateSystem": "PDF page units, x right, y down; north is up; not cadastral coordinates",
+    "pageSize": [
+      1190.54883,
+      1683.77759
+    ],
+    "plotCount": 46,
+    "summaryLandAreaSqFt": 465524,
+    "summaryPlotAreaSqFt": 410564,
+    "summaryRoadAreaSqFt": 54960,
+    "sumOfDisplayedPlotAreasSqFt": 410566,
+    "proposedRoadWidthFt": 20,
+    "proposedRoadWidthMetres": 6.096,
+    "entryLabel": "Entry via Part I",
+    "availability": null,
+    "pricing": null,
+    "approvalStatus": null,
+    "sideLengthOrder": "Numbered side order on the individual source detail sketch; not points array order",
+    "geometryRepairedPlotIds": [
+      "P39",
+      "P42",
+      "P44"
+    ],
+    "cautions": [
+      "Proposed concept layout; not a construction or approval drawing.",
+      "Areas and dimensions are transcribed from the supplied plan, not independently surveyed.",
+      "Equivalent average width is area divided by span, not a measured boundary side.",
+      "Source per-plot rounded area labels total 410,566 sq ft; its summary states 410,564 sq ft. Both are preserved.",
+      "Source geometry is calibrated to a survey area statement and uses local coordinates, not the original cadastral frame.",
+      "Road levels, terrain gradients, retaining walls, cut/fill, drainage and buildable pads remain unverified.",
+      "Proposed 20 ft road corridors exclude additional drains, verges or junction widening that may change allocations.",
+      "Road frontage is measured along the corridor, not gate-opening width.",
+      "P39, P42 and P44 contain zero-area source boundary spurs removed from the interactive geometry; source side measurements are retained.",
+      "Verify the concept against an approved survey and on site before setting out; sales availability and prices are not supplied."
+    ]
+  }
+}

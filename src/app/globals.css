@@ -50,6 +50,22 @@ section { scroll-margin-top: 86px; }
 .desktop-nav a { padding: 10px 0; position: relative; white-space: nowrap; }
 .desktop-nav a::after { content: ''; position: absolute; height: 1px; bottom: 3px; left: 0; width: 0; background: currentColor; transition: width .35s; }
 .desktop-nav a:hover::after, .desktop-nav a[aria-current="page"]::after { width: 100%; }
+.nav-actions { display: flex; justify-self: end; align-items: center; gap: 12px; white-space: nowrap; }
+.nav-inventory { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px 16px; border: 1px solid #fff9dc90; border-radius: var(--radius-button); background: #f2efd9; color: var(--deep-forest); box-shadow: 0 3px 18px #102b231c, inset 0 1px 0 #ffffff8c; font-size: 13px; font-weight: 600; transition: background .3s, box-shadow .3s, transform .3s var(--ease-out-expo); }
+.nav-inventory::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 20%, #ffffff70 48%, transparent 75%); transform: translateX(-130%); animation: inventory-sheen 6.5s var(--ease-soft) infinite; pointer-events: none; }
+.nav-inventory:hover, .nav-inventory:focus-visible { background: #fff9e4; box-shadow: 0 5px 24px #102b2330, inset 0 1px 0 #ffffff8c; transform: translateY(-1px); }
+.nav-inventory > svg { flex-shrink: 0; transition: transform .3s var(--ease-out-expo); }
+.nav-inventory:hover > svg, .nav-inventory:focus-visible > svg { transform: translateX(3px); }
+.nav-inventory-spark { position: relative; width: 6px; height: 6px; flex: 0 0 6px; margin-right: 1px; border-radius: 50%; background: #3f785b; }
+.nav-inventory-spark::after { content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; color: #3f785b; border-radius: 50%; animation: inventory-pulse 3s var(--ease-soft) infinite; }
+.is-scrolled .nav-inventory { background: var(--forest); color: #f5f1dd; border-color: #234e40; box-shadow: 0 3px 14px #173c321a, inset 0 1px 0 #ffffff12; }
+.is-scrolled .nav-inventory::before { opacity: .2; }
+.is-scrolled .nav-inventory:hover, .is-scrolled .nav-inventory:focus-visible { background: #244e3e; box-shadow: 0 5px 22px #173c3230; }
+.is-scrolled .nav-inventory-spark { background: #c6db9c; }
+.is-scrolled .nav-inventory-spark::after { color: #c6db9c; }
+.nav-inventory[aria-current="page"] { box-shadow: 0 0 0 3px #8b9d5e26, inset 0 1px 0 #ffffff12; }
+@keyframes inventory-pulse { 0%, 100% { transform: scale(.75); opacity: .65; } 65%, 85% { transform: scale(1.65); opacity: 0; } }
+@keyframes inventory-sheen { 0%, 64% { transform: translateX(-130%); } 84%, 100% { transform: translateX(130%); } }
 .nav-enquire { display: flex; justify-self: end; align-items: center; gap: 22px; font-size: 16px; padding: 14px 19px; border: 1px solid #eeeede70; border-radius: var(--radius-button); transition: background .3s; }
 .is-scrolled .nav-enquire { border-color: #173c3255; }
 .nav-enquire:hover { background: #d6ddc624; }
@@ -139,7 +155,7 @@ section { scroll-margin-top: 86px; }
 .hero-mist-transition > div + div { background: radial-gradient(ellipse at 80% 85%, #f4f0e730 15%, transparent 55%); }
 .mobile-break { display: none; }
 
-@media (max-width: 1200px) { .desktop-nav, .nav-enquire { display: none; } .menu-toggle { display: block; } .site-header { gap: 18px; grid-template-columns: 1fr auto; min-height: 80px; padding-block: 12px; } }
+@media (max-width: 1200px) { .desktop-nav, .nav-actions { display: none; } .menu-toggle { display: block; } .site-header { gap: 18px; grid-template-columns: 1fr auto; min-height: 80px; padding-block: 12px; } }
 @media (max-width: 900px) {
   .desktop-nav, .nav-enquire { display: none; }
   .menu-toggle { display: block; }
@@ -198,6 +214,10 @@ section { scroll-margin-top: 86px; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
   .hero-type-mist { opacity: .35; }
   .site-header { transition-duration: .1s; }
+  .nav-inventory::before, .nav-inventory-spark::after { animation: none; }
+  .nav-inventory::before { display: none; }
+  .nav-inventory, .nav-inventory > svg { transition: none; }
+  .nav-inventory:hover, .nav-inventory:focus-visible, .nav-inventory:hover > svg, .nav-inventory:focus-visible > svg { transform: none; }
   .hero-journey { height: auto; }
   .coorg-hero { position: relative; }
   .hero-canvas { transition: none; }

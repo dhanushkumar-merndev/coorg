@@ -1,0 +1,110 @@
+.page { padding: 100px 24px 24px; background: #f4f0e7; min-height: 100svh; }
+.intro { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 0 8px 18px; }
+.intro h1 { font: 400 clamp(32px, 3vw, 48px)/1.1 var(--font-display), Georgia, serif; letter-spacing: -.035em; }
+.intro h1 em, .detailHeading em { font-weight: 400; color: #6b795e; }
+.intro > span { font-size: 10px; letter-spacing: .16em; color: #6c7a61; }
+.kicker { font-size: 10px; letter-spacing: .19em; font-weight: 600; line-height: 1.8; }
+.workspace { border: 1px solid #d1d9c4; border-radius: 14px; overflow: hidden; background: #eef0e3; }
+.mapViewport { position: relative; height: calc(100svh - 230px); min-height: 550px; max-height: 1100px; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 50% 45%, #edf0df 10%, #e2e8d8 65%, #d6dfcc); }
+.mapViewport::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35; background-image: linear-gradient(#a1ae9317 1px, transparent 1px), linear-gradient(90deg, #a1ae9317 1px, transparent 1px); background-size: 32px 32px; }
+.mapSurface { position: absolute; inset: 0; }
+.mapSurface > div { width: 100%; height: 100%; }
+.mapToolbar { position: absolute; top: 22px; left: 22px; right: 22px; display: flex; align-items: center; justify-content: space-between; gap: 15px; z-index: 3; pointer-events: none; }
+.mapActions { display: flex; align-items: center; gap: 16px; }
+.viewTabs { display: flex; padding: 4px; gap: 3px; background: #f8f7edf5; border: 1px solid #cdd6c1; border-radius: 8px; box-shadow: 0 4px 15px #173c3209; pointer-events: auto; }
+.viewTabs button { background: none; border: 0; border-radius: 5px; display: flex; gap: 8px; align-items: center; font-size: 12px; padding: 11px 15px; color: #5c6c5a; }
+.viewTabs button[aria-pressed="true"] { background: #264637; color: #fffdf3; }
+.viewTabs svg { width: 14px; height: 14px; }
+.plotPicker { display: flex; align-items: center; gap: 9px; background: #f8f7edf5; border: 1px solid #cdd6c1; border-radius: 8px; padding: 0 14px; min-height: 48px; pointer-events: auto; box-shadow: 0 4px 15px #173c3209; }
+.plotPicker svg { width: 14px; height: 14px; color: #69805b; }
+.plotPicker select { border: 0; background: none; font-size: 12px; width: 125px; cursor: pointer; padding: 12px 0; outline: none; }
+.plotPicker:focus-within { outline: 2px solid #a48240; outline-offset: 3px; }
+.compass { position: absolute; right: 32px; top: 94px; display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; color: #5c7057; pointer-events: none; }
+.compass span { font-size: 10px; }
+.mapControls { position: absolute; right: 22px; bottom: 24px; z-index: 3; display: grid; border: 1px solid #bdc8b5; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 12px #243b2510; }
+.mapControls button { border: 0; background: #f8f6eef5; width: 46px; height: 46px; border-radius: 0; display: grid; place-items: center; }
+.mapControls button + button { border-top: 1px solid #d9decd; }
+.mapControls button:hover { background: #e5e9db; }
+.mapControls button:disabled { color: #b1b8a8; }
+.mapHint { position: absolute; bottom: 23px; left: 24px; z-index: 2; font-size: 11px; color: #60745b; pointer-events: none; }
+.hoverCard { position: absolute; bottom: 55px; left: 24px; z-index: 2; pointer-events: none; display: grid; gap: 7px; border: 1px solid #bccbb1; border-radius: 9px; padding: 17px 22px; background: #f9f7eefa; box-shadow: 0 8px 24px #153a2810; }
+.hoverCard strong { font: 24px/1 var(--font-display), serif; }
+.hoverCard > span { font-size: 12px; }
+.hoverCard small { font-size: 10px; color: #7b856e; }
+.planSvg { width: 100%; height: 100%; padding: 50px 15px 36px; user-select: none; overflow: hidden; }
+.svgPlot { cursor: pointer; outline: none; }
+.svgPlot polygon { transition: fill .18s, stroke .18s; }
+.svgPlot:focus-visible > polygon:first-child { stroke: #805c22; stroke-width: 5; fill: #d2c594; }
+.svgPlot:focus-visible text { fill: #173c32; }
+.sceneLoading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: #748069; }
+.legend { min-height: 50px; padding: 12px 24px; display: flex; gap: 26px; align-items: center; border-top: 1px solid #d6d9ca; flex-wrap: wrap; background: #f8f5ed; }
+.legend > span { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.legend b { font-size: 10px; font-weight: 400; opacity: .6; margin-left: 1px; }
+.legend i, .statusBadge i { width: 8px; height: 8px; border-radius: 2px; background: #95ad7d; flex-shrink: 0; }
+.legend [data-status="sold"] i, .statusBadge[data-status="sold"] i { background: #ba8070; }
+.legend [data-status="partial"] i, .statusBadge[data-status="partial"] i { background: #d4b066; }
+.legend [data-status="unconfirmed"] i, .statusBadge[data-status="unconfirmed"] i { background: #a4b29a; }
+.legend > small { margin-left: auto; font-size: 10px; color: #7c8672; }
+.detailHeading h2 { font: 400 39px/1.2 var(--font-display), Georgia, serif; margin: 9px 0 16px; }
+.statusBadge { font-size: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid #d3d9c8; border-radius: 4px; }
+.statusBadge[data-status="sold"] { background: #efe0d8; border-color: #d9bdb1; }
+.statusBadge[data-status="partial"] { background: #f2e7cc; border-color: #d8c694; }
+.plotArea { display: grid; gap: 6px; padding: 24px 0; margin-top: 9px; }
+.plotArea strong { font: 400 44px/1 var(--font-display), Georgia, serif; letter-spacing: -.025em; }
+.plotArea span { font-size: 11px; color: #818673; }
+.facts { margin: 0 0 22px; font-size: 12px; }
+.facts > div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #dce0d2; }
+.facts dt { color: #7b826e; }
+.facts dd { margin: 0; text-align: right; }
+.measurements { margin-bottom: 24px; font-size: 12px; }
+.measurements summary { cursor: pointer; line-height: 1.8; }
+.measurements summary > span { float: right; color: #7d866e; font-size: 10px; }
+.measurements ol { list-style: none; padding: 7px 0 0; margin: 0; }
+.measurements li { display: flex; justify-content: space-between; padding: 7px 0; color: #6c7c61; }
+.measurements li strong { font-weight: 500; }
+.measurements p { font-size: 10px; line-height: 1.8; margin-top: 9px; color: #7b836f; }
+.enquire { padding: 15px 17px; color: #fffdf4; background: #254738; display: flex; align-items: center; justify-content: space-between; gap: 10px; border-radius: 6px; font-size: 12px; transition: background .2s; }
+.enquire:hover { background: #3d5d45; }
+.detailNote { margin-top: 14px; font-size: 10px; line-height: 1.8; color: #828673; }
+.drawerBackdrop { position: fixed; inset: 0; z-index: 110; display: flex; align-items: flex-end; background: #102b2366; backdrop-filter: blur(5px); }
+.drawer { position: relative; width: 100%; background: #f8f5ed; border-radius: 20px 20px 0 0; padding: 30px 26px max(24px, env(safe-area-inset-bottom)); max-height: 86dvh; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 -8px 50px #18392f22; }
+.drawerHandle { width: 35px; height: 3px; background: #c7cdbb; border-radius: 10px; margin: -17px auto 25px; }
+.drawerClose { position: absolute; right: 20px; top: 27px; display: grid; place-items: center; width: 40px; height: 40px; background: #e9eddf; border: 1px solid #d5dcca; border-radius: 50%; }
+@media (min-width: 1024px) {
+  .drawerBackdrop { align-items: center; justify-content: center; padding: 30px; }
+  .drawer { width: 480px; border-radius: 18px; max-height: calc(100dvh - 60px); padding: 36px; box-shadow: 0 30px 120px #102b2340; }
+  .drawerHandle { display: none; }
+  .drawerClose { top: 25px; right: 25px; }
+}
+@media (max-width: 1023px) {
+  .page { padding-top: 102px; }
+  .mapViewport { height: calc(100svh - 230px); min-height: 550px; }
+}
+@media (max-width: 600px) {
+  .page { padding: 92px 12px 20px; }
+  .intro { padding: 0 4px 15px; align-items: center; gap: 12px; }
+  .intro h1 { font-size: 32px; }
+  .intro > span { max-width: 95px; font-size: 8px; line-height: 1.7; letter-spacing: .08em; text-align: right; }
+  .kicker { font-size: 8px; }
+  .workspace { border-radius: 10px; }
+  .mapToolbar { top: 12px; left: 12px; right: 12px; gap: 9px; }
+  .mapActions { gap: 8px; }
+  .viewTabs { padding: 3px; }
+  .viewTabs button { padding: 10px; font-size: 10px; gap: 6px; }
+  .plotPicker { min-height: 42px; padding: 0 10px; gap: 6px; }
+  .plotPicker svg { display: none; }
+  .plotPicker select { width: 100px; font-size: 11px; padding: 10px 0; }
+  .mapViewport { height: calc(100svh - 220px); min-height: 470px; }
+  .planSvg { padding: 55px 7px 30px; }
+  .compass { right: 24px; top: 76px; }
+  .compass svg { width: 17px; height: 26px; }
+  .mapControls { right: 12px; bottom: 15px; }
+  .mapControls button { width: 42px; height: 44px; }
+  .mapHint { left: 14px; bottom: 17px; font-size: 9px; }
+  .legend { gap: 10px 14px; padding: 12px; min-height: 60px; }
+  .legend > span { font-size: 9px; gap: 5px; }
+  .legend i { width: 6px; height: 6px; }
+  .legend b { font-size: 9px; }
+  .legend > small { font-size: 9px; width: 100%; text-align: right; }
+}
+@media (prefers-reduced-motion: reduce) { .svgPlot polygon, .enquire { transition: none; } }
