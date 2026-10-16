@@ -7,7 +7,7 @@ import TransitionLink from "../navigation/TransitionLink";
 
 const MotionLink = motion.create(TransitionLink);
 
-export default function MagneticButton({ href, children, variant = "light" }: { href: string; children: ReactNode; variant?: "light" | "line" }) {
+export default function MagneticButton({ href, children, variant = "light" }: { href: string; children: ReactNode; variant?: "light" | "line" | "live" }) {
   const reduced = useReducedMotion();
   const x = useSpring(0, { stiffness: 260, damping: 24 });
   const y = useSpring(0, { stiffness: 260, damping: 24 });

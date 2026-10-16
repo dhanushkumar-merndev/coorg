@@ -2,6 +2,7 @@ import PageMotion from "@/components/pages/PageMotion";
 import { WordHeading } from "@/components/pages/PagePrimitives";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectMotion from "@/components/projects/ProjectMotion";
+import { plots } from "@/data/inventory";
 import { ongoingProjects } from "@/data/projects";
 import TransitionLink from "../navigation/TransitionLink";
 import styles from "./sections.module.css";
@@ -16,7 +17,7 @@ export function FeaturedOpportunities() {
       </div>
       <ProjectMotion className={projects.compactGrid}>{ongoingProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} compact />)}</ProjectMotion>
       <div className={projects.farmBand} data-chapter-rise>
-        <div><span className={styles.eyebrow}>PROJECTS / ONGOING</span><h3>Star Garden</h3><p>Premium coffee estate plots at Madikeri. Explore a 10-acre development with 33 exclusive plots.</p></div>
+        <div><span className={styles.eyebrow}>PROJECTS / ONGOING</span><h3>Star Garden</h3><p>Premium coffee estate plots at Madikeri. Explore a 10-acre development with {plots.length} exclusive plots.</p></div>
         <div className={projects.priceSide}><span>The next chapter</span><TransitionLink href="/projects/star-garden" className={projects.textLink}>Explore Star Garden ↗</TransitionLink><p className={projects.sourceNote}>Discover the estate, amenities and project details.</p></div>
       </div>
     </PageMotion>

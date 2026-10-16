@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InventoryExplorer from "@/components/inventory/InventoryExplorer";
+import { plots } from "@/data/inventory";
 import styles from "@/components/inventory/inventory.module.css";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function LiveInventoryPage() {
   return <div className={styles.page}>
-    <header className={styles.intro}><h1>Star <em>Gardens.</em></h1><span>46 PLOTS · KEDAKAL, COORG</span></header>
+    <header className={styles.intro}><h1>Star <em>Gardens.</em></h1><span>{plots.length} PLOTS · KEDAKAL, COORG</span></header>
     <InventoryExplorer />
   </div>;
 }

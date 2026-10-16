@@ -4,17 +4,13 @@
 .intro h1 em, .detailHeading em { font-weight: 400; color: #6b795e; }
 .intro > span { font-size: 10px; letter-spacing: .16em; color: #6c7a61; }
 .kicker { font-size: 10px; letter-spacing: .19em; font-weight: 600; line-height: 1.8; }
-.workspace { border: 1px solid #d1d9c4; border-radius: 14px; overflow: hidden; background: #eef0e3; }
+.workspace { position: relative; border: 1px solid #d1d9c4; border-radius: 14px; overflow: hidden; background: #eef0e3; }
 .mapViewport { position: relative; height: calc(100svh - 230px); min-height: 550px; max-height: 1100px; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 50% 45%, #edf0df 10%, #e2e8d8 65%, #d6dfcc); }
 .mapViewport::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35; background-image: linear-gradient(#a1ae9317 1px, transparent 1px), linear-gradient(90deg, #a1ae9317 1px, transparent 1px); background-size: 32px 32px; }
 .mapSurface { position: absolute; inset: 0; }
 .mapSurface > div { width: 100%; height: 100%; }
-.mapToolbar { position: absolute; top: 22px; left: 22px; right: 22px; display: flex; align-items: center; justify-content: space-between; gap: 15px; z-index: 3; pointer-events: none; }
+.mapToolbar { position: absolute; top: 22px; left: 22px; right: 22px; display: flex; align-items: center; justify-content: flex-end; gap: 15px; z-index: 3; pointer-events: none; }
 .mapActions { display: flex; align-items: center; gap: 16px; }
-.viewTabs { display: flex; padding: 4px; gap: 3px; background: #f8f7edf5; border: 1px solid #cdd6c1; border-radius: 8px; box-shadow: 0 4px 15px #173c3209; pointer-events: auto; }
-.viewTabs button { background: none; border: 0; border-radius: 5px; display: flex; gap: 8px; align-items: center; font-size: 12px; padding: 11px 15px; color: #5c6c5a; }
-.viewTabs button[aria-pressed="true"] { background: #264637; color: #fffdf3; }
-.viewTabs svg { width: 14px; height: 14px; }
 .plotPicker { display: flex; align-items: center; gap: 9px; background: #f8f7edf5; border: 1px solid #cdd6c1; border-radius: 8px; padding: 0 14px; min-height: 48px; pointer-events: auto; box-shadow: 0 4px 15px #173c3209; }
 .plotPicker svg { width: 14px; height: 14px; color: #69805b; }
 .plotPicker select { border: 0; background: none; font-size: 12px; width: 125px; cursor: pointer; padding: 12px 0; outline: none; }
@@ -36,19 +32,24 @@
 .svgPlot polygon { transition: fill .18s, stroke .18s; }
 .svgPlot:focus-visible > polygon:first-child { stroke: #805c22; stroke-width: 5; fill: #d2c594; }
 .svgPlot:focus-visible text { fill: #173c32; }
+/* Available plots breathe gently so the plan reads as live inventory. */
+.svgPlot[data-live] > polygon:first-child { animation: plot-live 2.4s ease-in-out infinite; }
+@keyframes plot-live { 0%, 100% { fill-opacity: 1; } 50% { fill-opacity: .72; } }
 .sceneLoading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: #748069; }
-.legend { min-height: 50px; padding: 12px 24px; display: flex; gap: 26px; align-items: center; border-top: 1px solid #d6d9ca; flex-wrap: wrap; background: #f8f5ed; }
-.legend > span { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-.legend b { font-size: 10px; font-weight: 400; opacity: .6; margin-left: 1px; }
-.legend i, .statusBadge i { width: 8px; height: 8px; border-radius: 2px; background: #95ad7d; flex-shrink: 0; }
-.legend [data-status="sold"] i, .statusBadge[data-status="sold"] i { background: #ba8070; }
-.legend [data-status="partial"] i, .statusBadge[data-status="partial"] i { background: #d4b066; }
-.legend [data-status="unconfirmed"] i, .statusBadge[data-status="unconfirmed"] i { background: #a4b29a; }
-.legend > small { margin-left: auto; font-size: 10px; color: #7c8672; }
+.legend { min-height: 64px; padding: 16px 24px; display: flex; gap: 14px 36px; align-items: center; border-top: 1px solid #d6d9ca; flex-wrap: wrap; background: #f8f5ed; color: #233e2b; }
+.legend > strong { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #6c7a61; }
+.legend > span { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.legend b { font-size: 14px; font-weight: 600; margin-left: 2px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; }
+.legend i, .statusBadge i { background: #356b3c; flex-shrink: 0; }
+.statusBadge i { width: 8px; height: 8px; border-radius: 2px; }
+.legend [data-status="sold"] i, .statusBadge[data-status="sold"] i { background: #8e2420; }
+.legend [data-status="booked"] i, .statusBadge[data-status="booked"] i { background: #b8860b; }
 .detailHeading h2 { font: 400 39px/1.2 var(--font-display), Georgia, serif; margin: 9px 0 16px; }
 .statusBadge { font-size: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid #d3d9c8; border-radius: 4px; }
-.statusBadge[data-status="sold"] { background: #efe0d8; border-color: #d9bdb1; }
-.statusBadge[data-status="partial"] { background: #f2e7cc; border-color: #d8c694; }
+.statusBadge[data-status="available"] { background: #e2ebd9; border-color: #b9cba9; }
+.statusBadge[data-status="sold"] { background: #f3dcd8; border-color: #d9a9a3; }
+.statusBadge[data-status="booked"] { background: #f5e7c3; border-color: #dcc078; }
 .plotArea { display: grid; gap: 6px; padding: 24px 0; margin-top: 9px; }
 .plotArea strong { font: 400 44px/1 var(--font-display), Georgia, serif; letter-spacing: -.025em; }
 .plotArea span { font-size: 11px; color: #818673; }
@@ -75,6 +76,12 @@
   .drawer { width: 480px; border-radius: 18px; max-height: calc(100dvh - 60px); padding: 36px; box-shadow: 0 30px 120px #102b2340; }
   .drawerHandle { display: none; }
   .drawerClose { top: 25px; right: 25px; }
+  /* The legend floats at the right of the map instead of below it. */
+  .legend { position: absolute; z-index: 3; right: 22px; top: 50%; transform: translateY(-50%); width: 236px; min-height: 0; display: grid; gap: 16px; padding: 22px 24px; border: 1px solid #cdd6c1; border-radius: 12px; background: #f8f7edf5; box-shadow: 0 10px 30px #173c3214; }
+  .legend > strong { margin-bottom: 2px; }
+  .legend > span { font-size: 15px; gap: 12px; }
+  .legend b { margin-left: auto; font-size: 15px; }
+  .legend i { width: 16px; height: 16px; border-radius: 4px; }
 }
 @media (max-width: 1023px) {
   .page { padding-top: 102px; }
@@ -89,8 +96,6 @@
   .workspace { border-radius: 10px; }
   .mapToolbar { top: 12px; left: 12px; right: 12px; gap: 9px; }
   .mapActions { gap: 8px; }
-  .viewTabs { padding: 3px; }
-  .viewTabs button { padding: 10px; font-size: 10px; gap: 6px; }
   .plotPicker { min-height: 42px; padding: 0 10px; gap: 6px; }
   .plotPicker svg { display: none; }
   .plotPicker select { width: 100px; font-size: 11px; padding: 10px 0; }
@@ -101,10 +106,9 @@
   .mapControls { right: 12px; bottom: 15px; }
   .mapControls button { width: 42px; height: 44px; }
   .mapHint { left: 14px; bottom: 17px; font-size: 9px; }
-  .legend { gap: 10px 14px; padding: 12px; min-height: 60px; }
-  .legend > span { font-size: 9px; gap: 5px; }
-  .legend i { width: 6px; height: 6px; }
-  .legend b { font-size: 9px; }
-  .legend > small { font-size: 9px; width: 100%; text-align: right; }
+  .legend { gap: 10px 22px; padding: 14px 16px; }
+  .legend > strong { width: 100%; font-size: 10px; }
+  .legend > span { font-size: 13px; gap: 8px; }
+  .legend b { font-size: 13px; }
 }
-@media (prefers-reduced-motion: reduce) { .svgPlot polygon, .enquire { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .svgPlot polygon, .enquire { transition: none; } .svgPlot[data-live] > polygon:first-child { animation: none; } }

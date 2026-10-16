@@ -32,7 +32,7 @@ test("Star Garden leads the ongoing collection with its concept image and qualif
   await expect(page.locator("[data-chapter-hero]").getByText(/AI-generated concept image/i)).not.toBeVisible();
 
   const highlights = page.getByRole("region", { name: "Project Highlights", exact: true });
-  for (const fact of [/Total area\s*:?\s*10 acres/, /Total plots\s*:?\s*30/, /Premium stream-attached plots\s*:?\s*9/, /Plots sold\s*:?\s*12/, /All internal roads developed with CC roads/, /Partition registration facility available/, /LAP loan.*subject to lender eligibility and approval/]) {
+  for (const fact of [/Total area\s*:?\s*10 acres/, /Total plots\s*:?\s*46/, /Premium stream-attached plots\s*:?\s*9/, /Plot availability\s*:?\s*40 available · 2 booked · 4 sold/, /All internal roads developed with CC roads/, /Partition registration facility available/, /LAP loan.*subject to lender eligibility and approval/]) {
     await expect(highlights).toContainText(fact);
   }
   const amenities = page.getByRole("region", { name: "Premium Amenities", exact: true });

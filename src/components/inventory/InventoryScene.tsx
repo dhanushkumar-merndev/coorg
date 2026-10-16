@@ -1,11 +1,11 @@
 "use client";
 
 import { Component, useEffect, useLayoutEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode } from "react";
-import { Canvas, useThree, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import type { InventoryPlot, PlotStatus, Point } from "@/data/inventory";
+import { activePlotColor, statusColors, statusLabelColors, type InventoryPlot, type PlotStatus, type Point } from "@/data/inventory";
 
 type InventorySceneProps = {
   plots: InventoryPlot[];
@@ -20,17 +20,17 @@ type InventorySceneProps = {
   onError: () => void;
   resetKey: number;
   zoom: number;
+  /** Pixels on the right of the canvas covered by the floating legend. */
+  reserveRight: number;
 };
 
 const PLOT_HEIGHT = 0.13;
 const CAMERA_POSITION = new THREE.Vector3(24, 25, 11);
 const CAMERA_TARGET = new THREE.Vector3(0, 0, 0);
-const STATUS_COLORS: Record<PlotStatus, string> = {
-  unconfirmed: "#a4b29a",
-  available: "#95ad7d",
-  sold: "#ba8070",
-  partial: "#d4b066",
-};
+const BASE_HEIGHT = 0.32;
+// Screen space kept clear for the toolbar above and the hint/controls below.
+const FIT_PADDING = { side: 40, top: 96, bottom: 64 };
+const PULSE_PERIOD = 2.4;
 
 type ModelPlot = {
   id: string;
@@ -105,12 +105,11 @@ function makeModel({ plots, boundary, roads, viewBox }: Pick<InventorySceneProps
   roadGeometries.forEach(geometry => geometry.dispose());
 
   return {
-    width: width * scale,
-    depth: depth * scale,
     plots: modelPlots,
     plotsGeometry,
     roadsGeometry,
-    baseGeometry: raisedPolygon(estate, 0.32),
+    estate,
+    baseGeometry: raisedPolygon(estate, BASE_HEIGHT),
     bordersGeometry: lineGeometry(modelPlots.map(plot => plot.points), PLOT_HEIGHT + 0.009),
     boundaryGeometry: lineGeometry([estate], 0.005),
   };
@@ -118,7 +117,7 @@ function makeModel({ plots, boundary, roads, viewBox }: Pick<InventorySceneProps
 
 type Model = ReturnType<typeof makeModel>;
 
-function PlotLabel({ plot, selected }: { plot: ModelPlot; selected: boolean }) {
+function PlotLabel({ plot, color }: { plot: ModelPlot; color: string }) {
   const texture = useMemo(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 128;
@@ -140,7 +139,7 @@ function PlotLabel({ plot, selected }: { plot: ModelPlot; selected: boolean }) {
   useEffect(() => () => texture.dispose(), [texture]);
 
   return <sprite position={[plot.centroid[0], PLOT_HEIGHT + 0.12, plot.centroid[1]]} scale={[0.78, 0.39, 1]} renderOrder={4} raycast={() => {}}>
-    <spriteMaterial map={texture} color={selected ? "#fff8e8" : "#203d2e"} transparent depthWrite={false} depthTest={false} toneMapped={false} />
+    <spriteMaterial map={texture} color={color} transparent depthWrite={false} depthTest={false} toneMapped={false} />
   </sprite>;
 }
 
@@ -152,7 +151,37 @@ function PlotOutline({ points, selected }: { points: Point[]; selected: boolean 
   </lineSegments>;
 }
 
-function CameraControls({ width, depth, resetKey, zoom }: { width: number; depth: number; resetKey: number; zoom: number }) {
+/** A soft light that breathes over every available plot, so the plan reads as live. */
+function LivePulse({ model, statuses, paused }: { model: Model; statuses: Record<string, PlotStatus>; paused: boolean }) {
+  const material = useRef<THREE.MeshBasicMaterial>(null);
+  const geometry = useMemo(() => {
+    const faces = model.plots.filter(plot => statuses[plot.id] === "available").map(plot => {
+      const face = new THREE.ShapeGeometry(polygonShape(plot.points));
+      face.rotateX(-Math.PI / 2);
+      return face;
+    });
+    const merged = faces.length ? mergeGeometries(faces) : null;
+    faces.forEach(face => face.dispose());
+    return merged;
+  }, [model, statuses]);
+  useEffect(() => () => geometry?.dispose(), [geometry]);
+
+  // The canvas renders on demand; requesting the next frame here keeps only
+  // this pulse running, and it stops while plot details cover the map.
+  useFrame(({ clock, invalidate }) => {
+    if (!material.current) return;
+    if (paused) { material.current.opacity = 0; return; }
+    material.current.opacity = 0.02 + 0.16 * (0.5 + 0.5 * Math.sin(clock.elapsedTime * Math.PI * 2 / PULSE_PERIOD));
+    invalidate();
+  });
+
+  if (!geometry) return null;
+  return <mesh geometry={geometry} position={[0, PLOT_HEIGHT + 0.003, 0]} renderOrder={1} raycast={() => {}}>
+    <meshBasicMaterial ref={material} color="#cfe9a6" transparent opacity={0} depthWrite={false} toneMapped={false} />
+  </mesh>;
+}
+
+function CameraControls({ estate, resetKey, zoom, reserveRight }: { estate: Point[]; resetKey: number; zoom: number; reserveRight: number }) {
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null);
   const get = useThree(state => state.get);
   const size = useThree(state => state.size);
@@ -178,17 +207,22 @@ function CameraControls({ width, depth, resetKey, zoom }: { width: number; depth
   useLayoutEffect(() => {
     const camera = get().camera;
     if (!(camera instanceof THREE.OrthographicCamera)) return;
-    // Fit the oblique footprint to both viewport dimensions, so a tall source
-    // plan can fill a wide desktop view without cropping any plot.
+    // Fit the estate outline itself (not its bounding rectangle) into the space
+    // beside the legend, so the oblique plan fills the view without cropping.
     const orientation = new THREE.Matrix4().lookAt(CAMERA_POSITION, CAMERA_TARGET, new THREE.Vector3(0, 1, 0)).invert();
-    const corners = [-1, 1].flatMap(x => [-1, 1].map(z => new THREE.Vector3(x * width / 2, 0, z * depth / 2).applyMatrix4(orientation)));
-    const projectedWidth = Math.max(...corners.map(point => point.x)) - Math.min(...corners.map(point => point.x));
-    const projectedHeight = Math.max(...corners.map(point => point.y)) - Math.min(...corners.map(point => point.y));
-    const fit = Math.min((size.width - 100) / (projectedWidth + 0.5), (size.height - 110) / (projectedHeight + 0.5));
+    const projected = estate.flatMap(([x, z]) => [0, -BASE_HEIGHT].map(y => new THREE.Vector3(x, y, z).applyMatrix4(orientation)));
+    const xs = projected.map(point => point.x), ys = projected.map(point => point.y);
+    const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+    const { side, top, bottom } = FIT_PADDING;
+    const fit = Math.min((size.width - reserveRight - side * 2) / (maxX - minX), (size.height - top - bottom) / (maxY - minY));
     camera.zoom = Math.max(1, fit) * THREE.MathUtils.clamp(zoom, 0.7, 2.8);
+    // Shift the rendered view (not the orbit target) so the outline's centre
+    // sits in the middle of the free area left of the legend.
+    const centerX = (minX + maxX) / 2 * camera.zoom, centerY = (minY + maxY) / 2 * camera.zoom;
+    camera.setViewOffset(size.width, size.height, centerX + reserveRight / 2, -(centerY + (top - bottom) / 2), size.width, size.height);
     camera.updateProjectionMatrix();
     invalidate();
-  }, [get, size.width, size.height, width, depth, zoom, resetKey, invalidate]);
+  }, [get, size.width, size.height, estate, zoom, reserveRight, resetKey, invalidate]);
 
   return <OrbitControls
     ref={controls}
@@ -203,7 +237,7 @@ function CameraControls({ width, depth, resetKey, zoom }: { width: number; depth
   />;
 }
 
-function EstateModel({ model, statuses, selectedId, hoveredId, onSelect, onHover, onError, resetKey, zoom }: Omit<InventorySceneProps, "plots" | "boundary" | "roads" | "viewBox"> & { model: Model }) {
+function EstateModel({ model, statuses, selectedId, hoveredId, onSelect, onHover, onError, resetKey, zoom, reserveRight }: Omit<InventorySceneProps, "plots" | "boundary" | "roads" | "viewBox"> & { model: Model }) {
   const gl = useThree(state => state.gl);
   const invalidate = useThree(state => state.invalidate);
   const selected = model.plots.find(plot => plot.id === selectedId);
@@ -226,7 +260,7 @@ function EstateModel({ model, statuses, selectedId, hoveredId, onSelect, onHover
     const normals = model.plotsGeometry.getAttribute("normal");
     const color = new THREE.Color();
     for (const plot of model.plots) {
-      color.set(plot.id === selectedId ? "#355b45" : STATUS_COLORS[statuses[plot.id] ?? "unconfirmed"]);
+      color.set(plot.id === selectedId ? activePlotColor : statusColors[statuses[plot.id]]);
       if (plot.id === hoveredId && plot.id !== selectedId) color.lerp(new THREE.Color("#f6f1df"), 0.22);
       for (let index = plot.firstVertex; index < plot.firstVertex + plot.vertexCount; index++) {
         const shade = normals.getY(index) > 0.5 ? 1 : 0.76;
@@ -244,9 +278,9 @@ function EstateModel({ model, statuses, selectedId, hoveredId, onSelect, onHover
   };
 
   return <>
-    <ambientLight intensity={1.8} />
-    <directionalLight position={[-12, 24, 10]} intensity={2.4} color="#fff7e5" />
-    <mesh geometry={model.baseGeometry} position={[0, -0.32, 0]} raycast={() => {}}>
+    <ambientLight intensity={1.4} />
+    <directionalLight position={[-12, 24, 10]} intensity={2} color="#fff7e5" />
+    <mesh geometry={model.baseGeometry} position={[0, -BASE_HEIGHT, 0]} raycast={() => {}}>
       <meshStandardMaterial color="#ede8d8" roughness={1} metalness={0} />
     </mesh>
     {model.roadsGeometry && <mesh geometry={model.roadsGeometry} position={[0, 0.008, 0]} raycast={() => {}}>
@@ -265,15 +299,17 @@ function EstateModel({ model, statuses, selectedId, hoveredId, onSelect, onHover
         if (event.delta <= 5 && plot) onSelect(plot.id);
       }}
     >
-      <meshStandardMaterial vertexColors roughness={1} metalness={0} />
+      {/* Untone-mapped so the deep status colours render as specified. */}
+      <meshStandardMaterial vertexColors roughness={1} metalness={0} toneMapped={false} />
     </mesh>
     <lineSegments geometry={model.bordersGeometry} raycast={() => {}}>
-      <lineBasicMaterial color="#62745a" transparent opacity={0.52} />
+      <lineBasicMaterial color="#e7eed8" transparent opacity={0.45} />
     </lineSegments>
+    <LivePulse model={model} statuses={statuses} paused={selectedId !== null} />
     {selected && <PlotOutline points={selected.points} selected />}
     {hovered && <PlotOutline points={hovered.points} selected={false} />}
-    {model.plots.map(plot => <PlotLabel key={plot.id} plot={plot} selected={plot.id === selectedId} />)}
-    <CameraControls width={model.width} depth={model.depth} resetKey={resetKey} zoom={zoom} />
+    {model.plots.map(plot => <PlotLabel key={plot.id} plot={plot} color={plot.id === selectedId ? "#fff8e8" : statusLabelColors[statuses[plot.id]]} />)}
+    <CameraControls estate={model.estate} resetKey={resetKey} zoom={zoom} reserveRight={reserveRight} />
   </>;
 }
 

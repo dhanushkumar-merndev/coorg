@@ -51,20 +51,26 @@ section { scroll-margin-top: 86px; }
 .desktop-nav a::after { content: ''; position: absolute; height: 1px; bottom: 3px; left: 0; width: 0; background: currentColor; transition: width .35s; }
 .desktop-nav a:hover::after, .desktop-nav a[aria-current="page"]::after { width: 100%; }
 .nav-actions { display: flex; justify-self: end; align-items: center; gap: 12px; white-space: nowrap; }
-.nav-inventory { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px 16px; border: 1px solid #fff9dc90; border-radius: var(--radius-button); background: #f2efd9; color: var(--deep-forest); box-shadow: 0 3px 18px #102b231c, inset 0 1px 0 #ffffff8c; font-size: 13px; font-weight: 600; transition: background .3s, box-shadow .3s, transform .3s var(--ease-out-expo); }
+.nav-inventory { --live: #1f9d4c; position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px 16px; border: 1px solid #fff9dc90; border-radius: var(--radius-button); background: #f2efd9; color: var(--deep-forest); box-shadow: 0 3px 18px #102b231c, inset 0 1px 0 #ffffff8c; font-size: 13px; font-weight: 600; transition: background .3s, box-shadow .3s, transform .3s var(--ease-out-expo); }
 .nav-inventory::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 20%, #ffffff70 48%, transparent 75%); transform: translateX(-130%); animation: inventory-sheen 6.5s var(--ease-soft) infinite; pointer-events: none; }
 .nav-inventory:hover, .nav-inventory:focus-visible { background: #fff9e4; box-shadow: 0 5px 24px #102b2330, inset 0 1px 0 #ffffff8c; transform: translateY(-1px); }
 .nav-inventory > svg { flex-shrink: 0; transition: transform .3s var(--ease-out-expo); }
 .nav-inventory:hover > svg, .nav-inventory:focus-visible > svg { transform: translateX(3px); }
-.nav-inventory-spark { position: relative; width: 6px; height: 6px; flex: 0 0 6px; margin-right: 1px; border-radius: 50%; background: #3f785b; }
-.nav-inventory-spark::after { content: ''; position: absolute; inset: -3px; border: 1px solid currentColor; color: #3f785b; border-radius: 50%; animation: inventory-pulse 3s var(--ease-soft) infinite; }
+/* Shared live signal: a glowing dot that blinks, two staggered radar ripples,
+   and a ping ring that expands around the button carrying it. */
+.nav-inventory, .button--live { animation: live-ping 3.2s cubic-bezier(.22, .61, .36, 1) infinite; }
+.nav-inventory:focus-visible, .button--live:focus-visible { animation: none; }
+.nav-inventory-spark, .hero-live-dot { position: relative; width: 9px; height: 9px; flex: 0 0 9px; margin-right: 2px; border-radius: 50%; background: var(--live); box-shadow: 0 0 12px 1px var(--live); animation: live-dot 1.6s ease-in-out infinite; }
+.nav-inventory-spark::before, .nav-inventory-spark::after, .hero-live-dot::before, .hero-live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--live); animation: live-ripple 2.4s cubic-bezier(.22, .61, .36, 1) infinite; }
+.nav-inventory-spark::after, .hero-live-dot::after { animation-delay: 1.2s; }
+@keyframes live-dot { 0%, 100% { background-color: var(--live); box-shadow: 0 0 12px 1px var(--live); } 50% { background-color: color-mix(in srgb, var(--live) 35%, #ffffff); box-shadow: 0 0 2px 0 var(--live); } }
+@keyframes live-ripple { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(3.2); opacity: 0; } }
+@keyframes live-ping { 0% { outline: 1.5px solid color-mix(in srgb, var(--live) 70%, transparent); outline-offset: 0; } 55%, 100% { outline: 1.5px solid color-mix(in srgb, var(--live) 0%, transparent); outline-offset: 9px; } }
 .is-scrolled .nav-inventory { background: var(--forest); color: #f5f1dd; border-color: #234e40; box-shadow: 0 3px 14px #173c321a, inset 0 1px 0 #ffffff12; }
 .is-scrolled .nav-inventory::before { opacity: .2; }
 .is-scrolled .nav-inventory:hover, .is-scrolled .nav-inventory:focus-visible { background: #244e3e; box-shadow: 0 5px 22px #173c3230; }
-.is-scrolled .nav-inventory-spark { background: #c6db9c; }
-.is-scrolled .nav-inventory-spark::after { color: #c6db9c; }
+.is-scrolled .nav-inventory { --live: #7ddc95; }
 .nav-inventory[aria-current="page"] { box-shadow: 0 0 0 3px #8b9d5e26, inset 0 1px 0 #ffffff12; }
-@keyframes inventory-pulse { 0%, 100% { transform: scale(.75); opacity: .65; } 65%, 85% { transform: scale(1.65); opacity: 0; } }
 @keyframes inventory-sheen { 0%, 64% { transform: translateX(-130%); } 84%, 100% { transform: translateX(130%); } }
 .nav-enquire { display: flex; justify-self: end; align-items: center; gap: 22px; font-size: 16px; padding: 14px 19px; border: 1px solid #eeeede70; border-radius: var(--radius-button); transition: background .3s; }
 .is-scrolled .nav-enquire { border-color: #173c3255; }
@@ -136,12 +142,17 @@ section { scroll-margin-top: 86px; }
 .hero-support { position: relative; z-index: 5; width: 100%; text-align: center; }
 .hero-horizon-line { display: block; margin: 0 auto 18px; width: 58px; height: 1px; background: #e6e9d885; }
 .hero-support > p { font-family: var(--font-display), Georgia, serif; font-size: clamp(22px, 2vw, 32px); font-style: italic; line-height: 1.4; letter-spacing: .015em; text-shadow: 0 2px 10px #0f332980; }
-.hero-actions { display: flex; justify-content: center; gap: 16px; margin-top: 26px; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 26px; }
 .button { display: inline-flex; align-items: center; justify-content: space-between; gap: 26px; min-height: 51px; padding: 15px 23px; font-size: 12px; letter-spacing: .035em; border: 1px solid transparent; border-radius: var(--radius-button); }
 .button--light { background: #f4f0e7; color: #173c32; }
 .button--line { border-color: #f4f0e780; color: #f4f0e7; }
 .button--line:hover { background: #f4f0e715; }
 .button svg { width: 17px; }
+/* Hero shortcut to the plot map where the header's Live Inventory button is hidden. */
+.button--live { --live: #7ddc95; display: none; position: relative; background: var(--forest); color: #f5f1dd; border-color: #c6db9c55; box-shadow: 0 6px 24px #0b221b40; transition: background .3s; }
+.button--live:hover { background: #20493c; }
+.button--live > span { display: inline-flex; align-items: center; gap: 12px; }
+@media (max-width: 1200px) { .button--live { display: inline-flex; } }
 .hero-kpis { display: none; }
 .hero-bottom { position: absolute; z-index: 6; bottom: 32px; left: var(--page-gutter); right: var(--page-gutter); display: flex; align-items: center; justify-content: space-between; }
 .scroll-cue { display: flex; align-items: center; gap: 15px; font-size: 12px; letter-spacing: .19em; }
@@ -209,12 +220,21 @@ section { scroll-margin-top: 86px; }
   .hero-art-label { font-size: 12px; line-height: 1.6; letter-spacing: 0; }
   .scroll-line { height: 30px; }
 }
+@media (max-width: 600px) and (max-height: 819px) {
+  /* Short phones: tighten the stack so all three CTAs clear the figures strip. */
+  .coorg-hero { min-height: 780px; }
+  .hero-copy-layout { gap: 28px; }
+  .hero-logo { margin-bottom: 14px; }
+  .hero-actions { margin-top: 24px; gap: 8px; }
+  .hero-actions .button { min-height: 46px; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
   .hero-type-mist { opacity: .35; }
   .site-header { transition-duration: .1s; }
-  .nav-inventory::before, .nav-inventory-spark::after { animation: none; }
+  .nav-inventory::before, .nav-inventory, .button--live, .nav-inventory-spark, .hero-live-dot { animation: none; }
+  .nav-inventory-spark::before, .nav-inventory-spark::after, .hero-live-dot::before, .hero-live-dot::after { display: none; }
   .nav-inventory::before { display: none; }
   .nav-inventory, .nav-inventory > svg { transition: none; }
   .nav-inventory:hover, .nav-inventory:focus-visible, .nav-inventory:hover > svg, .nav-inventory:focus-visible > svg { transform: none; }

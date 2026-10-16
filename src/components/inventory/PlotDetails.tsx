@@ -17,13 +17,13 @@ export function PlotDetails({ plot, status }: { plot: InventoryPlot; status: Plo
     <dl className={styles.facts}>
       <div><dt>Project</dt><dd>Star Gardens</dd></div>
       <div><dt>Location</dt><dd>Kedakal</dd></div>
-      <div><dt>Actual availability</dt><dd>To be confirmed</dd></div>
+      <div><dt>Availability</dt><dd>{statusLabels[status]}</dd></div>
       <div><dt>Price</dt><dd>On enquiry</dd></div>
       {plot.roadFrontageFt != null && <div><dt>Proposed road frontage</dt><dd>{plot.roadFrontageFt.toFixed(2)} ft</dd></div>}
     </dl>
     {plot.sideLengthsFt.length > 0 && <details className={styles.measurements}><summary>Boundary measurements <span>{plot.sideLengthsFt.length} sides</span></summary><ol>{plot.sideLengthsFt.map((length, index) => <li key={index}><span>Side {index + 1}</span><strong>{length.toFixed(2)} ft</strong></li>)}</ol><p>Numbered sides follow the PDF sketches. Dimensions are measured from the concept polygon; verify on site.</p></details>}
     <a className={styles.enquire} href={whatsappUrl(`Hello Star Managed Farmlands, I am interested in Plot ${plot.id} at Star Gardens, Kedakal (${formatArea(plot.areaSqFt)} sq ft in concept revision 04). Please confirm its actual availability, price and final measurements.`)} target="_blank" rel="noopener noreferrer">Enquire about {plot.id}<LuArrowUpRight aria-hidden="true" /></a>
-    <p className={styles.detailNote}>Proposed layout, revision 04. Final boundaries, road levels and approvals must be verified. Demo colours do not indicate actual bookings.</p>
+    <p className={styles.detailNote}>Proposed layout, revision 04. Final boundaries, road levels and approvals must be verified.</p>
   </>;
 }
 

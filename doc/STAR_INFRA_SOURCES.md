@@ -30,7 +30,7 @@ The user previously requested ongoing work under Farm Management, now Managed Fa
 
 Source: the user's project copy and replacement instruction supplied on 11 September 2026. No separate site photographs, approval documents or project source URL were supplied. The user places this project in the ongoing collection at `/managed-farmlands/star-garden`.
 
-Star Garden is described as **Premium Coffee Estate Plots at Madikeri**, comprising 10 acres and 33 exclusive plots (updated from 30 per user correction on 2026-09-15), including 9 premium stream-attached plots. The stated 12 plots sold is a user-supplied snapshot; do not infer current available inventory by subtraction. Current `availability` remains `null`.
+Star Garden is described as **Premium Coffee Estate Plots at Madikeri**, comprising 10 acres and 9 premium stream-attached plots. Plot totals and availability are no longer hand-written: the project copy, hero figures and plot explorer all read `src/data/inventory.ts`, which takes the 46 plots of master plan revision 04 (2026-10-10) and the client-confirmed sold (P02–P05) and booked (P23, P24) plots. This supersedes the earlier 30 → 33 plot count and the "12 plots sold" snapshot. The 9 stream-attached plots figure predates revision 04 and has not been re-checked against it.
 
 The supplied facilities are developed CC internal roads, partition registration, and a LAP loan facility subject to lender eligibility and approval. Listed amenities are a 5,500 sq. ft. clubhouse, community kitchen, dining hall, swimming pool, dense plantation and natural coffee estate surroundings. These are user-supplied descriptions, without independent construction or legal verification.
 

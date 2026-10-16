@@ -12,10 +12,11 @@ import BirdFlock from "./BirdFlock";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 const heroImage = "/images/coorg/conceptual/hero-mist-valley.webp";
-// Mobile-only glance figures, taken from the Star Garden highlights in data/projects.ts.
-const heroKpis = [["10", "Acres of coffee"], ["33", "Total plots"], ["09", "Stream plots"]] as const;
+// Mobile-only glance figures for Star Garden. The plot count arrives from the
+// server page so the inventory plan data stays out of this client bundle.
+const heroKpis = (plotCount: number) => [["10", "Acres of coffee"], [String(plotCount), "Total plots"], ["09", "Stream plots"]] as const;
 
-export default function CoorgHero() {
+export default function CoorgHero({ plotCount }: { plotCount: number }) {
   const root = useRef<HTMLElement>(null);
   const journey = useRef<HTMLDivElement>(null);
   const progress = useRef({ progress: 0 });
@@ -67,11 +68,11 @@ export default function CoorgHero() {
       <span className="hero-logo" aria-hidden="true"><Image src="/brand-logo.svg" alt="" width={512} height={512} unoptimized /></span>
       <h1 className="hero-title"><span className="hero-title-land"><span className="hero-copy-entry">STAR</span></span>{" "}<span className="hero-title-coorg"><span className="hero-copy-entry">MANAGED FARMLANDS</span></span></h1>
     </div>
-    <div className="hero-support"><span className="hero-horizon-line" aria-hidden="true" /><div className="hero-actions"><MagneticButton href="/opportunities">Explore Opportunities</MagneticButton><MagneticButton href="/enquiry" variant="line">Enquire Privately</MagneticButton></div>
+    <div className="hero-support"><span className="hero-horizon-line" aria-hidden="true" /><div className="hero-actions"><MagneticButton href="/opportunities">Explore Opportunities</MagneticButton><MagneticButton href="/enquiry" variant="line">Enquire Privately</MagneticButton><MagneticButton href="/live-inventory" variant="live"><i className="hero-live-dot" aria-hidden="true" />Live Inventory</MagneticButton></div>
     </div>
     </div>
     <div className="hero-type-mist" aria-hidden="true" />
-    <div className="hero-kpis"><p className="hero-kpis-caption" id="hero-kpis-caption">STAR GARDEN · MADIKERI</p><dl aria-labelledby="hero-kpis-caption">{heroKpis.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+    <div className="hero-kpis"><p className="hero-kpis-caption" id="hero-kpis-caption">STAR GARDEN · MADIKERI</p><dl aria-labelledby="hero-kpis-caption">{heroKpis(plotCount).map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
     <div className="hero-bottom"><a href="#opportunities" className="scroll-cue"><span className="scroll-line" /><span>SCROLL TO DISCOVER</span></a><span className="hero-location"><span className="location-dot" />THE WESTERN GHATS, KARNATAKA</span></div>
     <MistTransition />
   </section></div>;

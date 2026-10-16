@@ -1,3 +1,5 @@
+import { plots, statusCounts } from "./inventory";
+
 export type ProjectLifecycle = "completed" | "ongoing";
 export type ProjectAvailability = "available" | "sold-out" | null;
 
@@ -267,6 +269,17 @@ export const completedProjects: EstateProject[] = [
   },
 ];
 
+const UNITS = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split(" ");
+const TENS = "  twenty thirty forty fifty sixty seventy eighty ninety".split(" ");
+/** Spells out a count for editorial copy, e.g. 46 → "forty-six". */
+const spellOut = (n: number) => n < 20 ? UNITS[n] : n < 100 ? TENS[Math.floor(n / 10)] + (n % 10 ? `-${UNITS[n % 10]}` : "") : String(n);
+const capitalise = (text: string) => text[0].toUpperCase() + text.slice(1);
+
+// Plot totals come from the live inventory (master plan revision 04 plus the
+// client-confirmed sold/booked plots), so the copy cannot drift from the map.
+const starGardenPlots = plots.length;
+const starGardenOpen = statusCounts.available;
+
 // Star Garden replaces the former ongoing project at the user's request.
 // Project details and projections were supplied by the user on 2026-09-11.
 // The concept image is illustrative; title, map and exact sale terms remain TBC.
@@ -276,19 +289,20 @@ export const ongoingProjects: EstateProject[] = [
     name: "Star Garden",
     location: "Madikeri, Coorg",
     category: "Premium Coffee Estate Plots",
-    summary: "Thirty-three plots cut into ten acres of working coffee.",
+    summary: `${capitalise(spellOut(starGardenPlots))} plots cut into ten acres of working coffee.`,
     description: [
-      "Ten acres of coffee at Madikeri, divided into thirty-three plots. Nine of them meet the stream that runs down through the property.",
+      `Ten acres of coffee at Madikeri, divided into ${spellOut(starGardenPlots)} plots. Nine of them meet the stream that runs down through the property.`,
       "The plantation stays. Plots are cut into a working estate rather than a cleared site, so the ground already carries shade trees, coffee and a season of its own before anything is built on it.",
     ],
     status: "ongoing",
-    availability: null,
+    availability: starGardenOpen > 0 ? "available" : "sold-out",
+    availabilitySource: "user-confirmed",
     areaLabel: "10 acres",
     highlights: [
       { label: "Total area", value: "10 acres" },
-      { label: "Total plots", value: "33 exclusive plots" },
+      { label: "Total plots", value: `${starGardenPlots} exclusive plots` },
       { label: "Stream-attached plots", value: "9 premium plots" },
-      { label: "Plots sold", value: "12 plots" },
+      { label: "Plot availability", value: `${starGardenOpen} available · ${statusCounts.booked} booked · ${statusCounts.sold} sold` },
       { label: "Internal roads", value: "Developed with CC roads" },
       { label: "Financing / LAP", value: "LAP loan facility available" },
     ],

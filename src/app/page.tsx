@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CoorgHero from "@/components/hero/CoorgHero";
+import { plots } from "@/data/inventory";
 import CoorgWorldsCarousel from "@/components/worlds/CoorgWorldsCarousel";
 import { WhyCoorg } from "@/components/sections/WhyCoorg";
 import { FeaturedOpportunities } from "@/components/sections/FeaturedOpportunities";
@@ -14,5 +15,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <><CoorgHero /><CoorgWorldsCarousel /><WhyCoorg /><FeaturedOpportunities /><LandStory /><HomeFAQ /><EnquiryCTA /></>;
+  return <><CoorgHero plotCount={plots.length} /><CoorgWorldsCarousel /><WhyCoorg /><FeaturedOpportunities /><LandStory /><HomeFAQ /><EnquiryCTA /></>;
 }

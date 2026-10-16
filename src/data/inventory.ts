@@ -1,7 +1,7 @@
 import source from "./star-gardens-plan.json";
 
 export type Point = [number, number];
-export type PlotStatus = "unconfirmed" | "available" | "sold" | "partial";
+export type PlotStatus = "available" | "sold" | "booked";
 export type InventoryPlot = {
   id: string;
   label: string;
@@ -12,7 +12,7 @@ export type InventoryPlot = {
   spanFt?: number;
   averageWidthFt?: number;
   roadFrontageFt?: number;
-  status: null;
+  status: PlotStatus;
   price: null;
 };
 
@@ -26,56 +26,39 @@ type SourcePlan = {
 // Geometry and printed dimensions come from the supplied concept PDF. They
 // describe a proposed layout, not a surveyed/approved construction model.
 export const plan = source as unknown as SourcePlan;
-export const plots: InventoryPlot[] = plan.plots.map(plot => ({ ...plot, status: null, price: null }));
+
+// Sales and bookings confirmed by the client; every other plot is available.
+const SOLD_PLOTS = ["P02", "P03", "P04", "P05"];
+const BOOKED_PLOTS = ["P23", "P24"];
+const statusOf = (id: string): PlotStatus => SOLD_PLOTS.includes(id) ? "sold" : BOOKED_PLOTS.includes(id) ? "booked" : "available";
+
+export const plots: InventoryPlot[] = plan.plots.map(plot => ({ ...plot, status: statusOf(plot.id), price: null }));
+export const plotStatuses: Record<string, PlotStatus> = Object.fromEntries(plots.map(plot => [plot.id, plot.status]));
+/** Plot totals by status; project copy reads these so it always matches the map. */
+export const statusCounts = Object.fromEntries((["available", "booked", "sold"] as const)
+  .map(status => [status, plots.filter(plot => plot.status === status).length])) as Record<PlotStatus, number>;
 export const sourcePlanUrl = "/documents/star-gardens-master-plan.pdf";
 
 export const statusLabels: Record<PlotStatus, string> = {
-  unconfirmed: "To be confirmed",
-  available: "Available · demo",
-  sold: "Sold out · demo",
-  partial: "Partially booked · demo",
+  available: "Available",
+  sold: "Sold out",
+  booked: "Booked",
 };
 
 export const statusColors: Record<PlotStatus, string> = {
-  unconfirmed: "#a4b29a",
-  available: "#95ad7d",
-  sold: "#ba8070",
-  partial: "#d4b066",
+  available: "#356b3c",
+  sold: "#8e2420",
+  booked: "#b8860b",
 };
 
-/** Sample visual states are separate from the factual records above. */
-export function getDisplayStatuses(demo: boolean, partialId: string | null): Record<string, PlotStatus> {
-  return Object.fromEntries(plots.map(plot => [plot.id,
-    !demo ? "unconfirmed" : ["P12", "P28"].includes(plot.id) ? "sold" : plot.id === partialId ? "partial" : "available",
-  ]));
-}
+/** Plot-number colours that stay legible on each status fill. */
+export const statusLabelColors: Record<PlotStatus, string> = {
+  available: "#fbf7ea",
+  sold: "#fbf7ea",
+  booked: "#2b2410",
+};
 
-const DEMO_STORAGE_KEY = "star-gardens-demo-visits-v1";
-type VisitCycle = { visit: number; slot: number; partialId: string };
-
-/** One random demo visit per ten visits in THIS browser, never live activity.
- * Keeping the cycle in session memory also prevents Strict Mode's second
- * effect from counting a visit twice. Each genuine page mount calls this once.
- */
-export function recordDemoVisit(storage: Pick<Storage, "getItem" | "setItem">, random = Math.random): string | null {
-  try {
-    const raw = storage.getItem(DEMO_STORAGE_KEY);
-    let parsed: Partial<VisitCycle> | null = null;
-    try { parsed = raw ? JSON.parse(raw) : null; } catch { /* Reset a damaged demo cycle. */ }
-    const valid = parsed && Number.isInteger(parsed.visit) && parsed.visit! >= 1 && parsed.visit! <= 10
-      && Number.isInteger(parsed.slot) && parsed.slot! >= 1 && parsed.slot! <= 10
-      && plots.some(plot => plot.id === parsed.partialId && !["P12", "P28"].includes(plot.id));
-    const candidates = plots.filter(plot => !["P12", "P28"].includes(plot.id));
-    const sample = () => Math.max(0, Math.min(0.999999, random()));
-    const cycle: VisitCycle = !parsed || !valid || parsed.visit === 10
-      ? { visit: 1, slot: 1 + Math.floor(sample() * 10), partialId: candidates[Math.floor(sample() * candidates.length)].id }
-      : { visit: parsed.visit! + 1, slot: parsed.slot!, partialId: parsed.partialId! };
-    storage.setItem(DEMO_STORAGE_KEY, JSON.stringify(cycle));
-    return cycle.visit === cycle.slot ? cycle.partialId : null;
-  } catch {
-    // Storage denial/corruption never prevents access to the plan.
-    return null;
-  }
-}
+/** Fill for the hovered or selected plot in both the plan and the 3D view. */
+export const activePlotColor = "#173427";
 
 export const formatArea = (area: number) => new Intl.NumberFormat("en-IN").format(area);

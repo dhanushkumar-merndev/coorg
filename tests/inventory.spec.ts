@@ -1,25 +1,23 @@
 import { test, expect } from "@playwright/test";
-import { getDisplayStatuses, recordDemoVisit } from "../src/data/inventory";
+import { plotStatuses } from "../src/data/inventory";
+import { ongoingProjects } from "../src/data/projects";
 
-test("demo visit sampling shows one partial example per ten visits and never changes real mode", () => {
-  let stored: string | null = null;
-  const storage = { getItem: () => stored, setItem: (_key: string, value: string) => { stored = value; } };
-  const samples = Array.from({ length: 20 }, () => recordDemoVisit(storage, () => 0.5));
-  expect(samples.map((id, index) => id ? index + 1 : null).filter(Boolean)).toEqual([6, 16]);
-  for (const id of samples) {
-    const demo = Object.values(getDisplayStatuses(true, id));
-    expect(demo.filter(status => status === "sold")).toHaveLength(2);
-    expect(demo.filter(status => status === "partial")).toHaveLength(id ? 1 : 0);
-    expect(Object.values(getDisplayStatuses(false, id)).every(status => status === "unconfirmed")).toBe(true);
-  }
+test("plot statuses mark the confirmed sales and bookings", () => {
+  const ids = (status: string) => Object.entries(plotStatuses).filter(([, value]) => value === status).map(([id]) => id);
+  expect(ids("sold")).toEqual(["P02", "P03", "P04", "P05"]);
+  expect(ids("booked")).toEqual(["P23", "P24"]);
+  expect(ids("available")).toHaveLength(40);
 });
 
-test("demo visit sampling recovers corrupt storage and tolerates denied storage", () => {
-  let stored = "{broken json";
-  const storage = { getItem: () => stored, setItem: (_key: string, value: string) => { stored = value; } };
-  expect(recordDemoVisit(storage, () => 0)).toBe("P01");
-  expect(recordDemoVisit(storage, () => 0)).toBeNull();
-  expect(recordDemoVisit({ getItem: () => { throw new Error("denied"); }, setItem: () => {} })).toBeNull();
+test("Star Garden project copy follows the live inventory", () => {
+  const starGarden = ongoingProjects.find(project => project.id === "star-garden")!;
+  expect(starGarden.summary).toBe("Forty-six plots cut into ten acres of working coffee.");
+  expect(starGarden.description[0]).toContain("divided into forty-six plots");
+  expect(starGarden.availability).toBe("available");
+  expect(starGarden.highlights).toEqual(expect.arrayContaining([
+    { label: "Total plots", value: "46 exclusive plots" },
+    { label: "Plot availability", value: "40 available · 2 booked · 4 sold" },
+  ]));
 });
 
 test("inventory plan exposes all source plots and keyboard-selected facts", async ({ page }) => {
@@ -33,10 +31,15 @@ test("inventory plan exposes all source plots and keyboard-selected facts", asyn
   await plot.press("Enter");
   const details = page.getByRole("dialog", { name: "Plot P01 details" });
   await expect(details).toContainText("8,702");
-  await expect(details).toContainText("To be confirmed");
+  await expect(details).toContainText("Available");
+  await expect(details).not.toContainText("demo");
   await expect(details.getByRole("link", { name: /Enquire about P01/ })).toHaveAttribute("href", /P01/);
   await page.keyboard.press("Escape");
-  await expect(page.getByText("Demo availability", { exact: true })).toBeVisible();
+  const legend = page.getByRole("group", { name: "Plot status legend" });
+  await expect(legend.locator('[data-status="sold"]')).toHaveText("Sold out4");
+  await expect(legend.locator('[data-status="booked"]')).toHaveText("Booked2");
+  await expect(legend.locator('[data-status="available"]')).toHaveText("Available40");
+  await expect(page.getByText(/demo/i)).toHaveCount(0);
   await expect(page.getByRole("region", { name: "Plot details" })).toHaveCount(0);
   await expect(page.locator("[data-plot-list]")).toHaveCount(0);
   await expect(page.getByRole("link", { name: /Original PDF|source plan/ })).toHaveCount(0);
@@ -91,9 +94,7 @@ test("desktop 3D supports hover and a centred click-to-open modal", async ({ pag
   await expect(modal).toHaveCount(0);
   await page.getByRole("button", { name: "Zoom in", exact: true }).click();
   await page.getByRole("button", { name: "Reset view", exact: true }).click();
-  await page.getByRole("button", { name: "2D plan", exact: true }).click();
-  await expect(canvas).toHaveCount(0);
-  await expect(page.locator("[data-plan-plot]")).toHaveCount(46);
+  await expect(page.getByRole("button", { name: /2D plan|3D view/ })).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 
@@ -109,11 +110,11 @@ test("unsupported WebGL falls back and plot picker opens verified source facts",
   await expect(page.locator("[data-inventory-view]")).toHaveAttribute("data-inventory-view", "plan");
   await expect(page.getByText("3D unavailable · interactive 2D plan")).toBeVisible();
   await page.getByLabel("Find a plot", { exact: true }).focus();
-  await page.getByLabel("Find a plot", { exact: true }).selectOption("P12");
-  const modal = page.getByRole("dialog", { name: "Plot P12 details" });
+  await page.getByLabel("Find a plot", { exact: true }).selectOption("P02");
+  const modal = page.getByRole("dialog", { name: "Plot P02 details" });
   await expect(modal).toBeVisible();
-  await expect(modal).toContainText("Sold out · demo");
-  await expect(modal).toContainText("To be confirmed");
+  await expect(modal).toContainText("Sold out");
+  await expect(modal).not.toContainText("demo");
   await page.getByRole("button", { name: "Close plot details" }).click();
   await expect(modal).toHaveCount(0);
   await expect(page.getByLabel("Find a plot", { exact: true })).toBeFocused();
@@ -145,4 +146,27 @@ test("closing details after a mobile-to-desktop resize restores focus to the plo
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.getByLabel("Find a plot", { exact: true })).toBeFocused();
+});
+
+test("mobile hero links to the live inventory map", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const link = page.locator(".hero-actions").getByRole("link", { name: "Live Inventory" });
+  await expect(link).toBeVisible();
+  await expect(link).toHaveAttribute("href", "/live-inventory");
+});
+
+test("ctrl + wheel zooms the map without scrolling the page", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/live-inventory");
+  const map = (await page.getByLabel("Interactive Star Gardens plot plan").boundingBox())!;
+  await page.mouse.move(map.x + map.width / 2, map.y + map.height / 2);
+  const scrollY = await page.evaluate(() => window.scrollY);
+  await page.keyboard.down("Control");
+  for (let step = 0; step < 8; step++) await page.mouse.wheel(0, -200);
+  await page.keyboard.up("Control");
+  await expect(page.getByRole("button", { name: "Zoom in", exact: true })).toBeDisabled();
+  expect(await page.evaluate(() => window.scrollY)).toBe(scrollY);
+  await page.getByRole("button", { name: "Reset view", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Zoom in", exact: true })).toBeEnabled();
 });

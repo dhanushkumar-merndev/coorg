@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type PointerEvent } from "react";
-import { plan, plots, statusColors, statusLabels, formatArea, type PlotStatus } from "@/data/inventory";
+import { activePlotColor, plan, plots, statusColors, statusLabelColors, statusLabels, formatArea, type PlotStatus } from "@/data/inventory";
 import styles from "./inventory.module.css";
 
 type Props = {
@@ -44,7 +44,8 @@ export default function PlotPlan({ statuses, selectedId, hoveredId, onSelect, on
       {plan.roads.map((road, index) => <polygon key={index} points={points(road.points)} fill="#f8f4e9" stroke="#cecbb9" strokeWidth="0.6" />)}
       {plots.map((plot, index) => {
         const active = plot.id === selectedId || plot.id === hoveredId;
-        return <g key={plot.id} data-plan-plot={plot.id} role="button" tabIndex={0} aria-label={`Plot ${plot.id}, ${formatArea(plot.areaSqFt)} square feet, ${statusLabels[statuses[plot.id]]}`} aria-pressed={plot.id === selectedId} className={styles.svgPlot}
+        const status = statuses[plot.id];
+        return <g key={plot.id} data-plan-plot={plot.id} data-status={status} data-live={status === "available" && !active ? "" : undefined} role="button" tabIndex={0} aria-label={`Plot ${plot.id}, ${formatArea(plot.areaSqFt)} square feet, ${statusLabels[status]}`} aria-pressed={plot.id === selectedId} className={styles.svgPlot}
           onMouseEnter={() => onHover(plot.id)} onMouseLeave={() => onHover(null)}
           onClick={() => { if (!drag.current?.moved) onSelect(plot.id); drag.current = null; }}
           onKeyDown={event => {
@@ -56,9 +57,9 @@ export default function PlotPlan({ statuses, selectedId, hoveredId, onSelect, on
               svg.current?.querySelector<SVGGElement>(`[data-plan-plot="${next.id}"]`)?.focus();
             }
           }}>
-          <polygon points={points(plot.points)} fill={active ? "#284b3b" : statusColors[statuses[plot.id]]} stroke={active ? "#c2a569" : "#f4f0e7"} strokeWidth={active ? 2.5 : 1.2} strokeLinejoin="round" />
-          {statuses[plot.id] === "sold" && <polygon points={points(plot.points)} fill="url(#inventory-hatch)" pointerEvents="none" />}
-          <text x={plot.centroid[0]} y={plot.centroid[1]} dy=".35em" textAnchor="middle" fill={active ? "#fffaf0" : "#233e2b"} fontSize={Math.max(width, height) / 77} fontWeight="600" pointerEvents="none">{plot.id}</text>
+          <polygon points={points(plot.points)} fill={active ? activePlotColor : statusColors[status]} stroke={active ? "#c2a569" : "#f4f0e7"} strokeWidth={active ? 2.5 : 1.2} strokeLinejoin="round" />
+          {status === "sold" && <polygon points={points(plot.points)} fill="url(#inventory-hatch)" pointerEvents="none" />}
+          <text x={plot.centroid[0]} y={plot.centroid[1]} dy=".35em" textAnchor="middle" fill={active ? "#fffaf0" : statusLabelColors[status]} fontSize={Math.max(width, height) / 77} fontWeight="600" pointerEvents="none">{plot.id}</text>
         </g>;
       })}
     </g>
