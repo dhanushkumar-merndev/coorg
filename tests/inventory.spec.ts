@@ -4,7 +4,7 @@ import { ongoingProjects } from "../src/data/projects";
 
 test("plot statuses mark the confirmed sales and bookings", () => {
   const ids = (status: string) => Object.entries(plotStatuses).filter(([, value]) => value === status).map(([id]) => id);
-  expect(ids("sold")).toEqual(["P02", "P03", "P04", "P05"]);
+  expect(ids("sold")).toEqual(["P02", "P04", "P07", "P09"]);
   expect(ids("booked")).toEqual(["P23", "P24"]);
   expect(ids("available")).toHaveLength(40);
 });

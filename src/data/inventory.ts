@@ -28,7 +28,7 @@ type SourcePlan = {
 export const plan = source as unknown as SourcePlan;
 
 // Sales and bookings confirmed by the client; every other plot is available.
-const SOLD_PLOTS = ["P02", "P03", "P04", "P05"];
+const SOLD_PLOTS = ["P02", "P04", "P07", "P09"];
 const BOOKED_PLOTS = ["P23", "P24"];
 const statusOf = (id: string): PlotStatus => SOLD_PLOTS.includes(id) ? "sold" : BOOKED_PLOTS.includes(id) ? "booked" : "available";
 
