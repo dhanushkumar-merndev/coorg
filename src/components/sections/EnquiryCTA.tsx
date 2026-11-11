@@ -10,6 +10,13 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import styles from "./sections.module.css";
 import formStyles from "./enquiry.module.css";
 
+const plotQuestions = [
+  { name: "purpose", summary: "Purpose", legend: "What is your primary purpose for buying a plot in Coorg?", options: ["Build a holiday home", "Investment", "Build and rent it out"] },
+  { name: "plots", summary: "Number of plots", legend: "How many plots are you looking to buy?", options: ["1 plot", "2 plots", "3 plots", "4 or more plots"] },
+  { name: "budget", summary: "Budget", legend: "What is your budget for the plot?", options: ["₹2 Crore – ₹3 Crore", "₹4 Crore – ₹6 Crore", "₹7 Crore – ₹10 Crore", "More than ₹10 Crore"] },
+  { name: "visit", summary: "Site visit", legend: "When would you be available for a site visit?", options: ["This week", "Next week", "Within 2–4 weeks", "I can schedule based on availability"] },
+] as const;
+
 export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaultOpen?: boolean; standalone?: boolean } = {}) {
   const [open, setOpen] = useState(defaultOpen || standalone);
   const [status, setStatus] = useState("");
@@ -28,26 +35,30 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
     event.preventDefault();
     const form = event.currentTarget;
     const values = new FormData(form);
-    const name = String(values.get("name") ?? "").trim();
-    const contact = String(values.get("contact") ?? "").trim();
+    const read = (key: string) => String(values.get(key) ?? "").trim();
+    const name = read("name");
+    const phone = read("phone");
+    const email = read("email");
     const nameInput = form.elements.namedItem("name") as HTMLInputElement;
-    const contactInput = form.elements.namedItem("contact") as HTMLInputElement;
+    const phoneInput = form.elements.namedItem("phone") as HTMLInputElement;
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
 
-    nameInput.setCustomValidity(name.length >= 2 ? "" : "Please enter your name.");
-    const contactValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)
-      || (/^[+\d\s().-]+$/.test(contact) && contact.replace(/\D/g, "").length >= 7 && contact.replace(/\D/g, "").length <= 15);
-    contactInput.setCustomValidity(contactValid ? "" : "Please enter a valid email address or phone number.");
+    const phoneDigits = phone.replace(/\D/g, "").length;
+    nameInput.setCustomValidity(name.length >= 2 ? "" : "Please enter your full name.");
+    phoneInput.setCustomValidity(/^[+\d\s().-]+$/.test(phone) && phoneDigits >= 7 && phoneDigits <= 15 ? "" : "Please enter a valid phone number.");
+    emailInput.setCustomValidity(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Please enter a valid email address.");
     if (!form.reportValidity()) return;
 
     const message = [
-      "Hello Star Managed Farmlands, I would like to enquire.",
+      "Hello Star Managed Farmlands, I would like to own a plot in Coorg.",
       "",
-      `Name: ${name}`,
-      `Contact: ${contact}`,
-      `Interest: ${String(values.get("interest") ?? "Still exploring")}`,
+      `Full name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
       "",
-      "What I am looking for:",
-      String(values.get("note") ?? "").trim() || "I would like to discuss the available properties.",
+      ...plotQuestions.map((question) => `${question.summary}: ${read(question.name)}`),
+      `Interested in: ${read("interest") || "Still exploring"}`,
+      ...(read("note") ? ["", "Additional notes:", read("note")] : []),
     ].join("\n");
     window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
     setStatus("Your enquiry is ready in WhatsApp. Review it and tap Send to start the conversation.");
@@ -74,19 +85,34 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
         }}>
         <div id="private-enquiry-form" className={`${styles.formPanel} ${formStyles.panel}`}>
           <div className={styles.formHeader}>
-            <h3 id="enquiry-form-heading">A little about your search.</h3>
+            <h3 id="enquiry-form-heading">Own your dream plot in Coorg.</h3>
             {!standalone && <button type="button" onClick={closeForm} className={`${styles.closeForm} ${formStyles.close}`} aria-label="Close enquiry form"><LuX aria-hidden="true" /></button>}
           </div>
+          <p className={styles.formHelp}>Discover an opportunity to build your dream holiday home in Coorg. Fill in the form to get more details.</p>
           <p className={styles.formHelp}>Call <a href={`tel:${contactTelephone}`}>{contactPhone}</a> · <a href={whatsappUrl()} target="_blank" rel="noreferrer">Chat on WhatsApp</a></p>
           <p id="enquiry-form-help" className={styles.formHelp}>Continue to WhatsApp with your details filled in. Review the message there, then tap Send.</p>
           <form onSubmit={openWhatsApp} aria-describedby="enquiry-form-help" onInput={(event) => {
             const target = event.target;
-            if (target instanceof HTMLInputElement) target.setCustomValidity("");
+            if (target instanceof HTMLInputElement && target.type !== "radio") target.setCustomValidity("");
             if (status) setStatus("");
           }}>
             <div className={styles.formGrid}>
-              <label htmlFor="enquiry-name">Your name <span aria-hidden="true">*</span><input ref={firstInput} id="enquiry-name" name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Name" /></label>
-              <label htmlFor="enquiry-contact">Email or phone <span aria-hidden="true">*</span><input id="enquiry-contact" name="contact" required maxLength={180} placeholder="How you would like to be contacted" /></label>
+              {plotQuestions.map((question) => (
+                <fieldset key={question.name} className={`${styles.fullField} ${formStyles.choiceGroup}`}>
+                  <legend>{question.legend} <span aria-hidden="true">*</span></legend>
+                  <div className={formStyles.choices}>
+                    {question.options.map((option, index) => (
+                      <label key={option} className={formStyles.choice}>
+                        <input type="radio" name={question.name} value={option} required={index === 0} />
+                        <span>{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+              <label htmlFor="enquiry-name" className={styles.fullField}>Full name <span aria-hidden="true">*</span><input ref={firstInput} id="enquiry-name" name="name" autoComplete="name" required minLength={2} maxLength={100} placeholder="Your full name" /></label>
+              <label htmlFor="enquiry-phone">Phone number <span aria-hidden="true">*</span><input id="enquiry-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required maxLength={20} placeholder="+91 98765 43210" /></label>
+              <label htmlFor="enquiry-email">Email <span aria-hidden="true">*</span><input id="enquiry-email" name="email" type="email" autoComplete="email" required maxLength={180} placeholder="you@example.com" /></label>
               <AnimatedSelect id="enquiry-interest" name="interest" label="What draws you here?" className={styles.fullField} defaultValue="Still exploring" options={["Still exploring", "Star Garden", "Projects", "Madikeri Estate", "Plantation Estates", "Private Hill Retreats", "Curated Estate Plots", "Forest & Mountain Land", "Countryside Homes"]} onValueChange={() => setStatus("")} />
               <label htmlFor="enquiry-note" className={styles.fullField}>A little more <span className={styles.optional}>(optional)</span><textarea id="enquiry-note" name="note" maxLength={3000} rows={3} placeholder="Your ideal setting, preferred area, or what matters most to you…" /></label>
             </div>
