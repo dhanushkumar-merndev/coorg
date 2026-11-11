@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Manrope } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
@@ -94,6 +95,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${manrope.variable} ${display.variable}`}
     >
       <body>
+        <Script id="google-tag-manager-init" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+        <Script
+          id="google-tag-manager"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-5MPWWKVT"
+          strategy="afterInteractive"
+          async
+        />
         <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
         <PageTransition><SmoothScroll /><SiteHeader /><main id="main" tabIndex={-1}>{children}<PagePatterns /></main><Footer /></PageTransition>
       </body>
