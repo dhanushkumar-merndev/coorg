@@ -7,7 +7,7 @@ import styles from "@/components/pages/pages.module.css";
 
 export const metadata: Metadata = {
   title: "Enquire Privately | Star Managed Farmlands",
-  description: "Enquire about land in Coorg. Share your ideal setting and connect with us on WhatsApp.",
+  description: "Enquire about owning a plot in Coorg. Share what you are looking for and the Star Managed Farmlands team will get in touch.",
   alternates: { canonical: "/enquiry" },
 };
 

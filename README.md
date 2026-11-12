@@ -55,7 +55,16 @@ World slugs are `plantation-estates`, `private-hill-retreats`, `curated-estate-p
 
 All nine supplied source opportunity records remain server-only drafts. SLN's ₹999/sq ft display rate was confirmed by the user separately from the PDF. Managed Farmlands presents Ongoing Projects first, led by Star Garden at `/managed-farmlands/star-garden`, followed by the three completed Coorg estates tagged Sold out following user confirmation. Star Garden replaces the previous ongoing project entirely; its copy, plot counts, amenities, distances and investment proposals were supplied by the user on 11 September 2026. Current availability, exact plot sale terms, map, legal status and public contact remain unconfirmed. The ₹1 crore land and ₹1 crore villa figures are proposed investment amounts; coffee income and the approximately 18-month ROI timeline remain conditional projections with the full supplied disclaimer. The project remains `publicReady: false` in the internal data model.
 
-Star Garden uses one visibly labelled AI-generated concept image at `public/images/coorg/conceptual/star-garden.webp`; the [generation prompt and provenance](output/imagegen/star-garden-prompt.md) are retained with the original PNG. Category/hero art and the terrain study are also explicitly conceptual. The enquiry form validates and downloads a local text brief; it sends no personal data. Its custom dropdown supports pointer, keyboard navigation and type-ahead. Direct submission/WhatsApp requires a confirmed official destination.
+Star Garden uses one visibly labelled AI-generated concept image at `public/images/coorg/conceptual/star-garden.webp`; the [generation prompt and provenance](output/imagegen/star-garden-prompt.md) are retained with the original PNG. Category/hero art and the terrain study are also explicitly conceptual. The enquiry form (`src/components/sections/EnquiryCTA.tsx`, questions in `src/data/enquiry.ts`) validates in the browser and again in the server action `src/app/actions/enquiry.ts`, then saves each enquiry as a new row in a Google Sheet and plays a short thank-you animation. Its custom dropdown supports pointer, keyboard navigation and type-ahead.
+
+### Enquiry form → Google Sheet
+
+1. Create a Google Sheet, open **Extensions › Apps Script** and paste in `integrations/google-sheets/enquiry-webhook.gs`.
+2. In **Project Settings › Script Properties**, add `ENQUIRY_SECRET` (a long random string). You can also add `NOTIFY_EMAIL` to get an email for every enquiry.
+3. Go to **Deploy › New deployment › Web app**, set *Execute as: Me* and *Who has access: Anyone*, and authorise it.
+4. Put the `/exec` URL and the same secret in `.env.local` (and in the hosting provider's env) as `ENQUIRY_SHEET_WEBHOOK_URL` and `ENQUIRY_SHEET_SECRET`, then restart the server.
+
+Rows land on an `Enquiries` tab, with headers created automatically. Use **File › Download › Microsoft Excel (.xlsx)** for an Excel copy. After editing the script, redeploy with **Manage deployments › Edit › New version** so the URL stays the same. If the env vars are missing, the form shows a friendly error and nothing is saved.
 
 ## Branding and link sharing
 

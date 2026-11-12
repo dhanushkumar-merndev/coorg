@@ -18,3 +18,4 @@
 .hiddenCheck { visibility: hidden; }
 @media (max-width: 700px) { .trigger { font-size: 16px; } .option { font-size: 14px; min-height: 46px; } }
 @media (prefers-reduced-motion: reduce) { .trigger, .option { transition: none; } }
+.placeholder { color: #6e7966; }

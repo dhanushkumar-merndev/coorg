@@ -12,14 +12,18 @@ type AnimatedSelectProps = {
   label: string;
   options: readonly string[];
   defaultValue?: string;
+  /** When set, nothing is pre-selected: the trigger shows this text and the field submits "". */
+  placeholder?: string;
   className?: string;
   onValueChange?: (value: string) => void;
 };
 
-export function AnimatedSelect({ id, name, label, options, defaultValue, className, onValueChange }: AnimatedSelectProps) {
-  const initial = Math.max(0, options.indexOf(defaultValue ?? ""));
+export function AnimatedSelect({ id, name, label, options, defaultValue, placeholder, className, onValueChange }: AnimatedSelectProps) {
+  const found = options.indexOf(defaultValue ?? "");
+  const initial = placeholder ? found : Math.max(0, found);
   const [selected, setSelected] = useState(initial);
-  const [active, setActive] = useState(initial);
+  const [active, setActive] = useState(Math.max(0, initial));
+  const current = Math.max(0, selected);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState({ side: "bottom", height: 286 });
   const container = useRef<HTMLDivElement>(null);
@@ -71,20 +75,20 @@ export function AnimatedSelect({ id, name, label, options, defaultValue, classNa
       return;
     }
     if (event.key === "Escape") {
-      if (open) { event.preventDefault(); event.stopPropagation(); setOpen(false); setActive(selected); }
+      if (open) { event.preventDefault(); event.stopPropagation(); setOpen(false); setActive(current); }
       return;
     }
     if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
       event.preventDefault();
       if (!open) openList();
       setActive((index) => event.key === "Home" ? 0 : event.key === "End" ? options.length - 1
-        : !open ? selected : Math.max(0, Math.min(options.length - 1, index + (event.key === "ArrowDown" ? 1 : -1))));
+        : !open ? current : Math.max(0, Math.min(options.length - 1, index + (event.key === "ArrowDown" ? 1 : -1))));
       return;
     }
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       if (open) choose(active);
-      else { setActive(selected); openList(); }
+      else { setActive(current); openList(); }
       return;
     }
     if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
@@ -102,12 +106,12 @@ export function AnimatedSelect({ id, name, label, options, defaultValue, classNa
       if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false);
     }}>
       <label id={`${id}-label`} htmlFor={id} className={styles.label}>{label}</label>
-      <input type="hidden" name={name} value={options[selected]} />
+      <input type="hidden" name={name} value={options[selected] ?? ""} />
       <button ref={trigger} id={id} type="button" role="combobox" className={styles.trigger}
         aria-labelledby={`${id}-label ${id}-value`} aria-controls={`${id}-listbox`} aria-haspopup="listbox"
         aria-expanded={open} aria-activedescendant={open ? `${id}-option-${active}` : undefined}
-        onKeyDown={handleKey} onClick={() => { setActive(selected); if (open) setOpen(false); else openList(); }}>
-        <span id={`${id}-value`}>{options[selected]}</span>
+        onKeyDown={handleKey} onClick={() => { setActive(current); if (open) setOpen(false); else openList(); }}>
+        <span id={`${id}-value`} className={selected < 0 ? styles.placeholder : undefined}>{options[selected] ?? placeholder}</span>
         <motion.span className={styles.chevron} animate={{ rotate: open ? 180 : 0 }} transition={{ duration: reduced ? 0 : 0.22 }}>
           <LuChevronDown aria-hidden="true" />
         </motion.span>
