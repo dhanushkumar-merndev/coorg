@@ -22,6 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/gallery", 0.6, "monthly"),
     entry("/about", 0.6, "monthly"),
     entry("/enquiry", 0.7, "yearly"),
+    entry("/privacy-policy", 0.2, "yearly"),
+    entry("/terms", 0.2, "yearly"),
     ...coorgWorlds.map((world) => entry(`/opportunities/${world.id}`, 0.7, "monthly")),
     ...indexedManagedFarmlandProjects.map((project) =>
       entry(`/projects/${project.id}`, 0.9, "weekly"),

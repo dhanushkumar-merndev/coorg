@@ -41,7 +41,7 @@ export default function SiteHeader() {
   }, []);
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className={`site-header ${scrolled || pathname === "/enquiry" || pathname === "/live-inventory" ? "is-scrolled" : ""}`}>
+    <header className={`site-header ${scrolled || pathname === "/enquiry" || pathname === "/live-inventory" || pathname === "/privacy-policy" || pathname === "/terms" ? "is-scrolled" : ""}`}>
       <TransitionLink href="/" className="brand" aria-label="Star Managed Farmlands home"><CompanyLogo /><BrandWordmark /></TransitionLink>
       <nav aria-label="Main navigation" className="desktop-nav">{navLinks.map((link) => <TransitionLink key={link.label} href={link.href} aria-current={isNavigationActive(pathname, link.href) ? "page" : undefined}>{link.label}</TransitionLink>)}</nav>
       <div className="nav-actions">

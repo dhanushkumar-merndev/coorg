@@ -7,6 +7,7 @@ import { contactPhone, contactTelephone, whatsappUrl } from "@/data/contact";
 import { emailPattern, interestOptions, isValidPhone, plotQuestions } from "@/data/enquiry";
 import { submitEnquiry } from "@/app/actions/enquiry";
 import { AnimatedSelect } from "@/components/ui/AnimatedSelect";
+import TransitionLink from "@/components/navigation/TransitionLink";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { EnquirySuccess, type EnquiryAnswer } from "./EnquirySuccess";
 import styles from "./sections.module.css";
@@ -157,6 +158,7 @@ export function EnquiryCTA({ defaultOpen = false, standalone = false }: { defaul
                   : <motion.span key="idle" className={formStyles.submitLabel} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>Submit enquiry <LuArrowRight aria-hidden="true" /></motion.span>}
               </AnimatePresence>
             </motion.button>
+            <p className={formStyles.consent}>By submitting, you agree to be contacted about your enquiry and accept our <TransitionLink href="/privacy-policy">Privacy Policy</TransitionLink> and <TransitionLink href="/terms">Terms of Use</TransitionLink>.</p>
             <p role="status" aria-live="polite" className={`${styles.formStatus} ${formStyles.error}`}>{status}</p>
           </form>
           </motion.div>

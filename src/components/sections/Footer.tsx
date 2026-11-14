@@ -17,7 +17,7 @@ export function Footer() {
         <p className={styles.footerLocation}>Coorg, Karnataka, India.<br /><span>A little closer to what matters.</span><br /><a href={`tel:${contactTelephone}`}>{contactPhone}</a><br /><a href={whatsappUrl()} target="_blank" rel="noreferrer">WhatsApp us ↗</a></p>
         <nav className={styles.footerNav} aria-label="Footer navigation">{navLinks.map((link) => <TransitionLink key={link.href} href={link.href}>{link.label}</TransitionLink>)}<TransitionLink href="/enquiry">Enquire</TransitionLink></nav>
       </div>
-      <div className={styles.footerBottom}><p>© {new Date().getFullYear()} Star Managed Farmlands</p><p>Land. Estates. Thoughtful living.</p><TransitionLink href="/">Back to the hills <LuArrowUp size={14} aria-hidden="true" /></TransitionLink></div>
+      <div className={styles.footerBottom}><p>© {new Date().getFullYear()} Star Managed Farmlands</p><nav className={styles.footerLegal} aria-label="Legal"><TransitionLink href="/privacy-policy">Privacy Policy</TransitionLink><TransitionLink href="/terms">Terms of Use</TransitionLink></nav><p>Land. Estates. Thoughtful living.</p><TransitionLink href="/">Back to the hills <LuArrowUp size={14} aria-hidden="true" /></TransitionLink></div>
     </footer>
   );
 }
